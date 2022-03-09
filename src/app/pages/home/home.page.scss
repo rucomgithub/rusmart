@@ -1,0 +1,156 @@
+ion-toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    --background: transparent;
+    --color: white;
+}
+
+ion-toolbar ion-button,
+ion-toolbar ion-back-button,
+ion-toolbar ion-menu-button {
+    --color: white;
+}
+
+.about-header {
+    position: relative;
+    width: 100%;
+    height: 25%;
+}
+
+.about-header .about-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+}
+
+.about-header .madison {
+    background-image: url(/assets/img/about/madison.jpg);
+}
+
+.about-header .austin {
+    background-image: url(/assets/img/about/austin.jpg);
+}
+
+.about-header .chicago {
+    background-image: url(/assets/img/about/chicago.jpg);
+}
+
+.about-header .seattle {
+    background-image: url(/assets/img/about/seattle.jpg);
+}
+
+.about-info {
+    position: absolute;
+    margin-top: -10px;
+    border-radius: 10px;
+    background: var(--ion-background-color, #fff);
+}
+
+.about-info h3 {
+    margin-top: 0;
+}
+
+.about-info ion-list {
+    padding-top: 0;
+}
+
+.about-info p {
+    line-height: 130%;
+    color: var(--ion-color-dark);
+}
+
+.about-info ion-icon {
+    margin-inline-end: 32px;
+}
+
+#date-input-popover {
+    --offset-y: -var(--ion-safe-area-bottom);
+    --max-width: 90%;
+    --width: 336px;
+}
+
+
+/*
+   * iOS Only
+   */
+
+.ios .about-info {
+    --ion-padding: 19px;
+}
+
+.ios .about-info h3 {
+    font-weight: 700;
+}
+
+.about-button {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.full-width {
+    --width: 100px;
+    --height: 180px;
+}
+
+.home-menu-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 1rem 1rem 1rem;
+    .home-menu-items {
+        flex: 35%;
+        margin: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        img {
+            width: 20vw;
+            margin: 0.5rem;
+        }
+        .img-calendar {
+            width: 20vw;
+        }
+        .img-news3 {
+            width: 25vw;
+        }
+        .img-mr30 {
+            width: 15vw;
+        }
+        .img-aboutus4 {
+            width: 25vw;
+        }
+        .img-text-calendar {
+            width: 27vw;
+            margin: 0 0 0.5rem 0;
+        }
+        .img-text-news3 {
+            width: 22vw;
+            margin: 0.5rem 0 0.5rem 0;
+        }
+        .img-text-mr30 {
+            width: 22vw;
+            margin: 0 0 0.5rem 0;
+        }
+        .img-text-aboutus4 {
+            width: 30vw;
+            margin: 0 0 0.1rem 0;
+        }
+    }
+}
+
+hr {
+    border-bottom: 1px solid #ccc;
+    margin: 10px 0;
+    width: 100%;
+}
