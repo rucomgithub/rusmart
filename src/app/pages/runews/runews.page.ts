@@ -1,3 +1,7 @@
+import { RunewsService } from './../services/runews/runews.service';
+import { HttpClient } from '@angular/common/http';
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RunewsPage implements OnInit {
 
-  constructor() { }
+  ruNewsResult = [];
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private ruNewsService: RunewsService,
+    private navCtrl: NavController
+  ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+  getNews() {
+    this.ruNewsService.getRunews().subscribe(
+      (result) => {
+        //console.log(result);
+        this.ruNewsResult = result;
+        //console.log(JSON.stringify(this.ruNewsResult ));
+        console.table(this.ruNewsResult );
+      },
+      (err) => {
+        console.log('Something went wrong !'+err.message);
+      }
+    );
+  }
+  ionViewWillEnter() {
+    this.getNews();
   }
 
 }
