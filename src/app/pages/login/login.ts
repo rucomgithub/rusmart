@@ -6,6 +6,16 @@ import { UserData } from '../../providers/user-data';
 
 import { UserOptions } from '../../interfaces/user-options';
 
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+
+import '@codetrix-studio/capacitor-google-auth';
+import { Plugins } from '@capacitor/core';
+import { HttpClient } from '@angular/common/http';
+
+import { Storage } from '@capacitor/storage';
+import { NavController } from '@ionic/angular';
+import { GoogleAuthService } from '../../services/google/google-auth.service';
+import { GoogleAuthResponse } from '../../services/google/googleAuth';
 
 
 @Component({
@@ -14,24 +24,22 @@ import { UserOptions } from '../../interfaces/user-options';
   styleUrls: ['./login.scss'],
 })
 export class LoginPage {
+  googleUser: GoogleAuthResponse;
   login: UserOptions = { username: '', password: '' };
   submitted = false;
 
-  constructor(
-    public userData: UserData,
-    public router: Router
-  ) { }
-
-  onLogin(form: NgForm) {
-    this.submitted = true;
-
-    if (form.valid) {
-      this.userData.login(this.login.username);
-      this.router.navigateByUrl('/app/tabs/schedule');
-    }
+  constructor(private googleAuthService: GoogleAuthService, private router: Router, private navCtrl: NavController) {   GoogleAuth.initialize();}
+  async googleSignup() {
+    this.googleUser = await Plugins.GoogleAuth.signIn(null) as any;
+    const idToken = this.googleUser.authentication.idToken;
+    const stdCode = this.googleUser.email.substring(0, 10);
+    this.googleAuthService.googleAuth(idToken, stdCode).subscribe(response => {
+      this.router.navigate(['/app/tabs/profile']);
+    });
   }
 
-  onSignup() {
-    this.router.navigateByUrl('/signup');
+  goToHome(){
+    this.navCtrl.navigateBack('/app/tabs/home');
   }
 }
+

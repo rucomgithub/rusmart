@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs-page';
 import { SchedulePage } from '../schedule/schedule';
 import { HomePageModule } from '../home/home.module';
+import { AuthGuard } from '../../_helpers/auth.guard';
 
 
 const routes: Routes = [
@@ -46,7 +47,8 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+            loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule),
+            canActivate: [AuthGuard]
           }
         ]
       },
