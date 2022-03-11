@@ -22,4 +22,5 @@ import { SchedulePageRoutingModule } from './schedule-routing.module';
     ScheduleFilterPage
   ]
 })
+//test
 export class ScheduleModule { }
