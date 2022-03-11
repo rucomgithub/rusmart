@@ -42,7 +42,11 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
     canActivate: [AuthGuard]
+  },  {
+    path: 'runews',
+    loadChildren: () => import('./pages/runews/runews.module').then( m => m.RunewsPageModule)
   }
+
 
 ];
 
