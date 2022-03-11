@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { CheckTutorial } from './providers/check-tutorial.service';
 import { AuthGuard } from './_helpers/auth.guard';
 
@@ -42,9 +42,11 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
     canActivate: [AuthGuard]
-  },  {
+  },
+  {
     path: 'runews',
     loadChildren: () => import('./pages/runews/runews.module').then( m => m.RunewsPageModule)
+
   }
 
 
