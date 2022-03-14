@@ -1,13 +1,19 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button></ion-back-button>
+            <ion-back-button defaultHref="/app/tabs/home"></ion-back-button>
         </ion-buttons>
-        <ion-title>runews</ion-title>
+        <ion-title>home</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="forceReload($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+            refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+
     <ion-card *ngFor="let item of ruNewsResult">
         <ion-item>
             <ion-avatar slot="start">
@@ -19,7 +25,8 @@
             </ion-label>
         </ion-item>
         <ion-card-header id="text-header" style="padding: 3px;">
-            <img id="headerP" src="http://www3.ru.ac.th/RuNews/images/News/{{item.photo_header}}" alt="ion"> <br /> :: {{item.title}}
+            <img id="headerP" src="http://www3.ru.ac.th/RuNews/images/News/{{item.photo_header}}" alt="ion"> <br /> ::
+            {{item.title}}
         </ion-card-header>
         <!-- <ion-card-content>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus iaculis mollis ligula sed ultrices.
@@ -28,7 +35,8 @@
             <ion-row style="padding: 2px;">
                 <ion-col size="6">
                     <p>
-                        <ion-badge color="badge" style="font-size: 0.7em;">Expire : {{item.date_expire | date :'dd MMM yyyy'}}</ion-badge>
+                        <ion-badge color="badge" style="font-size: 0.7em;">Expire : {{item.date_expire | date :'dd MMM
+                            yyyy'}}</ion-badge>
                     </p>
                 </ion-col>
 
