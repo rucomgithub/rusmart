@@ -1,6 +1,10 @@
 
-    export class RuNews{
-    constructor(
+    export interface AllRuNews{
+        ruNews:RuNews[]
+    }
+    
+    export interface RuNews{
+   
         id: string,
         category_id: string,
         title: string,
@@ -19,9 +23,5 @@
         date_expire: string,
         status: string,
         priority: string
-        )
-    {
-    }
-
     }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { RuNews } from '../runews';
+import { AllRuNews, RuNews } from '../runews';
 import { Observable, throwError ,BehaviorSubject} from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -11,28 +11,30 @@ import { catchError, tap } from 'rxjs/operators';
 export class RunewsService {
   // API path
   base_path_cat2 = 'http://appsapi.ru.ac.th/NewsRu/NewsJson?c_id=1';
-  
-  runews:RuNews={
-    id: '',
-    category_id: '',
-    title: '',
-    photo_header: '',
-    detail: '',
-    photo_content: '',
-    file_detail: '',
-    file_detail2: '',
-    file_detail3: '',
-    file_comment: '',
-    file_comment2: '',
-    file_comment3: '',
-    hit: '',
-    date_receive: '',
-    date_post: '',
-    date_expire: '',
-    status: '',
-    priority: '',
-  };
-  private runewsSubject= new BehaviorSubject<RuNews>([]);
+  allRuNews:AllRuNews={
+    runews:RuNews[]
+  }
+  // runews:RuNews={
+  //   id: '',
+  //   category_id: '',
+  //   title: '',
+  //   photo_header: '',
+  //   detail: '',
+  //   photo_content: '',
+  //   file_detail: '',
+  //   file_detail2: '',
+  //   file_detail3: '',
+  //   file_comment: '',
+  //   file_comment2: '',
+  //   file_comment3: '',
+  //   hit: '',
+  //   date_receive: '',
+  //   date_post: '',
+  //   date_expire: '',
+  //   status: '',
+  //   priority: '',
+  // };
+  private runewsSubject= new BehaviorSubject<RuNews>(this.runews);
 
   public get RuNews(){
     return this.runewsSubject.asObservable();

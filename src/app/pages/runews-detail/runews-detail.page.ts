@@ -41,14 +41,14 @@ export class RunewsDetailPage implements OnInit {
     let runewsDetail=[]
     runewsDetail = JSON.parse(localStorage.getItem('runews'));
   //  console.log(runewsDetail.filter(item=>item.id == newsid))
-  console.log(typeof runewsDetail)
-  this.runewsService.RuNews.subscribe(data => {
+  // console.log(typeof runewsDetail)
+  this.runewsService.RuNews.subscribe((data: RuNews[]) => {
     let runews =[];
     runews.push(data);
     // data.filter(item=>item.id == newsid)
     // this.runews = data
     // let filterd = runews.filter(item=>item.id == newsid)
-     console.log(data)
+     console.log(data.filter(t => t.id == newsid))
     //console.log(filterd)
     }
     )}
