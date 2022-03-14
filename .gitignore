@@ -36,4 +36,5 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 
 android/
-/src/environments/**
+**/src/environments/environment.prod.ts
+**/src/environments/environment.ts
