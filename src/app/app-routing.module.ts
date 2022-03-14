@@ -47,7 +47,12 @@ const routes: Routes = [
     path: 'runews',
     loadChildren: () => import('./pages/runews/runews.module').then( m => m.RunewsPageModule)
 
+  },
+  {
+    path: 'calendar',
+    loadChildren: () => import('./pages/calendar/calendar.module').then( m => m.CalendarPageModule)
   }
+
 
 
 ];
