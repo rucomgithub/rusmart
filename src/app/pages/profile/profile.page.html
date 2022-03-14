@@ -1,5 +1,5 @@
 <ion-app>
-  <ion-content>
+  <ion-content *ngIf="studentProfile">
     <ion-row id="row-top">
       <ion-col size="12" size-sm> </ion-col>
     </ion-row>
@@ -17,12 +17,13 @@
     <ion-row id="header-main-bg-tag">
       <ion-col size="12" size-sm>
         <ion-row>
+          
           <ion-col size="3" size-sm>
             <img src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png" alt="" />
           </ion-col>
           <ion-col size="9" size-sm id="name-thai-tag">
-            <ion-text>เปลวเทียน รักเรีนน</ion-text> <br>
-            <ion-text id="name-eng-tag">plaewtein rakreain</ion-text>
+            <ion-text>{{studentProfile.NAME_THAI}}</ion-text> <br>
+            <ion-text id="name-eng-tag">{{studentProfile.NAME_ENG}}</ion-text>
           </ion-col>
         </ion-row>
       </ion-col>
@@ -33,20 +34,20 @@
         <ion-row>
           <ion-col size="12" size-sm id="detail-student-graduate">
             <ion-row>
-              <ion-col size="6" size-sm id="draw-line-vertical">Code <br />6299999991</ion-col>
-              <ion-col size="6" size-sm>Grade <br />| 1.00 |</ion-col>
+              <ion-col size="6" size-sm id="draw-line-vertical">รหัสนักศึกษา <br />{{studentProfile.STD_CODE}}</ion-col>
+              <ion-col size="6" size-sm> สถานะลงทะเบียน <br /> {{studentProfile.STD_STATUS_DESC_THAI}} </ion-col>
             </ion-row>
           </ion-col>
 
           <ion-col size="12" size-sm id="detail-student-graduate2">
             <ion-row>
-              <ion-col size="6" size-sm id="draw-line-vertical">Code <br />6299999991</ion-col>
-              <ion-col size="6" size-sm>Grade <br />| 1.00 |</ion-col>
+              <ion-col size="6" size-sm id="draw-line-vertical">สถานะ <br />{{studentProfile.STD_TYPE_DESC_THAI}}</ion-col>
+              <ion-col size="6" size-sm> สถานะ <br /> {{studentProfile.CHK_CERT_NAME_THAI}}</ion-col>
             </ion-row>
           </ion-col>
         </ion-row>
         <ion-row id="description-message-tag">
-          <ion-col size="12">ghyghghyyghygh <br> dfdded</ion-col>
+          <ion-col size="12">{{studentProfile.FACULTY_NAME_THAI}} <br> {{studentProfile.MAJOR_NAME_THAI}}</ion-col>
         </ion-row>
       </ion-col>
     </ion-row>
@@ -55,7 +56,7 @@
       <ion-col size="12" size-sm>
         <ion-row>
           <ion-col size="12" size-sm>
-            ggttgtg
+            {{studentProfile.NAME_ENG}}
           </ion-col>
         </ion-row>
         <ion-row>
@@ -67,7 +68,7 @@
                   [attr.track]="session.tracks[0] | lowercase" [hidden]="session.hide">
                   <ion-item routerLink="/app/tabs/schedule/session/{{session.id}}">
                     <ion-label>
-                      <h3>xxxx</h3>
+                      <h3>{{studentProfile.NAME_ENG}}</h3>
                       <p>
                         {{session.timeStart}} &mdash; {{session.timeEnd}}: {{session.location}}
                       </p>

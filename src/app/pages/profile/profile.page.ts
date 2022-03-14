@@ -5,6 +5,8 @@ import { AlertController, IonList, IonRouterOutlet, LoadingController, ModalCont
 import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
 import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
+import { ProfileService } from '../../services/student/profile/profile.service';
+import { StudentProfile } from '../../services/student';
 
 @Component({
   selector: 'app-profile',
@@ -23,6 +25,9 @@ export class ProfilePage implements OnInit {
   groups: any = [];
   confDate: string;
   showSearchbar: boolean;
+  studentProfile: StudentProfile;
+
+
 
   constructor(
     public alertCtrl: AlertController,
@@ -33,10 +38,12 @@ export class ProfilePage implements OnInit {
     public routerOutlet: IonRouterOutlet,
     public toastCtrl: ToastController,
     public user: UserData,
-    public config: Config
+    public config: Config,
+    public profileService: ProfileService
   ) { }
 
   ngOnInit() {
+    this.fetchProfile()
     this.updateSchedule();
 
     this.ios = this.config.get('mode') === 'ios';
@@ -135,6 +142,16 @@ export class ProfilePage implements OnInit {
     await loading.present();
     await loading.onWillDismiss();
     fab.close();
+  }
+
+  fetchProfile(){
+    this.profileService.fetchStudentProfile().subscribe(
+      data =>{ this.studentProfile = data
+        console.log(data)
+      }
+    )
+
+
   }
 
 }
