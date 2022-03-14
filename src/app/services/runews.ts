@@ -1,8 +1,4 @@
 
-    export interface AllRuNews{
-        ruNews:RuNews[]
-    }
-    
     export interface RuNews{
    
         id: string,

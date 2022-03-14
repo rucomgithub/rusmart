@@ -7,6 +7,7 @@ export const environment = {
   api:'http://10.3.65.243:8080',
   googleAuth:'https://backend-services.ru.ac.th/ru-smart-api/google/authorization',
   studentProfile: 'https://backend-services.ru.ac.th/ru-smart-api/student/profile',
+  base_path_cat2: 'http://appsapi.ru.ac.th/NewsRu/NewsJson?c_id=1',
 };
 
 /*

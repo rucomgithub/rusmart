@@ -14,36 +14,23 @@ import { RuNews } from '../../services/runews';
 export class RunewsPage implements OnInit {
 
   ruNewsResult:RuNews;
+
   constructor(
     private http: HttpClient,
     private router: Router,
     private ruNewsService: RunewsService,
     private navCtrl: NavController
   ) {
-
-    this.ruNewsService.RuNews.subscribe(data => console.table(data))
-
+    this.ruNewsService.RuNews.subscribe(data => this.ruNewsResult = data);
   }
 
   ngOnInit() {}
 
-
   ionViewWillEnter() {
-    console.log('Enter');
     this.getNews();
   }
 
   getNews() {
-    this.ruNewsService.getRunews().subscribe(
-      (result) => {
-        //console.log(result);
-        this.ruNewsResult = result;
-        //console.log(JSON.stringify(this.ruNewsResult ));
-       // console.table(this.ruNewsResult );
-      },
-      (err) => {
-        console.log('Something went wrong !'+err.message);
-      }
-    );
+    this.ruNewsService.getRunews();
   }
 }

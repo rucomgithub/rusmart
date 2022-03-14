@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { filter, map, tap } from 'rxjs/operators';
 import { RuNews } from '../../services/runews';
 import { RunewsService } from '../../services/runews/runews.service';
 
@@ -9,8 +10,8 @@ import { RunewsService } from '../../services/runews/runews.service';
   styleUrls: ['./runews-detail.page.scss'],
 })
 export class RunewsDetailPage implements OnInit {
-    
-  runews:RuNews={
+
+  runews: RuNews = {
     id: '',
     category_id: '',
     title: '',
@@ -31,26 +32,18 @@ export class RunewsDetailPage implements OnInit {
     priority: '',
   };
   constructor(
-     private route: ActivatedRoute,
-     private runewsService: RunewsService,
-    ) { }
+    private route: ActivatedRoute,
+    private runewsService: RunewsService,
+  ) {
+    this.getNewsDetails(this.route.snapshot.paramMap.get('id'));
+  }
 
-  ngOnInit() {
-    const newsid = this.route.snapshot.paramMap.get('id');
-   // console.log(newsid);
-    let runewsDetail=[]
-    runewsDetail = JSON.parse(localStorage.getItem('runews'));
-  //  console.log(runewsDetail.filter(item=>item.id == newsid))
-  // console.log(typeof runewsDetail)
-  this.runewsService.RuNews.subscribe((data: RuNews[]) => {
-    let runews =[];
-    runews.push(data);
-    // data.filter(item=>item.id == newsid)
-    // this.runews = data
-    // let filterd = runews.filter(item=>item.id == newsid)
-     console.log(data.filter(t => t.id == newsid))
-    //console.log(filterd)
-    }
-    )}
+  ngOnInit() { }
+
+  getNewsDetails(newsId: String) {
+    return this.runewsService.RuNews.pipe(
+      map((news: any) => news.filter(news => news.id === newsId)))
+      .subscribe(data => this.runews = data)
+  }
 
 }
