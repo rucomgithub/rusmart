@@ -1,6 +1,6 @@
 {
-  "appId": "com.usmart.dawutv2",
-  "appName": "wutloginv2",
+  "appId": "th.ac.ru.uSmart",
+  "appName": "ruSmart",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
@@ -10,7 +10,7 @@
     },
     "GoogleAuth": {
       "scopes": ["profile","email"],
-      "serverClientId": "513658882822-gis7ul7arnn0jvno8leebl0006hoedgj.apps.googleusercontent.com",
+      "serverClientId": "5630106548850-kvrnt329jan3u7s0rqvchvif0pf829nd.apps.googleusercontent.com",
       "forceCodeForRefreshToken": true
       }
   },
