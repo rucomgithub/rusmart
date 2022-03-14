@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 
 import { RuSmartInterceptor } from './interceptor/interceptor';
+import { CalendarPipe } from './pages/calendar.pipe';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import { RuSmartInterceptor } from './interceptor/interceptor';
       enabled: environment.production
     })
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, CalendarPipe],
   providers: [InAppBrowser, SplashScreen, StatusBar,  { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: RuSmartInterceptor, multi: true }  ],
   bootstrap: [AppComponent]
