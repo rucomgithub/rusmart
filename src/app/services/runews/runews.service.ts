@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class RunewsService {
   // API path
-  base_path_cat2 = 'http://appsapi.ru.ac.th/NewsRu/NewsJson?c_id=2';
+  base_path_cat2 = 'http://appsapi.ru.ac.th/NewsRu/NewsJson?c_id=1';
 
   constructor(private http: HttpClient) {}
 
@@ -24,6 +24,8 @@ export class RunewsService {
     .get('http://appsapi.ru.ac.th/NewsRu/NewsJsonRusmart?c_id=1')
     .pipe(
       map((res: any) => {
+        // console.log(JSON.stringify(res))
+        localStorage.setItem('runews',JSON.stringify(res))
         return res ;
       })
     );

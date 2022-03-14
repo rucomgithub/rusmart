@@ -47,7 +47,11 @@ const routes: Routes = [
     path: 'runews',
     loadChildren: () => import('./pages/runews/runews.module').then( m => m.RunewsPageModule)
 
+  },  {
+    path: 'runews-detail',
+    loadChildren: () => import('./pages/runews-detail/runews-detail.module').then( m => m.RunewsDetailPageModule)
   }
+
 
 
 ];

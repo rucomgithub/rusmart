@@ -71,7 +71,17 @@ const routes: Routes = [
           },
           {
             path: 'runews',
-            loadChildren: () => import('../runews/runews.module').then(m => m.RunewsPageModule)
+            children: [
+              {
+                path: '',
+                loadChildren: () => import('../runews/runews.module').then(m => m.RunewsPageModule)
+              },
+              {
+                path: 'detail/:id',
+                loadChildren: () => import('../runews-detail/runews-detail.module').then(m => m.RunewsDetailPageModule)
+              }
+            ]
+            // loadChildren: () => import('../runews/runews.module').then(m => m.RunewsPageModule)
           }
         ]
       },

@@ -21,21 +21,24 @@ export class RunewsPage implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+
+  ionViewWillEnter() {
+    console.log('Enter');
+    this.getNews();
+  }
+
   getNews() {
     this.ruNewsService.getRunews().subscribe(
       (result) => {
         //console.log(result);
         this.ruNewsResult = result;
         //console.log(JSON.stringify(this.ruNewsResult ));
-        console.table(this.ruNewsResult );
+       // console.table(this.ruNewsResult );
       },
       (err) => {
         console.log('Something went wrong !'+err.message);
       }
     );
   }
-  ionViewWillEnter() {
-    this.getNews();
-  }
-
 }
