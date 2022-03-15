@@ -8,11 +8,6 @@
 </ion-header>
 
 <ion-content>
-    <ion-refresher slot="fixed" (ionRefresh)="forceReload($event)">
-        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
-            refreshingText="Refreshing...">
-        </ion-refresher-content>
-    </ion-refresher>
 
     <ion-card *ngFor="let item of ruNewsResult">
         <ion-item>
