@@ -7,38 +7,39 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-row>
-                <ion-col size="6" size-sm>
-                    <div class="ion-float-left" >
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-                </ion-col>
-                <ion-col size="6" size-sm>
-            
-                        <div class="ion-float-right" (click)="goToHome()">
-                            <ion-icon name="close-outline"></ion-icon>
-                        </div>
-                 
-                </ion-col>
+<ion-grid>
+    <ion-row>
+        <ion-col size="6" size-sm>
+            <div class="ion-float-left">
+                <ion-icon name="logo-html5" style="zoom:2.5;"></ion-icon>
+            </div>
+        </ion-col>
+        <ion-col size="6" size-sm>
 
-        </ion-row>
+            <div class="ion-float-right" (click)="goToHome()">
+                <ion-icon name="close-outline" style="zoom:2.5;"></ion-icon>
+            </div>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <img src="https://www.w3schools.com/css/paris.jpg" alt="Paris" width="350" height="350">
+    </ion-row>
 
-      </ion-toolbar>
-  </ion-header>
+    <ion-row>
+        <h1>เข้าสู่ระบบโดย RU mail</h1>
+    </ion-row>
+</ion-grid>
+    <div id="container">
 
-  <div id="container">
 
+        <div class="btn-google-signin-wrapper">
+            <ion-button class="btn-google-signin" (click)="googleSignup()">
+                LOGIN
+            </ion-button>
+        </div>
+        <ion-card>
 
-      <div class="btn-google-signin-wrapper">
-          <ion-button class="btn-google-signin" (click)="googleSignup()">
-            LOGIN
-      </ion-button>
-      </div>
-      <ion-card>
-        
-      </ion-card>
-      <!-- <ion-button color="light" (click)="goToProfile()" expand="block">Go to Profile</ion-button> -->
-  </div>
+        </ion-card>
+        <!-- <ion-button color="light" (click)="goToProfile()" expand="block">Go to Profile</ion-button> -->
+    </div>
 </ion-content>
