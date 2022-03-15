@@ -9,6 +9,7 @@ import { environment } from '../../../environments/environment';
 
 import { Token } from '../student';
 
+import { StoreService} from '../../services/store/store.service'
 
 
 @Injectable({
@@ -24,7 +25,7 @@ export class GoogleAuthService {
     isAuth: false,
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public store: StoreService) {
     this.currentUserSubject = new BehaviorSubject<Token>(JSON.parse(localStorage.getItem('isAuth')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -36,6 +37,12 @@ export class GoogleAuthService {
     };
     this.setGoogleIdToken(idToken);
     this.setStudentCode(stdCode);
+
+    this.store.loadToken();
+    this.store.token$.subscribe(res =>{
+      console.log(res)
+    })
+
     return this.http.post<Token>(`${environment.googleAuth}`, playLoad).pipe(
       tap(res => {
         this.setAccessToken(res.accessToken);

@@ -28,13 +28,20 @@ export class LoginPage {
   login: UserOptions = { username: '', password: '' };
   submitted = false;
 
-  constructor(private googleAuthService: GoogleAuthService, private router: Router, private navCtrl: NavController) {   GoogleAuth.initialize();}
+  constructor(
+    private googleAuthService: GoogleAuthService, 
+    private router: Router, 
+    private navCtrl: NavController,
+
+    )
+     { 
+  GoogleAuth.initialize();}
   async googleSignup() {
     this.googleUser = await Plugins.GoogleAuth.signIn(null) as any;
     const idToken = this.googleUser.authentication.idToken;
     const stdCode = this.googleUser.email.substring(0, 10);
     this.googleAuthService.googleAuth(idToken, stdCode).subscribe(response => {
-      this.router.navigate(['/app/tabs/profile']);
+    this.router.navigate(['/app/tabs/profile']);
     });
   }
 

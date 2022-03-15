@@ -6,7 +6,9 @@ import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
 import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
 import { ProfileService } from '../../services/student/profile/profile.service';
-import { StudentProfile } from '../../services/student';
+import { StudentProfile, Token } from '../../services/student';
+import { StoreService } from '../../services/store/store.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -27,7 +29,7 @@ export class ProfilePage implements OnInit {
   showSearchbar: boolean;
   studentProfile: StudentProfile;
 
-
+  token: Observable<Token>
 
   constructor(
     public alertCtrl: AlertController,
@@ -39,10 +41,13 @@ export class ProfilePage implements OnInit {
     public toastCtrl: ToastController,
     public user: UserData,
     public config: Config,
-    public profileService: ProfileService
+    public profileService: ProfileService,
+   public store: StoreService
   ) { }
 
   ngOnInit() {
+
+    this.token = this.store.token$;
     this.fetchProfile()
     this.updateSchedule();
 
@@ -153,5 +158,6 @@ export class ProfilePage implements OnInit {
 
 
   }
+  
 
 }

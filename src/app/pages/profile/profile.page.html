@@ -14,7 +14,8 @@
 
     </ion-row>
 
-    <ion-row id="header-main-bg-tag">
+    <ion-row id="header-main-bg-tag" *ngIf="store.token$ | async as token"> 
+      {{token | json}}
       <ion-col size="12" size-sm>
         <ion-row>
           
