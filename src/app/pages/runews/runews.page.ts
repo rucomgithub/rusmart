@@ -5,6 +5,7 @@ import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { RuNews } from '../../services/runews';
+import { ConditionalExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-runews',
@@ -23,14 +24,19 @@ export class RunewsPage implements OnInit {
   ) {
     this.ruNewsService.RuNews.subscribe(data => this.ruNewsResult = data);
   }
-
-  ngOnInit() {}
-
-  ionViewWillEnter() {
+  
+  ngOnInit() {
     this.getNews();
   }
-
+  
+  ionViewWillEnter() {
+    // this.getNews();
+  }
+  
   getNews() {
-    this.ruNewsService.getRunews();
+    console.log("call api...")
+    this.ruNewsService.getRunews().subscribe(data => {
+      data => this.ruNewsResult = data;
+    });
   }
 }

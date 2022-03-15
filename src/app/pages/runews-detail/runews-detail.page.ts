@@ -35,12 +35,14 @@ export class RunewsDetailPage implements OnInit {
     private route: ActivatedRoute,
     private runewsService: RunewsService,
   ) {
+
     this.getNewsDetails(this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit() { }
 
   getNewsDetails(newsId: String) {
+    console.log("call observer")
     return this.runewsService.RuNews.pipe(
       map((news: any) => news.filter(news => news.id === newsId)))
       .subscribe(data => this.runews = data)

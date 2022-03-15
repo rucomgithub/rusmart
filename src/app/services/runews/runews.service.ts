@@ -44,9 +44,10 @@ export class RunewsService {
   getRunews(): Observable<RuNews> {
 
     return this.http
-      .get(`${environment.base_path_cat2}`)
+      .get('http://appsapi.ru.ac.th/NewsRu/NewsJsonRusmart?c_id=1')
       .pipe(
         map((res: RuNews) => {
+          console.log("set local storage...")
           localStorage.setItem('runews', JSON.stringify(res))
           return res;
         })
