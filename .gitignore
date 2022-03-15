@@ -34,3 +34,7 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+android/
+**/src/environments/environment.prod.ts
+**/src/environments/environment.ts

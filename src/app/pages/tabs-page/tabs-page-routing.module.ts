@@ -1,3 +1,4 @@
+import { RunewsPageModule } from './../runews/runews.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs-page';
@@ -67,6 +68,20 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
+          },
+          {
+            path: 'runews',
+            children: [
+              {
+                path: '',
+                loadChildren: () => import('../runews/runews.module').then(m => m.RunewsPageModule)
+              },
+              {
+                path: 'detail/:id',
+                loadChildren: () => import('../runews-detail/runews-detail.module').then(m => m.RunewsDetailPageModule)
+              }
+            ]
+            // loadChildren: () => import('../runews/runews.module').then(m => m.RunewsPageModule)
           }
         ]
       },

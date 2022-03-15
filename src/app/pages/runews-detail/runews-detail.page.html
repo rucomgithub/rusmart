@@ -1,0 +1,21 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/app/tabs/home/runews"></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-icon slot="icon-only" ios="call-outline" md="call-sharp"></ion-icon>
+            </ion-button>
+            <ion-button>
+                <ion-icon slot="icon-only" ios="share-outline" md="share-sharp"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-content>
+        {{runews| json}}
+    </ion-content>
+</ion-content>
