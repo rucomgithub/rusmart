@@ -2,14 +2,15 @@
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Storage } from '@capacitor/storage';
+//import { Storage } from '@capacitor/storage';อย่าได้เปิด
+//import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 import { Observable, throwError,BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 import { Token } from '../student';
-//import { Storage } from '@ionic/storage';
-// import { get, set } from '../storage.service';
+
 
 
 @Injectable({
@@ -25,18 +26,18 @@ export class GoogleAuthService {
     isAuth: false,
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private storage: Storage) {
+
     this.currentUserSubject = new BehaviorSubject<Token>(JSON.parse(localStorage.getItem('isAuth')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
-
   googleAuth(idToken: string, stdCode: string): Observable<Token> {
 
     const playLoad = {
       'std_code': stdCode
     };
     this.setGoogleIdToken(idToken);
-    this.setStudentCode(stdCode);
+    //this.setStudentCode(stdCode);
     // this.setWut(idToken);
     return this.http.post<Token>(`${environment.googleAuth}`, playLoad).pipe(
       tap(res => {
@@ -51,33 +52,30 @@ export class GoogleAuthService {
     );
 
   }
-  private async setGoogleIdToken(idToken: string){
-    // console.log('setGoogleIdToken'+idToken);
-    const test = await Storage.set({
-    key: 'idToken',
-    value: idToken,
-    });
-    // let testOb$ = of(test);
-    // console(testOb$);
+  setGoogleIdToken(idToken: string){
+    console.log('setGoogleIdToken'+idToken);
+    //this.storage.set('idToken', idToken);
+    this.storage.set('idToken', idToken);
   }
-  async getGoogleIdToken() {
-    // const {value} = await Storage.get({ key: 'idToken' });
+  getGoogleIdToken() {
     // console.log('getGoogleIdToken'+value);
-    return await Storage.get({ key: 'idToken' });
+    // return this.storage.get('idToken').then((val) => {
+    //   console.log('idToken', val);
+    // });
   }
   /////
-  private async setStudentCode(stdCode: string){
-    // console.log('setStudentCode'+stdCode);
-    await Storage.set({
-    key: 'stdCode',
-    value: stdCode,
-    });
-  }
-  async getStudentCode() {
-    const {value} = await Storage.get({ key: 'stdCode' });
-    // console.log('getStudentCode'+value);
-    return value;
-  }
+  // private async setStudentCode(stdCode: string){
+  //   // console.log('setStudentCode'+stdCode);
+  //   await Storage.set({
+  //   key: 'stdCode',
+  //   value: stdCode,
+  //   });
+  // }
+  // async getStudentCode() {
+  //   const {value} = await Storage.get({ key: 'stdCode' });
+  //   // console.log('getStudentCode'+value);
+  //   return value;
+  // }
   // private async setWut(isAuth: string){
   //   await Storage.set({
   //   key: 'isAuthgetwut',
@@ -110,12 +108,12 @@ export class GoogleAuthService {
   // setAccessToken(accessToken: string) {
   //   localStorage.setItem('accessToken', accessToken);
   // }
-  private async setAccessToken(accessToken: string){
-    await Storage.set({
-    key: 'accessToken',
-    value: accessToken,
-    });
-  }
+  // private async setAccessToken(accessToken: string){
+  //   await Storage.set({
+  //   key: 'accessToken',
+  //   value: accessToken,
+  //   });
+  // }
 
 
   getAccessToken() {
@@ -126,21 +124,21 @@ export class GoogleAuthService {
   //   localStorage.setItem('isAuth',  JSON.stringify(isAuth));
   // }
 
-  private async setIsAuthenticated(isAuth: boolean){
-    await Storage.set({
-    key: 'isAuth',
-    value: JSON.stringify(isAuth),
-    });
-  }
+  // private async setIsAuthenticated(isAuth: boolean){
+  //   await Storage.set({
+  //   key: 'isAuth',
+  //   value: JSON.stringify(isAuth),
+  //   });
+  // }
   // getIsAuthenticated(): boolean {
   //   return JSON.parse(localStorage.getItem('isAuth'));
   // }
-  async getIsAuthenticated() {
+  // async getIsAuthenticated() {
 
-    const {value} = await Storage.get({ key: 'isAuth' });
-    //console.log()
-    return JSON.parse(value);
-  }
+  //   const {value} = await Storage.get({ key: 'isAuth' });
+  //   //console.log()
+  //   return JSON.parse(value);
+  // }
 
   revokeGoogleIdToken() {
     localStorage.removeItem('idToken');
