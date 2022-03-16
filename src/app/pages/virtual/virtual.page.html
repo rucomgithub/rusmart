@@ -1,16 +1,58 @@
 <ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-      </ion-buttons>
-      <ion-title>บัตรนักศึกษา</ion-title>
+  <ion-toolbar color="translucent" routerLink="/app/tabs/profile">
+      <ion-title >
+        <ion-icon  name="chevron-down-outline"></ion-icon>
+    </ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="background">
+
   <div style="height: 90%;  display: flex; align-items: center; justify-content: center;">
     <div class="card" >
-      <img src="assets/img/cac/rundmc-live.png"/>
-    </div>
+      <ion-row > 
+      <ion-col size="3" >
+        <div class="ion-float-left">
+          <img width="61" height="74" style="margin-left: 20%;margin-top: 20%;" src="assets/img/card/Logo_VecRu_Thai.png"/>
+        </div>
+      </ion-col>
+      <ion-col size="9">
+      <ion-row  >
+        <b style="color:#19196B ;  font-size: 20px; margin-top: 5%;">มหาวิทยาลัยรามคำแหง</b>
+      </ion-row>
+      <ion-row > 
+          <b style="color:#F6C543 ;  font-size: 15px; ">Ramkhamhaeng University</b>
+      </ion-row>
+      <ion-row > 
+        <ion-icon name="card-outline" style="color:#29a2ff ;  font-size: 12px; margin-top: 4%;"></ion-icon>
+        <b style="color:#29a2ff ;  font-size: 12px;margin-left: 2%; margin-top: 3%; ">  บัตรนักศึกษาอิเล็กทรอนิกส์</b>
+    </ion-row>
+    </ion-col>
+  </ion-row>
+    <!-- header -->
+    
+    <ion-row style="display: flex; justify-content: center;margin-top: 3%"> 
+      <img  src="assets/img/card/avatar.png"/>
+    </ion-row>
+    <ion-card style="margin-top: 2%" class="cardconteudo">
+    <ion-row style="display: flex; justify-content: center;margin-top: 4%"> 
+      <b style="color:#000000 ;  font-size: 22px; ">นางสาวรักเรียน รามเกรียงไกร</b>
+    </ion-row>
+    <ion-row style="display: flex; justify-content: center;margin-top: 2%"> 
+      <b style="color:#29a2ff;  font-size: 20px; ">6299999991</b>
+    </ion-row>
+    <ion-row style="display: flex; justify-content: center;margin-top: 3%"> 
+      <b style="color:#19196B;  font-size: 22px; ">คณะนิติศาสตร์</b>
+    </ion-row>
+    <ion-row style="display: flex; justify-content: center;margin-top: 2%;margin-bottom: 2%"> 
+      <b style="color:#000000;  font-size: 18px; ">Faculty of Law</b>
+    </ion-row>
+  </ion-card><!-- profile -->
+  </div><!-- card -->
+
+
+
 </div>
+
 </ion-content>

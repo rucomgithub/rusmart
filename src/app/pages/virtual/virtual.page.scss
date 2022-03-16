@@ -1,5 +1,7 @@
 
-
+ion-content.background{
+    --background: url(../../../assets/img/card/bg.png) 0 0/100% 100% no-repeat;
+}
  .card{
      
     background-image: url(../../../assets/img/card/ID.png);
@@ -9,4 +11,9 @@
 
  }
 
- 
+ .cardconteudo {
+    background: rgba(255,255,255,0.5);
+}
+.header::after {
+    background-image: none;
+  }
