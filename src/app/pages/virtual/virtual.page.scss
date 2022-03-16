@@ -1,4 +1,12 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
 ion-content.background{
     --background: url(../../../assets/img/card/bg.png) 0 0/100% 100% no-repeat;
 }
