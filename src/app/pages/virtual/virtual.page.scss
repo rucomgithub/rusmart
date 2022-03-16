@@ -2,9 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100&display=swap');
 
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
     font-family: 'Kanit', sans-serif;
 }
 ion-content.background{
@@ -24,4 +22,8 @@ ion-content.background{
 }
 .header::after {
     background-image: none;
+  }
+
+  ion-toolbar{
+      opacity: 0.5;
   }

@@ -6,7 +6,12 @@
   background-color: rgb(9, 7, 114);
   padding: 10px 1px 10px 12%;
 }
-
+ion-content.background{
+    --background: url(../../../assets/img/card/bg.png) 0 0/100% 100% no-repeat;
+}
+img {
+  border-radius: 90%;
+}
 #header-profile {
   color: rgb(253, 249, 249);
   font-size: 16;
