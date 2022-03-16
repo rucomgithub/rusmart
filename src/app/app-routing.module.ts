@@ -50,6 +50,10 @@ const routes: Routes = [
   },  {
     path: 'runews-detail',
     loadChildren: () => import('./pages/runews-detail/runews-detail.module').then( m => m.RunewsDetailPageModule)
+  },
+  {
+    path: 'virtual',
+    loadChildren: () => import('./pages/virtual/virtual.module').then( m => m.VirtualPageModule)
   }
 
 

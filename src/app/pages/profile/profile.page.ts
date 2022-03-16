@@ -48,6 +48,7 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
 
     this.token = this.store.token$;
+    
     this.fetchProfile()
     this.updateSchedule();
 
