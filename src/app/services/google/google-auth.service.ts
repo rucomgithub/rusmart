@@ -1,5 +1,5 @@
 
-   
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@capacitor/storage';
@@ -8,7 +8,8 @@ import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 import { Token } from '../student';
-
+//import { Storage } from '@ionic/storage';
+// import { get, set } from '../storage.service';
 
 
 @Injectable({
@@ -36,11 +37,13 @@ export class GoogleAuthService {
     };
     this.setGoogleIdToken(idToken);
     this.setStudentCode(stdCode);
+    // this.setWut(idToken);
     return this.http.post<Token>(`${environment.googleAuth}`, playLoad).pipe(
       tap(res => {
-        this.setAccessToken(res.accessToken);
-        this.setIsAuthenticated(res.isAuth);
-        this.currentUserSubject.next(res);
+        // console.log('google auth');
+        // this.setAccessToken(res.accessToken);
+        // this.setIsAuthenticated(res.isAuth);
+        // this.currentUserSubject.next(res);
       }),
       catchError(err => {
         return throwError(err);
@@ -48,37 +51,95 @@ export class GoogleAuthService {
     );
 
   }
+  private async setGoogleIdToken(idToken: string){
+    // console.log('setGoogleIdToken'+idToken);
+    const test = await Storage.set({
+    key: 'idToken',
+    value: idToken,
+    });
+    // let testOb$ = of(test);
+    // console(testOb$);
+  }
+  async getGoogleIdToken() {
+    // const {value} = await Storage.get({ key: 'idToken' });
+    // console.log('getGoogleIdToken'+value);
+    return await Storage.get({ key: 'idToken' });
+  }
+  /////
+  private async setStudentCode(stdCode: string){
+    // console.log('setStudentCode'+stdCode);
+    await Storage.set({
+    key: 'stdCode',
+    value: stdCode,
+    });
+  }
+  async getStudentCode() {
+    const {value} = await Storage.get({ key: 'stdCode' });
+    // console.log('getStudentCode'+value);
+    return value;
+  }
+  // private async setWut(isAuth: string){
+  //   await Storage.set({
+  //   key: 'isAuthgetwut',
+  //   value: isAuth,
+  //   });
+  // }
+  // async getWut() {
+  //   const {value} = await Storage.get({ key: 'isAuthgetwut' });
+  //   console.log('isAuthgetwut'+value);
+  //   return value;
+  // }
 
-  setGoogleIdToken(idToken: string) {
-    localStorage.setItem('idToken', idToken);
+  // setGoogleIdToken(idToken: string) {
+  //   localStorage.setItem('idToken', idToken);
+  // }
+  // getGoogleIdToken() {
+  //   return localStorage.getItem('idToken');
+  // }
+
+
+
+  // setStudentCode(stdCode: string) {
+  //   localStorage.setItem('stdCode', stdCode);
+  // }
+
+  // getStudentCode(): string {
+  //   return localStorage.getItem('stdCode');
+  // }
+
+  // setAccessToken(accessToken: string) {
+  //   localStorage.setItem('accessToken', accessToken);
+  // }
+  private async setAccessToken(accessToken: string){
+    await Storage.set({
+    key: 'accessToken',
+    value: accessToken,
+    });
   }
 
-  getGoogleIdToken(): string {
-    return localStorage.getItem('idToken');
-  }
-
-  setStudentCode(stdCode: string) {
-    localStorage.setItem('stdCode', stdCode);
-  }
-
-  getStudentCode(): string {
-    return localStorage.getItem('stdCode');
-  }
-
-  setAccessToken(accessToken: string) {
-    localStorage.setItem('accessToken', accessToken);
-  }
 
   getAccessToken() {
     return localStorage.getItem('accessToken');
   }
 
-  setIsAuthenticated(isAuth: boolean) {
-    localStorage.setItem('isAuth',  JSON.stringify(isAuth));
-  }
+  // setIsAuthenticated(isAuth: boolean) {
+  //   localStorage.setItem('isAuth',  JSON.stringify(isAuth));
+  // }
 
-  getIsAuthenticated(): boolean {
-    return JSON.parse(localStorage.getItem('isAuth'));
+  private async setIsAuthenticated(isAuth: boolean){
+    await Storage.set({
+    key: 'isAuth',
+    value: JSON.stringify(isAuth),
+    });
+  }
+  // getIsAuthenticated(): boolean {
+  //   return JSON.parse(localStorage.getItem('isAuth'));
+  // }
+  async getIsAuthenticated() {
+
+    const {value} = await Storage.get({ key: 'isAuth' });
+    //console.log()
+    return JSON.parse(value);
   }
 
   revokeGoogleIdToken() {

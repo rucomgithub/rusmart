@@ -6,6 +6,8 @@ import { MenuController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import Swiper from 'swiper';
 
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+
 @Component({
   selector: 'page-tutorial',
   templateUrl: 'tutorial.html',
@@ -14,13 +16,15 @@ import Swiper from 'swiper';
 export class TutorialPage {
   showSkip = true;
   private slides: Swiper;
-
+  userInfo = null;
   constructor(
     public menu: MenuController,
     public router: Router,
     public storage: Storage,
     private cd: ChangeDetectorRef
-  ) {}
+  ) {
+    GoogleAuth.initialize();
+  }
 
   startApp() {
     this.router
@@ -50,5 +54,11 @@ export class TutorialPage {
   ionViewDidLeave() {
     // enable the root left menu when leaving the tutorial page
     this.menu.enable(true);
+  }
+  async googleSignup() {
+    //const googleUser = await Plugins.GoogleAuth.signIn(null) as any;
+    const googleUser = await GoogleAuth.signIn() as any;
+    console.log('my user: ', googleUser);
+    this.userInfo = googleUser;
   }
 }

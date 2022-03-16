@@ -8,8 +8,8 @@ import { UserOptions } from '../../interfaces/user-options';
 
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
-import '@codetrix-studio/capacitor-google-auth';
-import { Plugins } from '@capacitor/core';
+// import '@codetrix-studio/capacitor-google-auth';
+// import { Plugins } from '@capacitor/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Storage } from '@capacitor/storage';
@@ -27,19 +27,40 @@ export class LoginPage {
   googleUser: GoogleAuthResponse;
   login: UserOptions = { username: '', password: '' };
   submitted = false;
+  userInfo = null;
+  constructor(private googleAuthService: GoogleAuthService, private router: Router, private navCtrl: NavController) {
 
-  constructor(private googleAuthService: GoogleAuthService, private router: Router, private navCtrl: NavController) {   GoogleAuth.initialize();}
+  }
+  ionViewDidEnter(){
+    GoogleAuth.initialize();
+  }
   async googleSignup() {
-    this.googleUser = await Plugins.GoogleAuth.signIn(null) as any;
-    const idToken = this.googleUser.authentication.idToken;
-    const stdCode = this.googleUser.email.substring(0, 10);
-    this.googleAuthService.googleAuth(idToken, stdCode).subscribe(response => {
-      this.router.navigate(['/app/tabs/profile']);
-    });
+      this.googleUser = await GoogleAuth.signIn() as any;
+      this.userInfo = this.googleUser;
+      const idToken = this.googleUser.authentication.idToken;
+      const stdCode = this.googleUser.email.substring(0, 10);
+      //alert (idToken);
+      //alert(this.googleUser);
+
+      this.googleAuthService.googleAuth(idToken, stdCode).subscribe(response => {
+        //console.log(response.accessToken);
+        // alert(response.)
+        //this.navCtrl.navigateRoot('/app/tabs/profile');
+        //this.router.navigateByUrl('/app/tabs/profile', { replaceUrl: true });
+        //this.router.navigate(['/app/tabs/profile']);
+        //return true;
+        // alert(localStorage.getItem('stdCode'));
+        // if(localStorage.getItem('stdCode')){
+        //   alert('5555');
+        // }
+      });
   }
 
   goToHome(){
     this.navCtrl.navigateBack('/app/tabs/home');
+  }
+  goToProfile(){
+    this.router.navigate(['/app/tabs/profile']);
   }
 }
 

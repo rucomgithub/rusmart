@@ -10,6 +10,8 @@ import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
 import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
 
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -29,6 +31,7 @@ export class HomePage implements OnInit {
   showSearchbar: boolean;
   location = 'madison';
   conferenceDate = '2047-05-17';
+  userInfo = null;
 
   selectOptions = {
     header: 'Select a Location'
@@ -42,15 +45,17 @@ export class HomePage implements OnInit {
     public routerOutlet: IonRouterOutlet,
     public toastCtrl: ToastController,
     public user: UserData,
-    public config: Config) { }
+    public config: Config) {
+      GoogleAuth.initialize();
+     }
 
   ngOnInit() {
     this.updateSchedule();
 
     this.ios = this.config.get('mode') === 'ios';
-    
+
   }
-  
+
   updateSchedule() {
     // Close any open sliding items when the schedule updates
     if (this.scheduleList) {
@@ -69,7 +74,7 @@ export class HomePage implements OnInit {
     });
     await popover.present();
   }
-  
+
   async presentFilter() {
     const modal = await this.modalCtrl.create({
       component: ScheduleFilterPage,
@@ -151,5 +156,11 @@ export class HomePage implements OnInit {
     await loading.present();
     await loading.onWillDismiss();
     fab.close();
+  }
+  async googleSignup() {
+    //const googleUser = await Plugins.GoogleAuth.signIn(null) as any;
+    const googleUser = await GoogleAuth.signIn() as any;
+    console.log('my user: ', googleUser);
+    this.userInfo = googleUser;
   }
 }
