@@ -33,7 +33,7 @@
           </ion-col>
           <ion-col size="9" size-sm id="name-thai-tag">
             <ion-text>{{studentProfile.NAME_THAI}}</ion-text> <br>
-            <ion-text id="name-eng-tag">{{studentProfile.NAME_ENG}}</ion-text>
+             <ion-text id="name-eng-tag">{{studentProfile.STD_CODE}}</ion-text><!-- {{studentProfile.NAME_ENG}} -->
           </ion-col>
         </ion-row>
       </ion-col>
@@ -44,7 +44,7 @@
         <ion-row>
           <ion-col size="12" size-sm id="detail-student-graduate">
             <ion-row>
-              <ion-col size="6" size-sm id="draw-line-vertical">รหัสนักศึกษา <br />{{studentProfile.STD_CODE}}</ion-col>
+              <ion-col size="6" size-sm id="draw-line-vertical">{{studentProfile.FACULTY_NAME_THAI}} <br /> {{studentProfile.MAJOR_NAME_THAI}} </ion-col>
               <ion-col size="6" size-sm> สถานะลงทะเบียน <br /> {{studentProfile.STD_STATUS_DESC_THAI}} </ion-col>
             </ion-row>
           </ion-col>
@@ -57,7 +57,7 @@
           </ion-col>
         </ion-row>
         <ion-row id="description-message-tag">
-          <ion-col size="12">{{studentProfile.FACULTY_NAME_THAI}} <br> {{studentProfile.MAJOR_NAME_THAI}}</ion-col>
+          <ion-col size="12">กรุณาตรวจสอบหน่วยกิตรวมทั้งหมด และเกรดเฉลี่ยนสะสม "อย่างเป็นทางการ" ได้ที่ สำนักวิชาการและทดสอบประเมินผล (สวป.)</ion-col>
         </ion-row>
       </ion-col>
     </ion-row>

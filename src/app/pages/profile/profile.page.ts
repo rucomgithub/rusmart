@@ -48,7 +48,7 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
 
     this.token = this.store.token$;
-    
+
     this.fetchProfile()
     this.updateSchedule();
 
@@ -153,7 +153,7 @@ export class ProfilePage implements OnInit {
   fetchProfile(){
     this.profileService.fetchStudentProfile().subscribe(
       data =>{ this.studentProfile = data
-        console.log(data)
+       // console.log(data)
       }
     )
 
