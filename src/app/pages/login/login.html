@@ -7,39 +7,49 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true">
-<ion-grid>
-    <ion-row>
-        <ion-col size="6" size-sm>
-            <div class="ion-float-left">
-                <ion-icon name="logo-html5" style="zoom:2.5;"></ion-icon>
-            </div>
-        </ion-col>
-        <ion-col size="6" size-sm>
+    <ion-grid>
+        <ion-row>
 
-            <div class="ion-float-right" (click)="goToHome()">
-                <ion-icon name="close-outline" style="zoom:2.5;"></ion-icon>
-            </div>
-        </ion-col>
-    </ion-row>
-    <ion-row>
-        <img src="https://www.w3schools.com/css/paris.jpg" alt="Paris" width="350" height="350">
-    </ion-row>
+            <ion-col size="6" size-sm>
+                <div class="ion-float-left">
+                    <ion-icon name="logo-html5" style="zoom:2.5;"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col size="6" size-sm>
 
-    <ion-row>
-        <h1>เข้าสู่ระบบโดย RU mail</h1>
-    </ion-row>
-</ion-grid>
-    <div id="container">
+                <div class="ion-float-right" (click)="goToHome()">
+                    <ion-icon name="close-outline" style="zoom:2.5;"></ion-icon>
+                </div>
+            </ion-col>
+        </ion-row>
+      
+        <ion-row style="margin-top:10%;">
+            <img src="https://www.w3schools.com/css/paris.jpg">
+        </ion-row>
 
 
-        <div class="btn-google-signin-wrapper">
-            <ion-button class="btn-google-signin" (click)="googleSignup()">
-                LOGIN
-            </ion-button>
-        </div>
-        <ion-card>
+    </ion-grid>
 
-        </ion-card>
-        <!-- <ion-button color="light" (click)="goToProfile()" expand="block">Go to Profile</ion-button> -->
-    </div>
+
+
+
+
+
 </ion-content>
+<ion-footer  class="ion-no-border" style="margin-bottom:10%;">
+
+    <ion-row>
+        <h1><b>เข้าสู่ระบบโดย RU-Mail</b></h1>
+    </ion-row>
+    <ion-row>
+        <h4>สำหรับนักศึกษามหาวิทยาลัยรามคำแหง หากลืมรหัสผ่านโปรดติดต่อ</h4>
+    </ion-row>
+
+    <div class="btn-google-signin-wrapper">
+        <ion-button expand="full" class="btn-google-signin" (click)="googleSignup()">
+            <b>LOGIN</b>
+        </ion-button>
+    </div>
+
+
+</ion-footer>
