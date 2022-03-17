@@ -1,15 +1,17 @@
 
-   
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Storage } from '@capacitor/storage';
-import { Observable, throwError,BehaviorSubject } from 'rxjs';
+//import { Storage } from '@capacitor/storage';อย่าได้เปิด
+//import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage';
+import { Observable, throwError,BehaviorSubject,from } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 import { Token } from '../student';
 
-import { StoreService} from '../../services/store/store.service'
+
 
 
 @Injectable({
@@ -25,11 +27,13 @@ export class GoogleAuthService {
     isAuth: false,
   };
 
-  constructor(private http: HttpClient, public store: StoreService) {
+
+  constructor(private http: HttpClient, private storage: Storage) {
+
+
     this.currentUserSubject = new BehaviorSubject<Token>(JSON.parse(localStorage.getItem('isAuth')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
-
   googleAuth(idToken: string, stdCode: string): Observable<Token> {
 
     const playLoad = {
@@ -38,54 +42,49 @@ export class GoogleAuthService {
     this.setGoogleIdToken(idToken);
     this.setStudentCode(stdCode);
 
-    this.store.loadToken();
-    this.store.token$.subscribe(res =>{
-      console.log(res)
-    })
+
 
     return this.http.post<Token>(`${environment.googleAuth}`, playLoad).pipe(
       tap(res => {
+        console.log('google auth',res);
         this.setAccessToken(res.accessToken);
         this.setIsAuthenticated(res.isAuth);
         this.currentUserSubject.next(res);
       }),
       catchError(err => {
+        alert(err.status+'  '+err.message+'  '+err.headers);
         return throwError(err);
       })
     );
 
   }
-
-  setGoogleIdToken(idToken: string) {
-    localStorage.setItem('idToken', idToken);
+  setGoogleIdToken(idToken: string){
+    this.storage.set('idToken', idToken);
+  }
+  getGoogleIdToken() {
+    return from(this.storage.get('idToken'));
   }
 
-  getGoogleIdToken(): string {
-    return localStorage.getItem('idToken');
+  private setStudentCode(stdCode: string){
+    this.storage.set('stdCode', stdCode);
   }
-
-  setStudentCode(stdCode: string) {
-    localStorage.setItem('stdCode', stdCode);
-  }
-
-  getStudentCode(): string {
-    return localStorage.getItem('stdCode');
+  getStudentCode() {
+    return from(this.storage.get('stdCode'));
   }
 
   setAccessToken(accessToken: string) {
-    localStorage.setItem('accessToken', accessToken);
+    this.storage.set('accessToken', accessToken);
   }
-
   getAccessToken() {
-    return localStorage.getItem('accessToken');
+    return from(this.storage.get('accessToken'));
   }
 
   setIsAuthenticated(isAuth: boolean) {
-    localStorage.setItem('isAuth',  JSON.stringify(isAuth));
+    this.storage.set('isAuth',isAuth);
   }
 
-  getIsAuthenticated(): boolean {
-    return JSON.parse(localStorage.getItem('isAuth'));
+  getIsAuthenticated() {
+    return from(this.storage.get('isAuth'));
   }
 
   revokeGoogleIdToken() {

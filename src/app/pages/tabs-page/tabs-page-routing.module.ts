@@ -1,4 +1,5 @@
 import { RunewsPageModule } from './../runews/runews.module';
+import { CalendarPageModule } from './../calendar/calendar.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs-page';
@@ -71,6 +72,7 @@ const routes: Routes = [
           },
           {
             path: 'runews',
+
             children: [
               {
                 path: '',
@@ -81,7 +83,11 @@ const routes: Routes = [
                 loadChildren: () => import('../runews-detail/runews-detail.module').then(m => m.RunewsDetailPageModule)
               }
             ]
-            // loadChildren: () => import('../runews/runews.module').then(m => m.RunewsPageModule)
+          },
+          {
+            path: 'calendar',
+            loadChildren: () => import('../calendar/calendar.module').then(m => m.CalendarPageModule)
+
           }
         ]
       },
