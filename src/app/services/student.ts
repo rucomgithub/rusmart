@@ -1,6 +1,6 @@
 export interface Token {
-    accessToken: string;
-    isAuth: boolean;
+  accessToken: string;
+  isAuth: boolean;
 }
 
 export interface StudentProfile {

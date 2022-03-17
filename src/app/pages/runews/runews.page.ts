@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RunewsService } from './../../services/runews/runews.service';
 import { Subscription } from 'rxjs';
 import { RuNews } from '../../services/runews';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-runews',
@@ -13,17 +14,20 @@ export class RunewsPage implements OnInit, OnDestroy {
   private runewsSub: Subscription;
 
   constructor(
-    private ruNewsService: RunewsService
+    private ruNewsService: RunewsService,
+    private storage: Storage
   ) {
-
+    this.storage.set('news-store', 'news');
   }
 
   ngOnInit() {
-
+    this.getData();
   }
 
   ionViewWillEnter() {
-    this.getData();
+    this.storage.get('news-store').then(res => {
+      console.log('news-store' + res);
+    });
   }
 
   getData() {

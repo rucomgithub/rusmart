@@ -36,20 +36,21 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'profile',
-    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
+    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'runews',
-    loadChildren: () => import('./pages/runews/runews.module').then( m => m.RunewsPageModule)
-
-  },  {
+    loadChildren: () => import('./pages/runews/runews.module').then(m => m.RunewsPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'runews-detail',
-    loadChildren: () => import('./pages/runews-detail/runews-detail.module').then( m => m.RunewsDetailPageModule)
+    loadChildren: () => import('./pages/runews-detail/runews-detail.module').then(m => m.RunewsDetailPageModule)
   }
 
 
@@ -60,4 +61,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

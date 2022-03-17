@@ -80,7 +80,8 @@ const routes: Routes = [
                 path: 'detail/:id',
                 loadChildren: () => import('../runews-detail/runews-detail.module').then(m => m.RunewsDetailPageModule)
               }
-            ]
+            ],
+            canActivate: [AuthGuard]
             // loadChildren: () => import('../runews/runews.module').then(m => m.RunewsPageModule)
           }
         ]

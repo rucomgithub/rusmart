@@ -28,7 +28,13 @@ export class LoginPage {
   login: UserOptions = { username: '', password: '' };
   submitted = false;
 
-  constructor(private googleAuthService: GoogleAuthService, private router: Router, private navCtrl: NavController) {   GoogleAuth.initialize();}
+  constructor(
+    private googleAuthService: GoogleAuthService,
+    private router: Router,
+    private navCtrl: NavController
+  ) {
+    GoogleAuth.initialize();
+  }
   async googleSignup() {
     this.googleUser = await Plugins.GoogleAuth.signIn(null) as any;
     const idToken = this.googleUser.authentication.idToken;
@@ -38,8 +44,13 @@ export class LoginPage {
     });
   }
 
-  goToHome(){
+  goToHome() {
     this.navCtrl.navigateBack('/app/tabs/home');
+  }
+
+  Logout() {
+    this.googleAuthService.signOut();
+    // this.router.navigate(['/app/tabs/home']);
   }
 }
 

@@ -1,36 +1,39 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-      <ion-title>
-          LOGIN
-      </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            LOGIN
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-      <ion-toolbar>
+    <ion-header collapse="condense">
+        <ion-toolbar>
 
-          <ion-title size="large">
-              <div class="ion-float-right" (click)="goToHome()">
-                  <ion-icon name="close-outline"></ion-icon>
-              </div>
-          </ion-title>
-
-
-      </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
+            <ion-title size="large">
+                <div class="ion-float-right" (click)="goToHome()">
+                    <ion-icon name="close-outline"></ion-icon>
+                </div>
+            </ion-title>
 
 
-      <div class="btn-google-signin-wrapper">
-          <ion-button class="btn-google-signin" (click)="googleSignup()">
-            LOGIN
-      </ion-button>
-      </div>
-      <ion-card>
-        
-      </ion-card>
-      <!-- <ion-button color="light" (click)="goToProfile()" expand="block">Go to Profile</ion-button> -->
-  </div>
+        </ion-toolbar>
+    </ion-header>
+
+    <div id="container">
+
+
+        <div class="btn-google-signin-wrapper">
+            <ion-button class="btn-google-signin" (click)="googleSignup()">
+                LOGIN
+            </ion-button>
+            <ion-button class="btn-google-signin" (click)="Logout()">
+                LOGOUT
+            </ion-button>
+        </div>
+        <ion-card>
+
+        </ion-card>
+        <!-- <ion-button color="light" (click)="goToProfile()" expand="block">Go to Profile</ion-button> -->
+    </div>
 </ion-content>

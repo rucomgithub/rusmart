@@ -5,6 +5,7 @@ import { AlertController, IonList, IonRouterOutlet, LoadingController, ModalCont
 import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
 import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
+import { GoogleAuthService } from '../../services/google/google-auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -33,10 +34,14 @@ export class ProfilePage implements OnInit {
     public routerOutlet: IonRouterOutlet,
     public toastCtrl: ToastController,
     public user: UserData,
-    public config: Config
+    public config: Config,
+    private googleAuthService: GoogleAuthService
   ) { }
 
   ngOnInit() {
+    this.googleAuthService.getAccessToken().subscribe(token => {
+      console.log(token);
+    });
     this.updateSchedule();
 
     this.ios = this.config.get('mode') === 'ios';
