@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 //import { Storage } from '@capacitor/storage';อย่าได้เปิด
 //import { Storage } from '@ionic/storage';
 import { Storage } from '@ionic/storage';
-import { Observable, throwError,BehaviorSubject } from 'rxjs';
+import { Observable, throwError,BehaviorSubject,from } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
@@ -37,108 +37,49 @@ export class GoogleAuthService {
       'std_code': stdCode
     };
     this.setGoogleIdToken(idToken);
-    //this.setStudentCode(stdCode);
-    // this.setWut(idToken);
+    this.setStudentCode(stdCode);
     return this.http.post<Token>(`${environment.googleAuth}`, playLoad).pipe(
       tap(res => {
-        // console.log('google auth');
-        // this.setAccessToken(res.accessToken);
-        // this.setIsAuthenticated(res.isAuth);
-        // this.currentUserSubject.next(res);
+        console.log('google auth',res);
+        this.setAccessToken(res.accessToken);
+        this.setIsAuthenticated(true);
+        this.currentUserSubject.next(res);
       }),
       catchError(err => {
+        alert(err.status+'  '+err.message+'  '+err.headers);
         return throwError(err);
       })
     );
 
   }
   setGoogleIdToken(idToken: string){
-    console.log('setGoogleIdToken'+idToken);
-    //this.storage.set('idToken', idToken);
     this.storage.set('idToken', idToken);
   }
   getGoogleIdToken() {
-    // console.log('getGoogleIdToken'+value);
-    // return this.storage.get('idToken').then((val) => {
-    //   console.log('idToken', val);
-    // });
+    return from(this.storage.get('idToken'));
   }
-  /////
-  // private async setStudentCode(stdCode: string){
-  //   // console.log('setStudentCode'+stdCode);
-  //   await Storage.set({
-  //   key: 'stdCode',
-  //   value: stdCode,
-  //   });
-  // }
-  // async getStudentCode() {
-  //   const {value} = await Storage.get({ key: 'stdCode' });
-  //   // console.log('getStudentCode'+value);
-  //   return value;
-  // }
-  // private async setWut(isAuth: string){
-  //   await Storage.set({
-  //   key: 'isAuthgetwut',
-  //   value: isAuth,
-  //   });
-  // }
-  // async getWut() {
-  //   const {value} = await Storage.get({ key: 'isAuthgetwut' });
-  //   console.log('isAuthgetwut'+value);
-  //   return value;
-  // }
 
-  // setGoogleIdToken(idToken: string) {
-  //   localStorage.setItem('idToken', idToken);
-  // }
-  // getGoogleIdToken() {
-  //   return localStorage.getItem('idToken');
-  // }
+  private setStudentCode(stdCode: string){
+    this.storage.set('stdCode', stdCode);
+  }
+  getStudentCode() {
+    return from(this.storage.get('stdCode'));
+  }
 
-
-
-  // setStudentCode(stdCode: string) {
-  //   localStorage.setItem('stdCode', stdCode);
-  // }
-
-  // getStudentCode(): string {
-  //   return localStorage.getItem('stdCode');
-  // }
-
-  // setAccessToken(accessToken: string) {
-  //   localStorage.setItem('accessToken', accessToken);
-  // }
-  // private async setAccessToken(accessToken: string){
-  //   await Storage.set({
-  //   key: 'accessToken',
-  //   value: accessToken,
-  //   });
-  // }
-
-
+  setAccessToken(accessToken: string) {
+    this.storage.set('accessToken', accessToken);
+  }
   getAccessToken() {
-    return localStorage.getItem('accessToken');
+    return from(this.storage.get('accessToken'));
   }
 
-  // setIsAuthenticated(isAuth: boolean) {
-  //   localStorage.setItem('isAuth',  JSON.stringify(isAuth));
-  // }
+  setIsAuthenticated(isAuth: boolean) {
+    this.storage.set('isAuth',isAuth);
+  }
 
-  // private async setIsAuthenticated(isAuth: boolean){
-  //   await Storage.set({
-  //   key: 'isAuth',
-  //   value: JSON.stringify(isAuth),
-  //   });
-  // }
-  // getIsAuthenticated(): boolean {
-  //   return JSON.parse(localStorage.getItem('isAuth'));
-  // }
-  // async getIsAuthenticated() {
-
-  //   const {value} = await Storage.get({ key: 'isAuth' });
-  //   //console.log()
-  //   return JSON.parse(value);
-  // }
+  getIsAuthenticated() {
+    return from(this.storage.get('isAuth'));
+  }
 
   revokeGoogleIdToken() {
     localStorage.removeItem('idToken');

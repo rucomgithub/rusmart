@@ -25,12 +25,16 @@
 
       <div class="btn-google-signin-wrapper">
           <ion-button class="btn-google-signin" (click)="googleSignup()">
-            LOGIN2
+            LOGIN3
       </ion-button>
       </div>
+      {{token}}
+      {{resTu}}
       <ion-card>
 
       </ion-card>
       <ion-button color="light" (click)="goToProfile()" expand="block">Go to Profile</ion-button>
+      <ion-button color="light" (click)="goToHome()" expand="block">Go to Home</ion-button>
+      <ion-button color="light" routerLink="/app/tabs/profile" expand="block">Go to Profile RouterLink</ion-button>
   </div>
 </ion-content>

@@ -7,12 +7,13 @@ import { UserData } from '../../providers/user-data';
 import { UserOptions } from '../../interfaces/user-options';
 
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { Storage } from '@ionic/storage';
 
 // import '@codetrix-studio/capacitor-google-auth';
 // import { Plugins } from '@capacitor/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Storage } from '@capacitor/storage';
+//import { Storage } from '@capacitor/storage';
 import { NavController } from '@ionic/angular';
 import { GoogleAuthService } from '../../services/google/google-auth.service';
 import { GoogleAuthResponse } from '../../services/google/googleAuth';
@@ -28,11 +29,33 @@ export class LoginPage {
   login: UserOptions = { username: '', password: '' };
   submitted = false;
   userInfo = null;
-  constructor(private googleAuthService: GoogleAuthService, private router: Router, private navCtrl: NavController) {
+  token : string;
+  resTu:string;
+  constructor(private googleAuthService: GoogleAuthService,
+    private router: Router, public storage: Storage,
+    private navCtrl: NavController) {
 
   }
   ionViewDidEnter(){
     GoogleAuth.initialize();
+    this.storage.get('ion_did_tutorial').then(res => {
+      if(res === true){
+        alert("true");
+        this.storage.get('idToken').then(idToken =>{
+          alert(idToken);
+          this.token = idToken;
+          this.storage.get('isAuth').then(isAuth =>{
+            alert(isAuth);
+          })
+        });
+      }
+      this.resTu=res;
+
+    });
+    // this.googleAuthService.getAccessToken().subscribe(idToken=>{
+    //   console.log('idToken ionViewDidEnter=>',idToken);
+    //   this.token = idToken;
+    // });
   }
   async googleSignup() {
       this.googleUser = await GoogleAuth.signIn() as any;
