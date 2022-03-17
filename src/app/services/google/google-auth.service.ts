@@ -42,7 +42,7 @@ export class GoogleAuthService {
       tap(res => {
         console.log('google auth',res);
         this.setAccessToken(res.accessToken);
-        this.setIsAuthenticated(true);
+        this.setIsAuthenticated(res.isAuth);
         this.currentUserSubject.next(res);
       }),
       catchError(err => {
