@@ -9,6 +9,7 @@ import { ProfileService } from '../../services/student/profile/profile.service';
 import { StudentProfile, Token } from '../../services/student';
 import { StoreService } from '../../services/store/store.service';
 import { Observable } from 'rxjs';
+import { GoogleAuthService } from '../../services/google/google-auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -42,7 +43,8 @@ export class ProfilePage implements OnInit {
     public user: UserData,
     public config: Config,
     public profileService: ProfileService,
-   public store: StoreService
+    public store: StoreService,
+    public googleAuthService:GoogleAuthService
   ) { }
 
   ngOnInit() {
@@ -156,8 +158,10 @@ export class ProfilePage implements OnInit {
        // console.log(data)
       }
     )
+  }
 
-
+  signOut(){
+    this.googleAuthService.signOut();
   }
   
 

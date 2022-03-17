@@ -38,45 +38,16 @@ export class LoginPage {
   }
   ionViewDidEnter(){
     GoogleAuth.initialize();
-    this.storage.get('ion_did_tutorial').then(res => {
-      if(res === true){
-        alert("true");
-        this.storage.get('idToken').then(idToken =>{
-          alert(idToken);
-          this.token = idToken;
-          this.storage.get('isAuth').then(isAuth =>{
-            alert(isAuth);
-          })
-        });
-      }
-      this.resTu=res;
-
-
-    });
-    // this.googleAuthService.getAccessToken().subscribe(idToken=>{
-    //   console.log('idToken ionViewDidEnter=>',idToken);
-    //   this.token = idToken;
-    // });
   }
   async googleSignup() {
       this.googleUser = await GoogleAuth.signIn() as any;
       this.userInfo = this.googleUser;
       const idToken = this.googleUser.authentication.idToken;
       const stdCode = this.googleUser.email.substring(0, 10);
-      //alert (idToken);
-      //alert(this.googleUser);
+
 
       this.googleAuthService.googleAuth(idToken, stdCode).subscribe(response => {
-        //console.log(response.accessToken);
-        // alert(response.)
-        //this.navCtrl.navigateRoot('/app/tabs/profile');
-        //this.router.navigateByUrl('/app/tabs/profile', { replaceUrl: true });
         this.router.navigate(['/app/tabs/profile']);
-        //return true;
-        // alert(localStorage.getItem('stdCode'));
-        // if(localStorage.getItem('stdCode')){
-        //   alert('5555');
-        // }
       });
   }
 

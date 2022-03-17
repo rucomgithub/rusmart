@@ -13,8 +13,11 @@
       
           </ion-row>
       </ion-title>
-      
+      <ion-button  class="ion-float-right" color="danger"  (click)="signOut()">
+        ออกจากระบบ
+    </ion-button>
     </ion-toolbar>
+
   </ion-header>
 
   <ion-content class="background" *ngIf="studentProfile">
@@ -137,7 +140,9 @@
         </button>
       </ion-col>
     </ion-row>
+
   </ion-content>
 
 </ion-app>
+
 

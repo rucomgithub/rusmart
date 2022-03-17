@@ -2,6 +2,7 @@
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 //import { Storage } from '@capacitor/storage';อย่าได้เปิด
 //import { Storage } from '@ionic/storage';
 import { Storage } from '@ionic/storage';
@@ -28,7 +29,7 @@ export class GoogleAuthService {
   };
 
 
-  constructor(private http: HttpClient, private storage: Storage) {
+  constructor(private http: HttpClient, private storage: Storage,private router:Router) {
 
 
     this.currentUserSubject = new BehaviorSubject<Token>(JSON.parse(localStorage.getItem('isAuth')));
@@ -52,7 +53,6 @@ export class GoogleAuthService {
         this.currentUserSubject.next(res);
       }),
       catchError(err => {
-        alert(err.status+'  '+err.message+'  '+err.headers);
         return throwError(err);
       })
     );
@@ -88,19 +88,19 @@ export class GoogleAuthService {
   }
 
   revokeGoogleIdToken() {
-    localStorage.removeItem('idToken');
+    this.storage.remove('idToken')
   }
 
   revokeStudentCode() {
-    localStorage.removeItem('stdCode');
+    this.storage.remove('stdCode')
   }
 
   revokeAccessToken() {
-    localStorage.removeItem('accessToken');
+    this.storage.remove('accessToken')
   }
 
   revokeIsAuthenticated() {
-    localStorage.removeItem('isAuth');
+    this.storage.remove('isAuth')
   }
 
   signOut() {
@@ -110,6 +110,6 @@ export class GoogleAuthService {
     this.revokeAccessToken();
     this.currentUserSubject.next(null);
     //window.location.reload();
-    //this.router.navigate(['/runews']);
+    this.router.navigate(['/app/tabs/home']);
   }
 }
