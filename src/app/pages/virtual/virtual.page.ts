@@ -23,4 +23,8 @@ export class VirtualPage implements OnInit {
       }
     )
   }
+
+  flipcard(){}
+
+
 }

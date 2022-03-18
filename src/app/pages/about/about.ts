@@ -16,8 +16,10 @@ export class AboutPage {
   selectOptions = {
     header: 'Select a Location'
   };
-
-  constructor(public popoverCtrl: PopoverController) { }
+  setColor: string;
+  constructor(public popoverCtrl: PopoverController) {
+    this.setColor = 'blue'; 
+   }
 
   async presentPopover(event: Event) {
     const popover = await this.popoverCtrl.create({

@@ -12,8 +12,31 @@
   margin-bottom: 0;
 }
 .img {
-  border-radius: 150px 0px 0px 150px;
+  border-radius: 250px 0px 0px 250px;
+  height: 65vw ;
 }
 ion-content {
   --background: linear-gradient(#b7d9e6, #ffffff, #ffffff);
+  
+}
+.marginfooter{
+  padding-left: 10%;
+  padding-right: 10%;
+ 
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-bottom:10%; 
+  text-align: left;
+}
+.texthead{
+  display: flex; 
+  justify-content: left; 
+  align-items: left;
+}
+.textdetail{
+  margin-top: -20px;
+  display: flex; 
+  justify-content: left; 
+  align-items: left;
 }
