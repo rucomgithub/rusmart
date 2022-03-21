@@ -11,7 +11,7 @@ import { UserData } from './user-data';
 export class ConferenceData {
   data: any;
 
-  constructor(public http: HttpClient, public user: UserData) {}
+  constructor(public http: HttpClient, public user: UserData) { }
 
   load(): any {
     if (this.data) {
@@ -52,6 +52,17 @@ export class ConferenceData {
     });
 
     return this.data;
+  }
+
+  getEventTime() {
+    return this.load().pipe(
+      map((data: any) => {
+        const today = new Date();
+        const day: any = today.toLocaleString('th-TH', { timeZone: 'UTC' });
+        const textday = day.split(' ')[0];
+        const days = data.schedule[0];
+        return days.groups.filter(item => item.time === textday);
+      }));
   }
 
   getTimeline(

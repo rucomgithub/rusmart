@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { PopoverController } from '@ionic/angular';
 
@@ -9,6 +9,7 @@ import { AlertController, IonList, IonRouterOutlet, LoadingController, ModalCont
 import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
 import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
+import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ export class HomePage implements OnInit {
   segment = 'all';
   excludeTracks: any = [];
   shownSessions: any = [];
+  shownEvents: any = [];
   groups: any = [];
   confDate: string;
   showSearchbar: boolean;
@@ -34,7 +36,7 @@ export class HomePage implements OnInit {
     header: 'Select a Location'
   };
 
-  constructor(public popoverCtrl: PopoverController,    public alertCtrl: AlertController,
+  constructor(public popoverCtrl: PopoverController, public alertCtrl: AlertController,
     public confData: ConferenceData,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController,
@@ -48,9 +50,23 @@ export class HomePage implements OnInit {
     this.updateSchedule();
 
     this.ios = this.config.get('mode') === 'ios';
-    
+
   }
-  
+
+  openCalendar = async () => {
+    await Browser.open({ url: 'https://calendar.ru.ac.th/SectionsCenterFiles/1645170918.pdf' });
+  }
+
+  openMr30 = async () => {
+    await Browser.open({ url: 'https://www.ru.ac.th/th/images/Mr30/1633431686-.pdf' });
+  }
+
+  openAbout = async () => {
+    await Browser.open({ url: 'https://www.ru.ac.th/th/firstpage/page?view=AboutUs' });
+  }
+
+
+
   updateSchedule() {
     // Close any open sliding items when the schedule updates
     if (this.scheduleList) {
@@ -61,6 +77,11 @@ export class HomePage implements OnInit {
       this.shownSessions = data.shownSessions;
       this.groups = data.groups;
     });
+
+    this.confData.getEventTime().subscribe((data: any) => {
+      console.log(data);
+      this.shownEvents = data;
+    });
   }
   async presentPopover(event: Event) {
     const popover = await this.popoverCtrl.create({
@@ -69,7 +90,7 @@ export class HomePage implements OnInit {
     });
     await popover.present();
   }
-  
+
   async presentFilter() {
     const modal = await this.modalCtrl.create({
       component: ScheduleFilterPage,

@@ -12,7 +12,11 @@ export class UserData {
 
   constructor(
     public storage: Storage
-  ) { }
+  ) {
+    this.getFavorites().then(data => {
+      this.favorites = data;
+    });
+  }
 
   hasFavorite(sessionName: string): boolean {
     return (this.favorites.indexOf(sessionName) > -1);
@@ -20,6 +24,7 @@ export class UserData {
 
   addFavorite(sessionName: string): void {
     this.favorites.push(sessionName);
+    this.storage.set('favorites', this.favorites);
   }
 
   removeFavorite(sessionName: string): void {
@@ -27,6 +32,7 @@ export class UserData {
     if (index > -1) {
       this.favorites.splice(index, 1);
     }
+    this.storage.set('favorites', this.favorites);
   }
 
   login(username: string): Promise<any> {
@@ -57,6 +63,12 @@ export class UserData {
 
   getUsername(): Promise<string> {
     return this.storage.get('username').then((value) => {
+      return value;
+    });
+  }
+
+  getFavorites(): Promise<[]> {
+    return this.storage.get('favorites').then((value) => {
       return value;
     });
   }

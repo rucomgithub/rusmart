@@ -40,6 +40,10 @@ export class SchedulePage implements OnInit {
   ngOnInit() {
     this.updateSchedule();
 
+    this.confData.getEventTime().subscribe(data => {
+      console.log(data);
+    });
+
     this.ios = this.config.get('mode') === 'ios';
   }
 
