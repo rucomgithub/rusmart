@@ -1,0 +1,25 @@
+
+ion-content.background{
+    --background: url(../../../assets/img/bg.png) 0 0/100% 100% no-repeat;
+}
+ .card{
+     
+    background-image: url(../../../assets/img/card/ID.png);
+    background-size: cover;
+    height: 551px;
+    width: 341px;
+
+ }
+
+ .cardconteudo {
+    background: rgba(255,255,255,0.5);
+}
+.header::after {
+    background-image: none;
+  }
+
+  ion-toolbar{
+      opacity: 0.5;
+  }
+
+  
