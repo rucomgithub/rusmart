@@ -32,6 +32,12 @@ export class ProfilePage implements OnInit {
 
   token: Observable<Token>
 
+  //------- [ set url images ] ---------------------
+  urlImageMailIcon = 'https://sevkn.ru.ac.th/rusmart/rusmart-images/profile/RUmail-logo.png';
+  urlImageAbout = 'https://sevkn.ru.ac.th/rusmart/rusmart-images/home/Group12.png';
+
+  //------------------------------------------------
+
   constructor(
     public alertCtrl: AlertController,
     public confData: ConferenceData,
@@ -163,6 +169,6 @@ export class ProfilePage implements OnInit {
   signOut(){
     this.googleAuthService.signOut();
   }
-  
+
 
 }

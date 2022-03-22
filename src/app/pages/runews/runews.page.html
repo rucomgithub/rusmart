@@ -7,7 +7,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="ruNewsResult">
     <ion-card *ngFor="let item of ruNewsResult">
         <ion-item>
             <ion-avatar slot="start">
