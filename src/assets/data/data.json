@@ -2,103 +2,103 @@
     "schedule": [{
         "date": "2047-05-17",
         "groups": [{
-                "time": "1 May 2022",
+                "time": "1 พฤษภาคม 2565",
                 "sessions": [{
-                    "name": "ลงทะเบียนเรียน",
+                    "name": "รับสมัครนักศึกษาใหม่",
                     "timeStart": "8:00 am",
-                    "timeEnd": "9:00 am",
+                    "timeEnd": "16:30 am",
                     "location": "อาคารเวียงคำ",
-                    "tracks": ["กิจกรรม"],
+                    "tracks": ["Communication"],
                     "id": "1"
                 }]
             },
             {
-                "time": "2 May 2022",
+                "time": "2 พฤษภาคม 2565",
                 "sessions": [{
                         "name": "ลงทะเบียนบอกเลิกบอกเพิ่ม",
-                        "location": "Hall 2",
+                        "location": "internet",
                         "description": "1. นักศึกษาทำการยื่นคำขอบอกเลิก-บอกเพิ่มสับเปลี่ยนกระบวนวิชา ตามที่มหาวิทยาลัยกำหนด ***กรณีถ้ามีการคืนเงินให้นักศึกษาตรวจสอบข้อมูลการคืนเงินในระบบ e Service ในหัวข้อ คืนเงิน ภายหลังการบอกเลิกประมาณ20 วันทำการ)",
                         "speakerNames": ["Ted Turtle"],
-                        "timeStart": "9:30 am",
-                        "timeEnd": "9:45 am",
-                        "tracks": ["Ionic"],
+                        "timeStart": "8:30 am",
+                        "timeEnd": "16:30 am",
+                        "tracks": ["Tooling"],
                         "id": "2"
                     },
                     {
-                        "name": "Ionic Tooling",
-                        "location": "Executive Ballroom",
-                        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+                        "name": "บรรยายในชั้นเรียน",
+                        "location": "บรรยายในชั้นเรียน",
+                        "description": "บรรยายในชั้นเรียน",
                         "speakerNames": ["Rachel Rabbit"],
                         "timeStart": "9:45 am",
-                        "timeEnd": "10:00 am",
-                        "tracks": ["Tooling"],
+                        "timeEnd": "12:00 am",
+                        "tracks": ["Services"],
                         "id": "3"
                     },
                     {
-                        "name": "University of Ionic",
-                        "location": "Hall 3",
+                        "name": "สอบ e-testing",
+                        "location": "อาคารสุโขทัย",
                         "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
                         "speakerNames": ["Ellie Elephant"],
                         "timeStart": "9:15 am",
-                        "timeEnd": "9:30 am",
+                        "timeEnd": "19:30 am",
                         "tracks": ["Ionic"],
                         "id": "4"
                     }
                 ]
             },
             {
-                "time": "10:00 am",
+                "time": "3 พฤษภาคม 2565",
                 "sessions": [{
-                        "name": "Migrating to Ionic",
-                        "location": "Hall 1",
+                        "name": "ลงทะเบียนซ่อม 1/64",
+                        "location": "internet และ application",
                         "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
                         "speakerNames": ["Eva Eagle", "Lionel Lion"],
                         "timeStart": "10:00 am",
-                        "timeEnd": "10:15 am",
+                        "timeEnd": "20:15 am",
                         "tracks": ["Ionic"],
                         "id": "5"
                     },
                     {
-                        "name": "What's New in Angular",
-                        "location": "Hall 3",
-                        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
-                        "speakerNames": ["Rachel Rabbit"],
-                        "timeStart": "10:15 am",
-                        "timeEnd": "10:30 am",
-                        "tracks": ["Angular"],
+                        "name": "ลงทะเบียนบอกเลิกบอกเพิ่ม",
+                        "location": "internet",
+                        "description": "1. นักศึกษาทำการยื่นคำขอบอกเลิก-บอกเพิ่มสับเปลี่ยนกระบวนวิชา ตามที่มหาวิทยาลัยกำหนด ***กรณีถ้ามีการคืนเงินให้นักศึกษาตรวจสอบข้อมูลการคืนเงินในระบบ e Service ในหัวข้อ คืนเงิน ภายหลังการบอกเลิกประมาณ20 วันทำการ)",
+                        "speakerNames": ["Ted Turtle"],
+                        "timeStart": "8:30 am",
+                        "timeEnd": "16:30 am",
+                        "tracks": ["Tooling"],
                         "id": "6"
                     },
                     {
-                        "name": "The Evolution of Ionicons",
-                        "location": "Hall 2",
-                        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
-                        "speakerNames": ["Isabella Iguana", "Eva Eagle"],
-                        "timeStart": "10:15 am",
-                        "timeEnd": "10:30 am",
-                        "tracks": ["Design"],
+                        "name": "บรรยายในชั้นเรียน",
+                        "location": "บรรยายในชั้นเรียน",
+                        "description": "บรรยายในชั้นเรียน",
+                        "speakerNames": ["Rachel Rabbit"],
+                        "timeStart": "9:45 am",
+                        "timeEnd": "12:00 am",
+                        "tracks": ["Angular"],
                         "id": "7"
                     },
                     {
-                        "name": "Ionic Pro",
-                        "location": "Grand Ballroom A",
+                        "name": "สอบ e-testing",
+                        "location": "อาคารสุโขทัย",
                         "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
-                        "speakerNames": ["Charlie Cheetah"],
-                        "timeStart": "10:45 am",
-                        "timeEnd": "11:00 am",
+                        "speakerNames": ["Ellie Elephant"],
+                        "timeStart": "9:15 am",
+                        "timeEnd": "19:30 am",
                         "tracks": ["Services"],
                         "id": "8"
                     }
                 ]
             },
             {
-                "time": "11:00 am",
+                "time": " 13 พฤษภาคม 2565",
                 "sessions": [{
-                        "name": "Ionic Workshop",
-                        "location": "Hall 1",
+                        "name": "ยืนยันตัวตนสอบซ่อม 1/64",
+                        "location": "internet",
                         "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
                         "speakerNames": ["Karl Kitten", "Lionel Lion"],
-                        "timeStart": "11:00 am",
-                        "timeEnd": "11:45 am",
+                        "timeStart": "00:00 am",
+                        "timeEnd": "23:45 pm",
                         "tracks": ["Workshop"],
                         "id": "9"
                     },

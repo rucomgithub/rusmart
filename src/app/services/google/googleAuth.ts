@@ -5,11 +5,19 @@ export interface GoogleAuthResponse {
     id: string;
     imageUrl: string;
     name: string;
-    authentication: Authentication;
+    authentication: GoogleAuth2;
   }
   
-  export interface Authentication {
+  export interface GoogleAuth2 {
     accessToken: string;
     idToken: string;
     refreshToken: string;
   }
+
+export interface Authentication {
+  accessToken: string;
+  refreshToken: string;
+  isAuth: boolean;
+  message: string;
+  status_code: number;
+}
