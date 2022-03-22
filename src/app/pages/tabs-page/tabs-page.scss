@@ -4,4 +4,58 @@
 
 .tab-button {
   max-width: 200px;
+
 }
+
+.testx{
+ padding-top: 30%;
+}
+
+
+ion-tab-bar{
+  contain: inherit;
+  background: #ffffff;
+  width: 95%;
+  border: none;
+  border-radius: 7px 7px;
+  margin: 0 auto 8px;
+  box-shadow: 0 0 20px 0 #dcdcdc;
+}
+.feature_tab{
+  margin-top: -56px;
+  background: #333;
+  border-radius: 50%;
+  height: auto;
+  padding: 5.5% 0;
+  position: fixed;
+  width: 15%;
+}
+ion-tab-button{
+  background: transparent;
+  
+}
+.custom-tab-cart {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.custom-tab-cart ion-fab-button{
+  width: 65px;
+  height: 65px;
+  --border-color: #f9fafc;
+  --border-width: 5px;
+  --border-style: solid;
+  --box-shadow: none;
+}
+.custom-tab-cart ion-fab-button ion-icon{
+  font-size: 25px;
+}
+.profile-button{
+  width: 25px;
+  height: 25px;
+}
+ion-tabs{
+  background: #f9fafc;
+}
+

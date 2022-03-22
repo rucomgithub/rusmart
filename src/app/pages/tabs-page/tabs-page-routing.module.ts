@@ -60,10 +60,12 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import('../about/about.module').then(m => m.AboutModule)
+
           },
           {
             path: 'mr30',
             loadChildren: () => import('../mr30/mr30.module').then(m => m.Mr30PageModule)
+
           }
         ]
       },
@@ -91,13 +93,13 @@ const routes: Routes = [
           {
             path: 'calendar',
             loadChildren: () => import('../calendar/calendar.module').then(m => m.CalendarPageModule)
-
           },
           {
             path: 'mr30',
             loadChildren: () => import('../mr30/mr30.module').then(m => m.Mr30PageModule)
           }
           
+
         ]
       },
       {
