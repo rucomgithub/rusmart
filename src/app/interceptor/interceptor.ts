@@ -1,4 +1,3 @@
-
 import { Injectable } from "@angular/core";
 import {
   HttpInterceptor,
@@ -100,7 +99,6 @@ export class RuSmartInterceptor implements HttpInterceptor {
         "Content-Type": "application/json",
       }),
     }));
-
   }
 
   private signOut() {
