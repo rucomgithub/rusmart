@@ -31,6 +31,7 @@ export class GoogleAuthService {
     message: "",
     status_code: null,
   };
+
   authState = new BehaviorSubject<Authentication>(this.authentication);
 
   public get authStateObs() {
@@ -214,6 +215,7 @@ export class GoogleAuthService {
     this.revokeIsAuthenticatedT();
     this.revokeAccessTokenT();
     this.revokeRefreshTokenT();
+    this.revokeStateAuthen();
     this.currentUserSubject.next(null);
     this.router.navigate(["/app/tabs/home"]);
   }
