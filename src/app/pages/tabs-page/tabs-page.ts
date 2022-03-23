@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   templateUrl: 'tabs-page.html'
 })
+
 export class TabsPage {
 
 //--------- set url images------------------
@@ -16,3 +17,4 @@ urlImageAbout = 'https://sevkn.ru.ac.th/rusmart/rusmart-images/home/Group12.png'
 
 
 }
+

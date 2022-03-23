@@ -8,7 +8,7 @@ import { UserData } from '../../providers/user-data';
 import { ProfileService } from '../../services/student/profile/profile.service';
 import { StudentProfile, Token } from '../../services/student';
 import { StoreService } from '../../services/store/store.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { GoogleAuthService } from '../../services/google/google-auth.service';
 
 @Component({
@@ -37,6 +37,7 @@ export class ProfilePage implements OnInit {
   urlImageAbout = 'https://sevkn.ru.ac.th/rusmart/rusmart-images/home/Group12.png';
 
   //------------------------------------------------
+  studentenProlfileT: Subscription;
 
   constructor(
     public alertCtrl: AlertController,
@@ -159,15 +160,26 @@ export class ProfilePage implements OnInit {
   }
 
   fetchProfile(){
+    this.studentenProlfileT = this.profileService.fetchStudentProfile().subscribe(data => {return data})
+    // this.studentProfile = this.studentenProlfileT;
     this.profileService.fetchStudentProfile().subscribe(
-      data =>{ this.studentProfile = data
-       // console.log(data)
+      data =>{
+        this.studentProfile = data;
       }
     )
   }
 
   signOut(){
     this.googleAuthService.signOut();
+  }
+
+
+  ngOnDestroy() {
+    if (this.studentenProlfileT) {
+      this.studentenProlfileT.unsubscribe();
+    }
+
+
   }
 
 

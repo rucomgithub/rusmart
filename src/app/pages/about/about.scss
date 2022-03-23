@@ -18,12 +18,14 @@ ion-list{
   --inner-padding-end: 0;
   --inner-padding-start: 0;
   --inner-padding-top: 0;
+
   --ion-background-color: transparent !important;
 }
 
 .text-list{
   padding-left:  5% !important;
   font-size: 1.15rem;
+
   font-weight: bold;
 }
 
@@ -41,6 +43,7 @@ ion-list{
   bottom: 0;
 }
 
+
 .row-button{
   margin-top: 5%;
   text-align: center;
@@ -49,6 +52,7 @@ ion-list{
 
 .txt-menu{
   font-size: 1.3rem;
+
   position: absolute;
   text-align: center;
   color: white;
@@ -56,6 +60,7 @@ ion-list{
   padding-bottom: 1%;
   bottom: 0;
 }
+
 
 .button-logout {
   appearance: button;
@@ -91,17 +96,6 @@ ion-list{
 .button-logout:focus {
   box-shadow: rgba(72, 35, 7, .46) 0 0 0 4px, -6px 8px 10px rgba(81,41,10,0.1), 0px 2px 2px rgba(81,41,10,0.2);
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

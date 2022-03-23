@@ -11,31 +11,33 @@ import { GoogleAuthService } from '../services/google/google-auth.service'
 
 export class AuthGuard implements CanActivate {
 
+  isAuth: boolean;
+
   constructor(
     private router: Router,
-    private authserviceService: GoogleAuthService,
-  ) { }
+    private googleAuth: GoogleAuthService,
+  ) {
+    this.googleAuth.authStateObs.subscribe(obs => {
+      this.isAuth = obs.isAuth
+    })
+   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.authserviceService.getIsAuthenticated().pipe(
-        tap(isAuth => {
-          console.log('show is AuthGuard=>',isAuth);
-          if(isAuth){
-            console.log("show is AuthGuard True=>" ,isAuth);
-            this.authserviceService.setIsAuthenticated(isAuth);
-            return isAuth;
-          }
-          // not logged in so redirect to login page with the return url
-          console.log("need login");
-          this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
 
-          return isAuth;
-        })
-      );
-      //return true;
+      if (this.isAuth) {
+         return true;
+      } else {
+        this.signOut()
+        return false;
+      }
+
+  }
 
 
+  private signOut() {
+    this.googleAuth.signOut();
+    this.router.navigate(["/login"]);
   }
 
 }
