@@ -1,3 +1,19 @@
+ion-toolbar {
+  --background: rgb(12, 4, 133);
+  padding-bottom: 2%;
+}
+
+
+.txt-menu {
+  font-size: 1.3rem;
+  position: absolute;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  padding-bottom: 1%;
+  bottom: 0;
+}
+
 #row-top {
     margin-top: 5%;
 }
@@ -102,7 +118,6 @@ img {
 @supports not (-webkit-touch-callout: none) {
     /* CSS for other than iOS devices */
 }
-
 
 /*
 button {

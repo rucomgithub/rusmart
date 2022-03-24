@@ -32,6 +32,11 @@ export class ProfilePage implements OnInit {
 
   token: Observable<Token>
 
+  //------- [ set url images ] ---------------------
+  urlImageMailIcon = 'https://sevkn.ru.ac.th/rusmart/rusmart-images/profile/RUmail-logo.png';
+  urlImageAbout = 'https://sevkn.ru.ac.th/rusmart/rusmart-images/home/Group12.png';
+
+  //------------------------------------------------
   studentenProlfileT: Subscription;
 
   constructor(
@@ -158,7 +163,7 @@ export class ProfilePage implements OnInit {
     this.studentenProlfileT = this.profileService.fetchStudentProfile().subscribe(data => {return data})
     // this.studentProfile = this.studentenProlfileT;
     this.profileService.fetchStudentProfile().subscribe(
-      data =>{ 
+      data =>{
         this.studentProfile = data;
       }
     )
@@ -174,8 +179,8 @@ export class ProfilePage implements OnInit {
       this.studentenProlfileT.unsubscribe();
     }
 
-    
+
   }
-  
+
 
 }
