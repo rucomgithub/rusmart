@@ -10,6 +10,7 @@ import { catchError, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class RunewsService {
+  urlApiDteail = 'http://appsapi.ru.ac.th/NewsRu/NewsJsonRusmartRec/';
 
   runews: RuNews = {
     id: '',
@@ -58,5 +59,22 @@ export class RunewsService {
   setRuNews() {
     this.runewsSubject.next(JSON.parse(localStorage.getItem('runews')));
   }
+
+  updateHitDetail(id: string) {
+    console.log('updateHitDetail', id);
+    const runewsDetailParams = {
+      'id': id.toString()
+    }
+    return this.http.get<RuNews>(this.urlApiDteail, { params: runewsDetailParams }).subscribe();
+
+  }
+
+  // getRunewsDetailRec(newsId: number): Observable<any[]> {
+  //   const runewsDetailParams = {
+  //     'newsId': newsId.toString()
+  //   }
+  //   return this.http.get<any[]>(this.urlApiDteail, { params: runewsDetailParams });
+
+  // }
 
 }

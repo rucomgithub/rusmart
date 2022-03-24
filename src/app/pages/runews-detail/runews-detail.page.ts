@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+
 import { filter, map, tap } from 'rxjs/operators';
 import { RuNews } from '../../services/runews';
 import { RunewsService } from '../../services/runews/runews.service';
@@ -14,6 +15,7 @@ export class RunewsDetailPage implements OnInit {
   runewsDetail: RuNews;
   url: string = "http://www3.ru.ac.th/RuNews/images/filesnews/";
   urlImage: string = "http://www3.ru.ac.th/RuNews/images/News/";
+  id: string;
   runews: RuNews = {
     id: '',
     category_id: '',
@@ -42,14 +44,24 @@ export class RunewsDetailPage implements OnInit {
     this.getNewsDetails(this.route.snapshot.paramMap.get('id'));
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+  }
   ionViewWillEnter() {
 
   }
-  getNewsDetails(newsId: String) {
+
+  getNewsDetails(newsId: string) {
+    console.log('ID ' + newsId);
+    // this.id = newsId;
     return this.runewsService.RuNews.pipe(
-      map((news: any) => news.filter(news => news.id === newsId)))
-      .subscribe(data => this.runews = data)
+      map((news: any) => news.filter(news => news.id === newsId))
+    )
+      .subscribe(data => {
+        this.runews = data;
+        this.runewsService.updateHitDetail(newsId)
+      }
+      )
   }
 
 
@@ -65,5 +77,7 @@ export class RunewsDetailPage implements OnInit {
     // Opening a URL and returning an InAppBrowserObject
     const browser = this.inAppBrowser.create(this.url + file, '_system', options);
   }
+
+
 
 }
