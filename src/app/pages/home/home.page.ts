@@ -163,4 +163,7 @@ export class HomePage implements OnInit {
     console.log('my user: ', googleUser);
     this.userInfo = googleUser;
   }
+
+
+
 }
