@@ -1,11 +1,11 @@
 import { RunewsService } from './../../services/runews/runews.service';
 
 import { HttpClient } from '@angular/common/http';
-import { NavController } from '@ionic/angular';
+import { NavController,LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { RuNews } from '../../services/runews';
-import { ConditionalExpr } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-runews',
@@ -20,7 +20,8 @@ export class RunewsPage implements OnInit {
     private http: HttpClient,
     private router: Router,
     private ruNewsService: RunewsService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private loadingCtrl:LoadingController
   ) {
     this.ruNewsService.RuNews.subscribe(data => this.ruNewsResult = data);
   }
@@ -30,13 +31,23 @@ export class RunewsPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    // this.getNews();
+     //this.getNews();
   }
 
-  getNews() {
-    // console.log("call api...")
+  async getNews() {
+    const loading = await this.loadingCtrl.create({
+      message: `Loading News...`,
+    });
+    await loading.present();
     this.ruNewsService.getRunews().subscribe(data => {
       data => this.ruNewsResult = data;
-    });
+       loading.dismiss();
+    },err =>{
+      console.log(err)
+      loading.dismiss();
+    }
+    );
   }
+
+
 }

@@ -44,7 +44,7 @@ export class RunewsService {
   getRunews(): Observable<RuNews> {
 
     return this.http
-      .get(`${environment.base_path_cat2}`)
+      .get(`${environment.runewsurl}`)
       .pipe(
         map((res: RuNews) => {
           localStorage.setItem('runews', JSON.stringify(res))

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+import { LoadingController } from '@ionic/angular';
 
 import { filter, map, tap } from 'rxjs/operators';
 import { RuNews } from '../../services/runews';
@@ -40,6 +41,7 @@ export class RunewsDetailPage implements OnInit {
     private route: ActivatedRoute,
     private runewsService: RunewsService,
     private inAppBrowser: InAppBrowser,
+    private loadingCtrl:LoadingController
   ) {
     this.getNewsDetails(this.route.snapshot.paramMap.get('id'));
   }
@@ -51,15 +53,20 @@ export class RunewsDetailPage implements OnInit {
 
   }
 
-  getNewsDetails(newsId: string) {
+  async getNewsDetails(newsId: string) {
     console.log('ID ' + newsId);
     // this.id = newsId;
+    const loading = await this.loadingCtrl.create({
+      message: `Loading News...`,
+    });
+    await loading.present();
     return this.runewsService.RuNews.pipe(
       map((news: any) => news.filter(news => news.id === newsId))
     )
       .subscribe(data => {
         this.runews = data;
         this.runewsService.updateHitDetail(newsId)
+         loading.dismiss();
       }
       )
   }
