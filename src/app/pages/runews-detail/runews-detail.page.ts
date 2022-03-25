@@ -52,7 +52,7 @@ export class RunewsDetailPage implements OnInit {
   }
 
   getNewsDetails(newsId: string) {
-    console.log('ID ' + newsId);
+    // console.log('ID ' + newsId);
     // this.id = newsId;
     return this.runewsService.RuNews.pipe(
       map((news: any) => news.filter(news => news.id === newsId))

@@ -60,7 +60,7 @@ export class RunewsService {
   }
 
   updateHitDetail(id: string) {
-    console.log('updateHitDetail', id);
+    // console.log('updateHitDetail', id);
     const runewsDetailParams = {
       'id': id.toString()
     }
