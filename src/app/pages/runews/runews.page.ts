@@ -14,7 +14,7 @@ import { ConditionalExpr } from '@angular/compiler';
 })
 export class RunewsPage implements OnInit {
 
-  ruNewsResult:RuNews;
+  ruNewsResult: RuNews;
 
   constructor(
     private http: HttpClient,
@@ -24,17 +24,17 @@ export class RunewsPage implements OnInit {
   ) {
     this.ruNewsService.RuNews.subscribe(data => this.ruNewsResult = data);
   }
-  
+
   ngOnInit() {
     this.getNews();
   }
-  
+
   ionViewWillEnter() {
     // this.getNews();
   }
-  
+
   getNews() {
-    console.log("call api...")
+    // console.log("call api...")
     this.ruNewsService.getRunews().subscribe(data => {
       data => this.ruNewsResult = data;
     });
