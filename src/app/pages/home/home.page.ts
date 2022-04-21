@@ -32,7 +32,8 @@ export class HomePage implements OnInit {
   location = 'madison';
   conferenceDate = '2047-05-17';
   userInfo = null;
-
+  dateTime;
+  textTime;
   selectOptions = {
     header: 'Select a Location'
   };
@@ -51,9 +52,26 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.updateSchedule();
-
+    this.checktime();
     this.ios = this.config.get('mode') === 'ios';
 
+  }
+
+  checktime(){
+    this.dateTime = new Date().getHours();
+    if(this.dateTime >= 8 && this.dateTime <= 9){
+      this.textTime = 'ตอนเช้า'
+   }  else if(this.dateTime >= 10  && this.dateTime <= 13){
+      this.textTime = 'ยามสาย'
+    }else if(this.dateTime >= '13:00:00 PM'  && this.dateTime <= '5:00:00 PM'){
+      this.textTime = 'ช่วงบ่าย'
+    }else if(this.dateTime >= '5:00:00 PM'  && this.dateTime <= '8:00:00 PM'){
+      this.textTime = 'ยามเย็น'
+    }else if(this.dateTime >= '8:00:00 PM'  && this.dateTime <='7:00:00 AM') {
+      this.textTime = 'ตอนดึก'
+   }else{
+      this.textTime = ''
+    }
   }
 
   updateSchedule() {

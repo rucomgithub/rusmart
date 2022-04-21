@@ -11,8 +11,16 @@ ion-content.background {
 
 }
 
-.cardconteudo {
-    background: rgba(255, 255, 255, 0.5);
+.bgcolortop {
+    background: rgba(49, 56, 153, 0.8);
+    margin-top: 3%;
+    margin-left: 6%;
+    margin-right: 4%;
+}
+.bgcolorbottom {
+    background: rgba(255, 228, 139, 0.905);
+    margin-left: 6%;
+    margin-right: 4%;
 }
 
 .header::after {
