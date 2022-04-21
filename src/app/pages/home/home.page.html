@@ -1,27 +1,36 @@
 <ion-app>
     <ion-content>
 
-                    <!-- <img src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png" width="50"
-                        height="50" />
-                    <div id="title">สวัสดี{{textTime}}</div> -->
 
 
-                    <ion-row id="detail-student-main-tag">
+                <div >
+                    <ion-row id="detail-pallate-header">
                         <ion-col size="12" size-sm>
                             <ion-row>
-                                <ion-col size="12" size-sm id="detail-student-graduate">
-                                    <ion-row>
-                                        <ion-col size="12" size-sm>
-                                            <img src="../../../assets/img/home/yellow_line.png" height="200px">
+                                <ion-col size="12" size-sm id="detail-pallate">
+                                    <ion-row id="title">
+                                        <span >    
+                                            <img src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png"
+                                            width="40"
+                                           />
+                                        </span>
+                                 
+                                            <span class="header-messege"> สวัสดี{{textTime}}</span>  
+                                 
+                                    </ion-row>
+                  
+                                    <ion-row style="padding: 0 2% 0 2%;">
+                                        <ion-col size="12" size-sm style="   border-radius: 50%;">
+                                            <img src="../../../assets/img/about/madison.jpg"  height="200px" width="200px" class="imgcustomborder">
                                         </ion-col>
                                     </ion-row>
-
                                 </ion-col>
                             </ion-row>
                   
                         </ion-col>
                     </ion-row>
-       
+      
+                </div>
 <!-- 
         <div class="about-header">
             <div class="about-image madison" [ngStyle]="location === 'madison' && {'opacity': '1'}"></div>
@@ -32,12 +41,15 @@
         <div class="listactivity">
             <ion-list>
                 <ion-list-header> 
-                    <div>
+         
                     <span class="headeractivity">
                         <ion-icon name="calendar-outline" class="iconcalendar"></ion-icon>  
                         <font size="4">   กิจกรรมที่กำลังมาถึง</font>
+                  
                     </span> 
-                </div>  
+        
+           
+                
             </ion-list-header>
           
                 <ion-item>
@@ -60,15 +72,6 @@
                     </ion-label>
                 </ion-item>
 
-                <ion-item>
-                    <ion-avatar slot="start">
-                        <span class="dot2"></span>
-                    </ion-avatar>
-                    <ion-label>
-                        <h2>Han</h2>
-                        <p>I've got enough on my plate as it is, and I...</p>
-                    </ion-label>
-                </ion-item>
 
             </ion-list>
 

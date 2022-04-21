@@ -53,20 +53,17 @@ export class RunewsDetailPage implements OnInit {
 
   }
 
-  async getNewsDetails(newsId: string) {
+   getNewsDetails(newsId: string) {
     console.log('ID ' + newsId);
     // this.id = newsId;
-    const loading = await this.loadingCtrl.create({
-      message: `Loading News...`,
-    });
-    await loading.present();
+
     return this.runewsService.RuNews.pipe(
       map((news: any) => news.filter(news => news.id === newsId))
     )
       .subscribe(data => {
         this.runews = data;
         this.runewsService.updateHitDetail(newsId)
-         loading.dismiss();
+      
       }
       )
   }
