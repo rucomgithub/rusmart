@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 
 import { PopoverPage } from '../about-popover/about-popover';
+import { GoogleAuthService } from '../../services/google/google-auth.service';
 
 @Component({
   selector: 'page-about',
@@ -35,7 +36,7 @@ export class AboutPage {
     header: 'Select a Location'
   };
   setColor: string;
-  constructor(public popoverCtrl: PopoverController) {
+  constructor(public popoverCtrl: PopoverController,    public googleAuthService:GoogleAuthService) {
 
     this.setColor = 'blue';
 
@@ -47,5 +48,9 @@ export class AboutPage {
       event
     });
     await popover.present();
+  }
+
+  signOut(){
+    this.googleAuthService.signOut();
   }
 }

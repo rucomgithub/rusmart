@@ -29,7 +29,7 @@ export class ProfilePage implements OnInit {
   confDate: string;
   showSearchbar: boolean;
   studentProfile: StudentProfile;
-
+  imageurl;
   token: Observable<Token>
 
   //------- [ set url images ] ---------------------
@@ -60,7 +60,7 @@ export class ProfilePage implements OnInit {
 
     this.fetchProfile()
     this.updateSchedule();
-
+    this.imageurl = localStorage.getItem('imageUrl')
     this.ios = this.config.get('mode') === 'ios';
   }
 
@@ -175,7 +175,7 @@ export class ProfilePage implements OnInit {
 
 
   ngOnDestroy() {
-    if (this.studentenProlfileT) {
+    if (this.studentenProlfileT ) {
       this.studentenProlfileT.unsubscribe();
     }
 

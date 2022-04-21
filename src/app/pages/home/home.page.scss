@@ -37,24 +37,24 @@ ion-toolbar ion-menu-button {
     transition: opacity 500ms ease-in-out;
 }
 
-.about-header .madison {
-    background-image: url(/assets/img/about/madison.jpg);
-}
+// .about-header .madison {
+//     background-image: url(/assets/img/about/madison.jpg);
+// }
 
-.about-header .austin {
-    background-image: url(/assets/img/about/austin.jpg);
-}
+// .about-header .austin {
+//     background-image: url(/assets/img/about/austin.jpg);
+// }
 
-.about-header .chicago {
-    background-image: url(/assets/img/about/chicago.jpg);
-}
+// .about-header .chicago {
+//     background-image: url(/assets/img/about/chicago.jpg);
+// }
 
-.about-header .seattle {
-    background-image: url(/assets/img/about/seattle.jpg);
-}
+// .about-header .seattle {
+//     background-image: url(/assets/img/about/seattle.jpg);
+// }
 
 .about-info {
-  padding-top: 2%;
+  padding-top: 5%;
     position: absolute;
     margin-top: -10px;
     border-radius: 10px;
@@ -333,5 +333,78 @@ ion-header {
             margin: 0 0 0.1rem 0;
         }
     }
+}
+
+.dot {
+    height: 25px;
+    width: 25px;
+    background-color: rgb(251, 117, 117);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot2 {
+    height: 25px;
+    width: 25px;
+    background-color: rgb(45, 171, 255);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  ion-list{
+    padding:0px !important;
+
+    --inner-padding-bottom: 0;
+    --inner-padding-end: 0;
+    --inner-padding-start: 0;
+    --inner-padding-top: 0;
+    --ion-background-color: transparent !important;
+  }
+
+  ion-list-header{
+    margin-bottom:0 !important;
+  }
+
+.listactivity{
+    background-color: rgba(255, 255, 255,0.1);
+
+    padding-right: 5%;
+    padding-bottom: 2%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+.headeractivity{
+    border-bottom-width:3px  ; 
+    border-bottom-style: solid; 
+    border-color: rgb(240, 214, 129);
+}
+
+#description-message-tag {
+    text-align: center;
+    font-size: 12px;
+    row-gap: 0;
+}
+#detail-student-main-tag {
+    margin: 0 1% 2% 1%;
+    text-align: center;
+}
+
+#detail-student-graduate {
+    text-align: center;
+    background: rgb(19,144,241);
+    background: linear-gradient(270deg, rgba(19,144,241,1) 0%, rgba(9,132,227,1) 43%, rgba(4,177,243,1) 76%, rgba(9,132,227,1) 100%);
+    border-color: rgb(230, 230, 228);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#detail-student-graduate2 {
+    text-align: center;
+    background-color: rgb(243, 243, 243);
+    border-color: beige;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.rowlineblank{
+    opacity: 0;
 }
 

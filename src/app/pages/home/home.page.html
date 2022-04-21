@@ -1,43 +1,87 @@
 <ion-app>
-<ion-content>
-    <ion-header class="ion-no-border">
-        <ion-toolbar>
+    <ion-content>
 
-            <ion-buttons slot="start">
-                <img src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png" width="50"
-                    height="50" />
-                <div id="title">สวัสดี{{textTime}} {{dateTime}}</div>
+                    <!-- <img src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png" width="50"
+                        height="50" />
+                    <div id="title">สวัสดี{{textTime}}</div> -->
 
 
-                <!--<ion-menu-button></ion-menu-button>-->
-            </ion-buttons>
-            <ion-buttons slot="end">
-                <!-- <ion-button (click)="presentPopover($event)">
-                    <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-                </ion-button> -->
-            </ion-buttons>
-        </ion-toolbar>
-    </ion-header>
+                    <ion-row id="detail-student-main-tag">
+                        <ion-col size="12" size-sm>
+                            <ion-row>
+                                <ion-col size="12" size-sm id="detail-student-graduate">
+                                    <ion-row>
+                                        <ion-col size="12" size-sm>
+                                            <img src="../../../assets/img/home/yellow_line.png" height="200px">
+                                        </ion-col>
+                                    </ion-row>
 
-    <div class="about-header">
-        <!-- Instead of loading an image each time the select changes, use opacity to transition them -->
-        <div class="about-image madison" [ngStyle]="location === 'madison' && {'opacity': '1'}"></div>
-        <div class="about-image austin" [ngStyle]="location === 'austin' && {'opacity': '1'}"></div>
-        <div class="about-image chicago" [ngStyle]="location === 'chicago' && {'opacity': '1'}"></div>
-        <div class="about-image seattle" [ngStyle]="location === 'seattle' && {'opacity': '1'}"></div>
-    </div>
+                                </ion-col>
+                            </ion-row>
+                  
+                        </ion-col>
+                    </ion-row>
+       
+<!-- 
+        <div class="about-header">
+            <div class="about-image madison" [ngStyle]="location === 'madison' && {'opacity': '1'}"></div>
+            <div class="about-image austin" [ngStyle]="location === 'austin' && {'opacity': '1'}"></div>
+            <div class="about-image chicago" [ngStyle]="location === 'chicago' && {'opacity': '1'}"></div>
+            <div class="about-image seattle" [ngStyle]="location === 'seattle' && {'opacity': '1'}"></div>
+        </div> -->
+        <div class="listactivity">
+            <ion-list>
+                <ion-list-header> 
+                    <div>
+                    <span class="headeractivity">
+                        <ion-icon name="calendar-outline" class="iconcalendar"></ion-icon>  
+                        <font size="4">   กิจกรรมที่กำลังมาถึง</font>
+                    </span> 
+                </div>  
+            </ion-list-header>
+          
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <span class="dot"></span>
+                    </ion-avatar>
+                    <ion-label>
+                        <h2>Yoda</h2>
+                        <p>Do or do not. There is no try...</p>
+                    </ion-label>
+                </ion-item>
 
-    <div class="about-info">
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <span class="dot2"></span>
+                    </ion-avatar>
+                    <ion-label>
+                        <h2>Han</h2>
+                        <p>I've got enough on my plate as it is, and I...</p>
+                    </ion-label>
+                </ion-item>
 
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <span class="dot2"></span>
+                    </ion-avatar>
+                    <ion-label>
+                        <h2>Han</h2>
+                        <p>I've got enough on my plate as it is, and I...</p>
+                    </ion-label>
+                </ion-item>
 
+            </ion-list>
 
+        </div>
 
-        <!--
+        <div class="about-info">
+
+            <!--
         <p class="ion-padding-start ion-padding-end">
             รับสมัครนักศึกษาใหม่ Pre-degree,ปริญญาตรี ผู้สนใจสามารถดาวน์โหลดใบสมัครหรือสอบถามรายละเอียดได้ที่ฝ่ายรับสมัคร อาคาร สวป. ชั้น 3 มหาวิทยาลัยรามคำแหง โทร.0-2310-8614 - 15, โทร.0-2310-8617 - 18, โทร.0-2310-8623 - 24, Fax. 0-2310-8628 </p> -->
 
-        <div class="about-button ">
-            <!-- <div class="home-menu-wrapper">
+            <div class="about-button ">
+                <!-- <div class="home-menu-wrapper">
                 <ion-row>
                     <ion-col size="6 ">
                         <div class="home-menu-items ">
@@ -67,26 +111,27 @@
 
             </div> -->
 
-            <div class="home-menu-wrapper">
-              <div class="home-menu-items">
-                  <img class="img-calendar" src="../../assets/home/calendar.png" alt="">
-                  <img class="img-text-calendar" src="../../assets/home/text-calendar.png" alt="">
-              </div>
-              <div class="home-menu-items" routerLink="/app/tabs/home/runews">
-                  <img class="img-news3" src="../../assets/home/news3.png" alt="">
-                  <img class="img-text-news3" src="../../assets/home/text-news3.png" alt="">
-              </div>
-              <div class="home-menu-items" routerLink="/app/tabs/home/mr30">
-                  <img class="img-mr30" src="../../assets/home/mr30.png" alt="">
-                  <img class="img-text-mr30" src="../../assets/home/text-mr30.png" alt="">
-              </div>
-              <div class="home-menu-items" href="#" onclick="window.open('https://www.ru.ac.th/th/', '_system', 'location=yes');">
-                  <img class="img-aboutus4" src="../../assets/home/aboutus4.png" alt="">
-                  <img class="img-text-aboutus4" src="../../assets/home/text-aboutus4.png" alt="">
-              </div>
-          </div>
+                <div class="home-menu-wrapper">
+                    <div class="home-menu-items">
+                        <img class="img-calendar" src="../../assets/home/calendar.png" alt="">
+                        <img class="img-text-calendar" src="../../assets/home/text-calendar.png" alt="">
+                    </div>
+                    <div class="home-menu-items" routerLink="/app/tabs/home/runews">
+                        <img class="img-news3" src="../../assets/home/news3.png" alt="">
+                        <img class="img-text-news3" src="../../assets/home/text-news3.png" alt="">
+                    </div>
+                    <div class="home-menu-items" routerLink="/app/tabs/home/mr30">
+                        <img class="img-mr30" src="../../assets/home/mr30.png" alt="">
+                        <img class="img-text-mr30" src="../../assets/home/text-mr30.png" alt="">
+                    </div>
+                    <div class="home-menu-items" href="#"
+                        onclick="window.open('https://www.ru.ac.th/th/', '_system', 'location=yes');">
+                        <img class="img-aboutus4" src="../../assets/home/aboutus4.png" alt="">
+                        <img class="img-text-aboutus4" src="../../assets/home/text-aboutus4.png" alt="">
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-</ion-content>
+    </ion-content>
 </ion-app>

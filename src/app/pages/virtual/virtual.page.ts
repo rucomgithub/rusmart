@@ -8,6 +8,7 @@ import { StudentProfile, Token } from '../../services/student';
 })
 export class VirtualPage implements OnInit {
   studentProfile: StudentProfile;
+  imageurl;
   constructor(   
      public profileService: ProfileService,
      
@@ -15,6 +16,7 @@ export class VirtualPage implements OnInit {
 
   ngOnInit() {
     this.fetchProfile()
+    this.imageurl = localStorage.getItem('imageUrl')
   }
   fetchProfile(){
     this.profileService.fetchStudentProfile().subscribe(
