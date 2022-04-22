@@ -43,7 +43,7 @@
                     <ion-note slot="end"><img src="{{urlSrcArrowImg}}"></ion-note>
                 </ion-item>
 
-                <ion-item  onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=Grade/GradeRelease', '_system', 'location=yes');">
+                <ion-item onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=Grade/GradeRelease', '_system', 'location=yes');">
                     <ion-label>
                         <img src="{{urlSrcMenuImg5}}">
                         <ion-text class="text-list">ผลการเรียนทั้งหมด</ion-text>
@@ -74,25 +74,28 @@
                     </ion-label>
                     <ion-note slot="end"><img src="{{urlSrcArrowImg}}"></ion-note>
                 </ion-item>
- 
-                <ion-item  onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=site/login', '_system', 'location=yes');">
+
+                <ion-item onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=site/login', '_system', 'location=yes');">
                     <ion-label>
-                        <img src="{{urlSrcMenuImg8}}" >
+                        <img src="{{urlSrcMenuImg8}}">
                         <ion-text class="text-list">เชื่อมต่อระบบอื่นๆ</ion-text>
                     </ion-label>
                     <ion-note slot="end"><img src="{{urlSrcArrowImg}}"></ion-note>
                 </ion-item>
 
+                <ion-item (click)="signOut()">
+                    <ion-label>
+                        <ion-icon name="power"></ion-icon>
+                        <ion-text class="text-list">
+                            ออกจากระบบ</ion-text>
+                    </ion-label>
+                    <ion-note slot="end"></ion-note>
+                </ion-item>
 
             </ion-list>
         </ion-col>
 
     </ion-row>
 
-    <ion-row class="row-button">
-        <ion-col size="12" size-sm> 
-            <button class="button-logout" role="button" (click)="signOut()"><ion-icon name="power" ></ion-icon> ออกจากระบบ</button>
-        </ion-col>
-    </ion-row>
-</ion-content>
 
+</ion-content>
