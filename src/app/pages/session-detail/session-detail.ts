@@ -24,12 +24,27 @@ export class SessionDetailPage {
     this.dataProvider.load().subscribe((data: any) => {
       if (data && data.schedule && data.schedule[0] && data.schedule[0].groups) {
         const sessionId = this.route.snapshot.paramMap.get('sessionId');
+        // console.log('sessionId=>',sessionId)
+        //const sessionId = '11';    
+        // if(localStorage.getItem("favorites") !== null){
+        //   for (const idFavorites of JSON.parse(localStorage.getItem("favorites"))) {
+        //     if(idFavorites && idFavorites.id === sessionId){
+        //       //console.log('0000',idFavorites.id);
+        //       this.session = idFavorites;
+        //       console.log(idFavorites);
+        //       this.isFavorite = this.userProvider.hasFavorite(
+        //         this.session.name
+        //       );
+        //       break;
+        //     }
+        //   }
+        // }
+        
         for (const group of data.schedule[0].groups) {
           if (group && group.sessions) {
             for (const session of group.sessions) {
               if (session && session.id === sessionId) {
                 this.session = session;
-
                 this.isFavorite = this.userProvider.hasFavorite(
                   this.session.name
                 );
@@ -54,9 +69,13 @@ export class SessionDetailPage {
   toggleFavorite() {
     if (this.userProvider.hasFavorite(this.session.name)) {
       this.userProvider.removeFavorite(this.session.name);
+      this.userProvider.removeFavoriteLocalStroage(this.session.id);
       this.isFavorite = false;
     } else {
+      console.log('toggleFavorite');
+      //console.log('this.session',this.session);
       this.userProvider.addFavorite(this.session.name);
+      this.userProvider.addFavoriteLocalStroage(this.session);
       this.isFavorite = true;
     }
   }

@@ -22,6 +22,8 @@ export class SchedulePage implements OnInit {
   excludeTracks: any = [];
   shownSessions: any = [];
   groups: any = [];
+  // shownSessionsFav: any = [];
+  groupsFav: any = [];
   confDate: string;
   showSearchbar: boolean;
 
@@ -41,18 +43,33 @@ export class SchedulePage implements OnInit {
     this.updateSchedule();
 
     this.ios = this.config.get('mode') === 'ios';
+
   }
 
   updateSchedule() {
+
+    this.groupsFav = JSON.parse(localStorage.getItem("favorites"));
     // Close any open sliding items when the schedule updates
     if (this.scheduleList) {
+      console.log('this.scheduleList');
       this.scheduleList.closeSlidingItems();
     }
 
     this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
-      this.shownSessions = data.shownSessions;
-      this.groups = data.groups;
+      // console.log('updateSchedule=>',data);
+      // console.log('segment value=>',this.segment);
+      // console.log('data.shownSessions=>',data.shownSessions);
+      //this.shownSessions = data.shownSessions;
+      //this.groups = data.groups;
+      localStorage.setItem("groups", JSON.stringify(data.groups));
+      localStorage.setItem("shownSessions", JSON.stringify(data.shownSessions));
+      this.groups =JSON.parse(localStorage.getItem("groups"));
+      this.shownSessions = JSON.parse(localStorage.getItem("shownSessions"));
+      console.log('groupslocal=>',this.groups);
+      console.log('shownSessionslocal=>',this.shownSessions);
+     
     });
+    
   }
 
   async presentFilter() {
@@ -76,6 +93,7 @@ export class SchedulePage implements OnInit {
       // Prompt to remove favorite
       this.removeFavorite(slidingItem, sessionData, 'Favorite already added');
     } else {
+      console.log('addFavorite Slide')
       // Add as a favorite
       this.user.addFavorite(sessionData.name);
 
