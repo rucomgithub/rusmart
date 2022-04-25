@@ -13,7 +13,7 @@ export class Mr30Page implements OnInit {
   }
 
   getSafeUrl(){
-    return this.domSanit.bypassSecurityTrustResourceUrl("https://beta-e-service.ru.ac.th/") ;
+    return this.domSanit.bypassSecurityTrustResourceUrl("https://www.ru.ac.th/th/Mr30") ;
   }
 
   ngOnInit(): void {
