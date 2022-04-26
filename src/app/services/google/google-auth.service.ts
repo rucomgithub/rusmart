@@ -209,7 +209,7 @@ export class GoogleAuthService {
     this.revokeIsAuthenticated();
     this.revokeAccessToken();
     this.revokeRefreshToken();
-
+    this.revokeIsImageT();
     this.revokeGoogleIdTokenT();
     this.revokeStudentCodeT();
     this.revokeIsAuthenticatedT();
@@ -278,4 +278,8 @@ export class GoogleAuthService {
   revokeIsAuthenticatedT() {
     localStorage.removeItem("isAuth");
   }
+  revokeIsImageT() {
+    localStorage.removeItem("imageUrl");
+  }
+  
 }

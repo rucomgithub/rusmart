@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content>
+    <div *ngIf="ruNewsResult">
     <ion-card *ngFor="let item of ruNewsResult">
         <ion-item>
             <ion-avatar slot="start">
@@ -42,5 +43,5 @@
             </ion-row>
         </ion-footer>
     </ion-card>
-
+</div>
 </ion-content>

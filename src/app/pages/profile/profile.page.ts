@@ -60,8 +60,13 @@ export class ProfilePage implements OnInit {
 
     this.fetchProfile()
     this.updateSchedule();
-    this.imageurl = localStorage.getItem('imageUrl')
+    //this.imageurl = localStorage.getItem('imageUrl')
     this.ios = this.config.get('mode') === 'ios';
+  }
+  ionViewWillEnter(){
+ 
+    this.imageurl = localStorage.getItem('imageUrl')
+    console.log('willenter')
   }
 
   updateSchedule() {

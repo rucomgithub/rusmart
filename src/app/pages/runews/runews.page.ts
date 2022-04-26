@@ -22,16 +22,17 @@ export class RunewsPage implements OnInit {
     private ruNewsService: RunewsService,
     private navCtrl: NavController,
     private loadingCtrl:LoadingController
-  ) {
+  ) 
+  {
     this.ruNewsService.RuNews.subscribe(data => this.ruNewsResult = data);
   }
 
   ngOnInit() {
-    this.getNews();
+    // this.getNews();
   }
 
   ionViewWillEnter() {
-     //this.getNews();
+     this.getNews();
   }
 
   async getNews() {
