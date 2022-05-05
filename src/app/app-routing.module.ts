@@ -63,7 +63,11 @@ const routes: Routes = [
   {
     path: 'mr30',
     loadChildren: () => import('./pages/mr30/mr30.module').then( m => m.Mr30PageModule)
+  },  {
+    path: 'mr30search',
+    loadChildren: () => import('./pages/mr30search/mr30search.module').then( m => m.Mr30searchPageModule)
   },
+
 
 
 

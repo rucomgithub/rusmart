@@ -1,0 +1,43 @@
+{
+
+    "course_year":"2564",
+    
+    "course_semester":"2",
+    
+    "rec":[{
+    
+    "id":"3456",
+    
+    "course_no":"FDT4903",
+    
+    "course_credit":"3",
+    
+    "course_study_datetime":"SEC. 1 M 1330 -1630",
+    
+    "course_room":"KMB 405",
+    
+    "course_examdate":"คณะจัดสอบเอง",
+    
+    "course_comment":"รหัส 59 ขึ้นไป"
+    
+    },{
+    
+    "id":"1234",
+    
+    "course_no":"FDT4903",
+    
+    "course_credit":"3",
+    
+    "course_study_datetime":"SEC. 1 TU 0930 -1230",
+    
+    "course_room":"KMB 405",
+    
+    "course_examdate":"คณะจัดสอบเอง",
+    
+    "course_comment":"รหัส 59 ขึ้นไป"
+    
+    }
+    
+    ]
+    
+    }
