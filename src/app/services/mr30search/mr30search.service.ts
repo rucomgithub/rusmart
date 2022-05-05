@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import {Mr30} from '../mr30search/mr30search'
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class Mr30searchService {
 mr30show : Mr30 ={
   course_year: "",
   course_semester: "",
-  rec: []
+  RECORD: []
 }
 record={
   id: "",
@@ -28,9 +29,19 @@ record={
   }
 
   getMr30() : Observable<Mr30>{
-    return this.http.get<Mr30>('assets/data/mr30.json').pipe(map(mr30show=>{
-      //console.log(mr30show)
+    const playLoad = {
+      course_year: "2565",
+      course_semester: "1",
+    }
+
+    
+    
+
+    return this.http.post<Mr30>(`${environment.mr30Search}`,playLoad).pipe(map(mr30show=>{
+      console.log(mr30show)
       return mr30show
     }))
   }
+
+
 }

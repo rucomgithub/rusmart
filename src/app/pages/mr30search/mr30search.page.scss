@@ -62,15 +62,15 @@ ion-fab-button {
 }
 
 $categories: (
-  ionic: var(--ion-color-primary),
-  angular: #ac282b,
-  communication: #8e8d93,
-  tooling: #fe4c52,
-  services: #fd8b2d,
-  design: #fed035,
-  workshop: #69bb7b,
-  food: #3bc7c4,
-  documentation: #b16be3,
+  //m: var(--ion-color-primary),
+  tu: #fc04c2,
+  w: #24ff07,
+  th: #f69206,
+  f: #03b9fb,
+  m: #fff307,
+  su: #ff0404,
+  s: #af03ff,
+  t: #222123,
   navigation: #6600cc
 );
 
@@ -81,4 +81,16 @@ $categories: (
   }
 }
 
+.mr30-header {
+  ul {
+      list-style: none;
+      padding-left: 0.5rem;
+    li {
+      margin: 0 0rem;
+    }
+  }
+}
 
+.course_header{
+  color: #460202;
+}

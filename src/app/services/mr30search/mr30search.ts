@@ -1,7 +1,7 @@
 export interface Mr30 {
   course_year: string;
   course_semester: string;
-  rec: Rec[];
+  RECORD: Rec[];
 }
 
 export interface Rec {
