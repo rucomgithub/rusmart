@@ -44,7 +44,8 @@ export class LoginPage {
       this.userInfo = this.googleUser;
       const idToken = this.googleUser.authentication.idToken;
       const stdCode = this.googleUser.email.substring(0, 10);
-
+      localStorage.setItem('imageUrl',this.userInfo.imageUrl)
+      console.log( this.userInfo.imageUrl)
 
       this.googleAuthService.googleAuth(idToken, stdCode).subscribe(response => {
         this.router.navigate(['/app/tabs/profile']);

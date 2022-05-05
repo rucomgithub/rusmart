@@ -21,7 +21,7 @@ import { RuSmartInterceptor } from './interceptor/interceptor';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({animated: false}),
     IonicStorageModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production

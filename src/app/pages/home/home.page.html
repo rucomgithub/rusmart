@@ -1,43 +1,161 @@
 <ion-app>
-<ion-content>
-    <ion-header class="ion-no-border">
-        <ion-toolbar>
-
-            <ion-buttons slot="start">
-                <img src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png" width="50"
-                    height="50" />
-                <div id="title">สวัสดี ยามบ่าย v4</div>
-
-
-                <!--<ion-menu-button></ion-menu-button>-->
-            </ion-buttons>
-            <ion-buttons slot="end">
-                <!-- <ion-button (click)="presentPopover($event)">
-                    <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-                </ion-button> -->
-            </ion-buttons>
-        </ion-toolbar>
-    </ion-header>
-
-    <div class="about-header">
-        <!-- Instead of loading an image each time the select changes, use opacity to transition them -->
-        <div class="about-image madison" [ngStyle]="location === 'madison' && {'opacity': '1'}"></div>
-        <div class="about-image austin" [ngStyle]="location === 'austin' && {'opacity': '1'}"></div>
-        <div class="about-image chicago" [ngStyle]="location === 'chicago' && {'opacity': '1'}"></div>
-        <div class="about-image seattle" [ngStyle]="location === 'seattle' && {'opacity': '1'}"></div>
-    </div>
-
-    <div class="about-info">
+    <ion-content>
 
 
 
+        <div>
+            <ion-row id="detail-pallate-header">
+                <ion-col size="12" size-sm style="margin: 0; padding: 0;">
+                    <ion-row>
+                        <ion-col size="12" size-sm id='{{colortime}}' style="margin: 0; padding: 0;">
+                            <ion-row id="title" style="">
+                                <span>    
+                                            <!-- <img src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png"
+                                            width="40"
+                                           /> -->
+                                           <img src="../../../assets/home/user.png"
+                                            width="40"
+                                            style="
+                                            width: 30px;
+                                            border: 2px solid #000;
+                                            padding: 2px;
+                                            color: #fff;
+                                            border-radius: 50%;"
+                                           />
+                                        </span>
 
-        <!--
+                                <span class="header-messege"> สวัสดี{{textTime}}</span>
+
+                            </ion-row>
+
+                            <!-- <ion-row style="padding: 0 2% 0 2%;"> -->
+                                <ion-row >
+                                <ion-col size="12" size-sm style="
+                                margin: 0; 
+                                padding: 0;     
+                                display: flex;
+                                align-content: center;
+                                justify-content: center;
+                                align-items: center;">
+                                    <div style="
+                                        /*border-radius: 50%;
+                                        border: 10px solid white;
+                                        border-radius: 50%;
+                                        position: relative;
+                                        overflow: hidden;
+                                        width: 200px;
+                                        height: 200px;
+                                        display: flex;
+                                        align-content: center;
+                                        justify-content: center;
+                                        align-items: center; 
+                                        box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;*/
+
+
+                                        /*position: relative;
+                                        overflow: hidden;
+                                        width: 300px;
+                                        height: 250px;
+                                        display: flex;
+                                        align-content: center;
+                                        justify-content: center;
+                                        align-items: center;*/
+
+                                        border-radius: 50%;
+                                        position: relative;
+                                        overflow: hidden;
+                                        width: 200px;
+                                        height: 200px;
+                                        display: flex;
+                                        align-content: center;
+                                        justify-content: center;
+                                        align-items: center;
+                                        background: rgb(255 255 255 / 50%);
+                                        box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+
+                                    ">
+                                        
+                                        <img src="../../../assets/home/logo-v1-1.png" 
+                                        style="
+                                        position: absolute;
+                                        /* background: white ; */
+                                        "  
+                                        class="imgcustomborder">
+
+                                    </div>
+                                </ion-col>
+                          
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+
+                </ion-col>
+            </ion-row>
+
+        </div>
+        <!-- 
+        <div class="about-header">
+            <div class="about-image madison" [ngStyle]="location === 'madison' && {'opacity': '1'}"></div>
+            <div class="about-image austin" [ngStyle]="location === 'austin' && {'opacity': '1'}"></div>
+            <div class="about-image chicago" [ngStyle]="location === 'chicago' && {'opacity': '1'}"></div>
+            <div class="about-image seattle" [ngStyle]="location === 'seattle' && {'opacity': '1'}"></div>
+        </div> -->
+        <div class="listactivity">
+            <ion-list>
+                <ion-list-header>
+
+                    <span class="headeractivity">
+                        <ion-icon name="calendar-outline" class="iconcalendar"></ion-icon>  
+                        <font size="4">   กิจกรรมที่กำลังมาถึง</font>
+                  
+                    </span>
+
+
+
+                </ion-list-header>
+
+                <ion-list #scheduleList [hidden]="shownSessions === 0">
+                    <ion-item-group *ngFor="let group of groups | slice:0:1;" [hidden]="group.hide">
+                        <ion-item-divider sticky style="margin-left: 20px; padding-left: 5px;">
+                            <ion-label>
+                                {{group.time | date: 'dd/MM/yyyy'}}
+                            </ion-label>
+                        </ion-item-divider>
+        
+                        <ion-item-sliding *ngFor="let session of group.sessions  | slice:0:1;" #slidingItem [attr.track]="session.tracks[0] | lowercase " [hidden]="session.hide ">
+                            <ion-item routerLink="/app/tabs/schedule/session/{{session.id}}">
+                                <ion-label style="padding-left: 5px;">
+                                    <h3>{{session.name}}</h3>
+                                    <p>
+                                        {{session.timeStart | date: 'dd/MM/yyyy'}} &mdash; {{session.timeEnd | date: 'dd/MM/yyyy'}}: {{session.location}}
+                                    </p>
+                                </ion-label>
+                            </ion-item>
+                            <ion-item-options>
+                                <ion-item-option color="favorite " (click)="addFavorite(slidingItem, session) " *ngIf="segment==='all' ">
+                                    Favorite
+                                </ion-item-option>
+                                <ion-item-option color="danger " (click)="removeFavorite(slidingItem, session, 'Remove Favorite') " *ngIf="segment==='favorites' ">
+                                    Remove
+                                </ion-item-option>
+                            </ion-item-options>
+                        </ion-item-sliding>
+                    </ion-item-group>
+                </ion-list>
+
+
+            </ion-list>
+
+        </div>
+
+        <div class="about-info">
+
+            <!--
         <p class="ion-padding-start ion-padding-end">
             รับสมัครนักศึกษาใหม่ Pre-degree,ปริญญาตรี ผู้สนใจสามารถดาวน์โหลดใบสมัครหรือสอบถามรายละเอียดได้ที่ฝ่ายรับสมัคร อาคาร สวป. ชั้น 3 มหาวิทยาลัยรามคำแหง โทร.0-2310-8614 - 15, โทร.0-2310-8617 - 18, โทร.0-2310-8623 - 24, Fax. 0-2310-8628 </p> -->
 
-        <div class="about-button ">
-            <!-- <div class="home-menu-wrapper">
+            <div class="about-button ">
+                <!-- <div class="home-menu-wrapper">
                 <ion-row>
                     <ion-col size="6 ">
                         <div class="home-menu-items ">
@@ -67,26 +185,26 @@
 
             </div> -->
 
-            <div class="home-menu-wrapper">
-              <div class="home-menu-items">
-                  <img class="img-calendar" src="../../assets/home/calendar.png" alt="">
-                  <img class="img-text-calendar" src="../../assets/home/text-calendar.png" alt="">
-              </div>
-              <div class="home-menu-items" routerLink="/app/tabs/home/runews">
-                  <img class="img-news3" src="../../assets/home/news3.png" alt="">
-                  <img class="img-text-news3" src="../../assets/home/text-news3.png" alt="">
-              </div>
-              <div class="home-menu-items" routerLink="/app/tabs/home/mr30">
-                  <img class="img-mr30" src="../../assets/home/mr30.png" alt="">
-                  <img class="img-text-mr30" src="../../assets/home/text-mr30.png" alt="">
-              </div>
-              <div class="home-menu-items">
-                  <img class="img-aboutus4" src="../../assets/home/aboutus4.png" alt="">
-                  <img class="img-text-aboutus4" src="../../assets/home/text-aboutus4.png" alt="">
-              </div>
-          </div>
+                <div class="home-menu-wrapper">
+                    <div class="home-menu-items" href="#" onclick="window.open('https://calendar.ru.ac.th/CalendarCenter', '_system', 'location=yes');">
+                        <img class="img-calendar" src="../../assets/home/calendar.png" alt="">
+                        <img class="img-text-calendar" src="../../assets/home/text-calendar.png" alt="">
+                    </div>
+                    <div class="home-menu-items" routerLink="/app/tabs/home/runews">
+                        <img class="img-news3" src="../../assets/home/news3.png" alt="">
+                        <img class="img-text-news3" src="../../assets/home/text-news3.png" alt="">
+                    </div>
+                    <div class="home-menu-items" routerLink="/app/tabs/home/mr30">
+                        <img class="img-mr30" src="../../assets/home/mr30.png" alt="">
+                        <img class="img-text-mr30" src="../../assets/home/text-mr30.png" alt="">
+                    </div>
+                    <div class="home-menu-items" href="#" onclick="window.open('https://www.ru.ac.th/th/', '_system', 'location=yes');">
+                        <img class="img-aboutus4" src="../../assets/home/aboutus4.png" alt="">
+                        <img class="img-text-aboutus4" src="../../assets/home/text-aboutus4.png" alt="">
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-</ion-content>
+    </ion-content>
 </ion-app>

@@ -1,17 +1,39 @@
-ion-toolbar {
-  --background: rgb(12, 4, 133);
-  padding-bottom: 2%;
+.banner {
+    // background-color: #70a1ff;
+    background-color: rgb(12, 4, 133);
+    border-bottom-left-radius: 99%;
+    border-bottom-right-radius: 99%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+img {
+    position: absolute;
+    top: 16%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    //border: 5px solid rgba(255, 255, 255, 1);
+    border: 5px solid rgb(225, 201, 95);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.imgA1 {
+    z-index: 3;
+}
+
+// 
+ion-toolbar {
+    --background: rgb(12, 4, 133);
+    padding-bottom: 2%;
+}
 
 .txt-menu {
-  font-size: 1.3rem;
-  position: absolute;
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  padding-bottom: 1%;
-  bottom: 0;
+    font-size: 1.3rem;
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    padding-bottom: 1%;
+    bottom: 0;
 }
 
 #row-top {
@@ -49,7 +71,18 @@ img {
 }
 
 #name-thai-tag {
-    margin-top: 5%;
+    font-weight: bold;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.name-std-tag {
+    color: white;
+    font-size: 1.1rem;
+}
+.name-email-tag {
+    color: white;
+    font-size: 1.1rem;
 }
 
 #header-main-bg-tag {
@@ -69,8 +102,10 @@ img {
 
 #detail-student-graduate {
     text-align: center;
-    background-color: rgb(233, 231, 231);
-    border-color: rgb(230, 230, 228);
+    // background-color: #d4e0ff;
+    // border-color: #d4e0ff;
+    background-color: #e3e3e3;
+    border-color: #e3e3e3;
     border-top-left-radius: 15px;
     border-collapse: separate;
     border-spacing: 0;
@@ -78,7 +113,7 @@ img {
 
 #detail-student-graduate2 {
     text-align: center;
-    background-color: rgb(243, 243, 243);
+    background-color: rgb(255, 255, 255);
     border-color: beige;
     border-collapse: separate;
     border-spacing: 0;
@@ -100,8 +135,12 @@ img {
 }
 
 #activity-plate {
-    background-color: rgb(243, 241, 240);
+    background-color: rgba(255, 255, 255, 0.3);
     margin: 0 3% 3% 3%;
+}
+
+.bar-color {
+    //background-color: rgba(255, 192, 192, 0.7);
 }
 
 #button-menu {
@@ -118,6 +157,7 @@ img {
 @supports not (-webkit-touch-callout: none) {
     /* CSS for other than iOS devices */
 }
+
 
 /*
 button {
@@ -155,8 +195,6 @@ ion-fab-button {
     --color: var(--ion-color-primary, #3880ff);
 }
 
-
-
 .ios ion-fab-button {
     --background-activated: var(--ion-color-step-250, #d9d9d9);
 }
@@ -169,4 +207,3 @@ $value in map-remove($categories) {
         padding-left: 10px;
     }
 }
-

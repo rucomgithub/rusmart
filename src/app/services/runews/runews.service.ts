@@ -44,10 +44,9 @@ export class RunewsService {
   getRunews(): Observable<RuNews> {
 
     return this.http
-      .get('http://appsapi.ru.ac.th/NewsRu/NewsJsonRusmart?c_id=1')
+      .get(`${environment.runewsurl}`)
       .pipe(
         map((res: RuNews) => {
-          console.log("set local storage...")
           localStorage.setItem('runews', JSON.stringify(res))
           return res;
         })
@@ -55,8 +54,20 @@ export class RunewsService {
 
   }
 
+
   setRuNews() {
     this.runewsSubject.next(JSON.parse(localStorage.getItem('runews')));
   }
+
+  updateHitDetail(id: string) {
+    console.log('updateHitDetail', id);
+    const runewsDetailParams = {
+      'id': id.toString()
+    }
+    return this.http.get<RuNews>(`${environment.runewsUpdateDetailHit}`, { params: runewsDetailParams }).subscribe();
+
+  }
+
+
 
 }

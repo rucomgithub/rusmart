@@ -18,7 +18,7 @@ export class ConferenceData {
       return of(this.data);
     } else {
       return this.http
-        .get('assets/data/data.json')
+        .get('https://calendar.ru.ac.th/CalendarCenter/ScheduleCenter')
         .pipe(map(this.processData, this));
     }
   }

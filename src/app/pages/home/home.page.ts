@@ -11,6 +11,32 @@ import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
 
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+
+export interface Session {
+  name: string;
+  timeStart: string;
+  timeEnd: string;
+  location: string;
+  tracks: string[];
+  id: string;
+}
+
+export interface Group {
+  time: string;
+  sessions: Session[];
+}
+
+export interface Schedule {
+  date: string;
+  groups: Group[];
+}
+
+export interface Calendar {
+  schedule: Schedule[];
+}
 
 @Component({
   selector: 'app-home',
@@ -32,10 +58,14 @@ export class HomePage implements OnInit {
   location = 'madison';
   conferenceDate = '2047-05-17';
   userInfo = null;
-
+  dateTime;
+  textTime;
+  colorbullet = "red";
+  calendarList;
   selectOptions = {
     header: 'Select a Location'
   };
+  colortime;
 
   constructor(public popoverCtrl: PopoverController,    public alertCtrl: AlertController,
     public confData: ConferenceData,
@@ -45,15 +75,68 @@ export class HomePage implements OnInit {
     public routerOutlet: IonRouterOutlet,
     public toastCtrl: ToastController,
     public user: UserData,
-    public config: Config) {
+    public config: Config,
+    public http:HttpClient) {
       GoogleAuth.initialize();
      }
 
   ngOnInit() {
     this.updateSchedule();
-
+    this.checktime();
     this.ios = this.config.get('mode') === 'ios';
+  //  this.callCalendar();
 
+  }
+
+  randomcolor(){
+    var color = Math.floor(0x1000000 * Math.random()).toString(16);
+    return '#' + ('000000' + color).slice(-6);
+  }
+  
+  callCalendar(){
+    console.log("call")
+    this.getCalendarEventToday().subscribe(data=>{
+      console.log("sub",data)
+      this.calendarList = data
+    })
+  }
+
+  getCalendarEventToday(): Observable<Calendar[]> {
+    return this.http.get<Calendar[]>('https://calendar.ru.ac.th/CalendarCenter/ScheduleCenter')
+      .pipe(
+        map((calendars: Calendar[]) => {
+          const today = new Date();
+          const day: any = today.toLocaleString('en-CA', { timeZone: 'UTC' });
+          console.log(day);
+          const textday = day.split(',')[0];
+          console.log(textday);
+          console.log(calendars);
+          return calendars.filter(()=>{});//textday >= item.start_date && textday <= item.end_date);
+        })
+      );
+  }
+
+  checktime(){
+    this.dateTime = new Date().getHours();
+    if(this.dateTime >= 8 && this.dateTime <= 9){
+      this.textTime = 'ตอนเช้า'
+      this.colortime ='detail-pallate-morning'
+   }  else if(this.dateTime >= 10  && this.dateTime <= 12){
+      this.textTime = 'ยามสาย'
+      this.colortime ='detail-pallate-daylight'
+    }else if(this.dateTime >= 13  && this.dateTime <= 16){
+      this.textTime = 'ช่วงบ่าย'
+      this.colortime ='detail-pallate-afternoon'
+    }else if(this.dateTime >= 17  && this.dateTime <= 19){
+      this.textTime = 'ยามเย็น'
+      this.colortime ='detail-pallate-evening'
+    }else if(this.dateTime >= 20  && this.dateTime <=7) {
+      this.textTime = 'ตอนดึก'
+      this.colortime ='detail-pallate-night'
+   }else{
+      this.textTime = 'ตอนดึก'
+      this.colortime ='detail-pallate-night'
+    }
   }
 
   updateSchedule() {
