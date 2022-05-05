@@ -1,5 +1,6 @@
 .banner {
-    background-color: #70a1ff;
+    // background-color: #70a1ff;
+    background-color: rgb(12, 4, 133);
     border-bottom-left-radius: 99%;
     border-bottom-right-radius: 99%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -10,7 +11,8 @@ img {
     top: 16%;
     left: 50%;
     transform: translate(-50%, 0);
-    border: 5px solid rgba(255, 255, 255, 1);
+    //border: 5px solid rgba(255, 255, 255, 1);
+    border: 5px solid rgb(225, 201, 95);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
@@ -78,6 +80,10 @@ img {
     color: white;
     font-size: 1.1rem;
 }
+.name-email-tag {
+    color: white;
+    font-size: 1.1rem;
+}
 
 #header-main-bg-tag {
     border-radius: 4%;
@@ -96,8 +102,10 @@ img {
 
 #detail-student-graduate {
     text-align: center;
-    background-color: #d4e0ff;
-    border-color: #d4e0ff;
+    // background-color: #d4e0ff;
+    // border-color: #d4e0ff;
+    background-color: #e3e3e3;
+    border-color: #e3e3e3;
     border-top-left-radius: 15px;
     border-collapse: separate;
     border-spacing: 0;
@@ -132,7 +140,7 @@ img {
 }
 
 .bar-color {
-    background-color: rgba(255, 192, 192, 0.7);
+    //background-color: rgba(255, 192, 192, 0.7);
 }
 
 #button-menu {

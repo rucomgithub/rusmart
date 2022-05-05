@@ -65,6 +65,7 @@ export class HomePage implements OnInit {
   selectOptions = {
     header: 'Select a Location'
   };
+  colortime;
 
   constructor(public popoverCtrl: PopoverController,    public alertCtrl: AlertController,
     public confData: ConferenceData,
@@ -119,16 +120,22 @@ export class HomePage implements OnInit {
     this.dateTime = new Date().getHours();
     if(this.dateTime >= 8 && this.dateTime <= 9){
       this.textTime = 'ตอนเช้า'
+      this.colortime ='detail-pallate-morning'
    }  else if(this.dateTime >= 10  && this.dateTime <= 12){
       this.textTime = 'ยามสาย'
+      this.colortime ='detail-pallate-daylight'
     }else if(this.dateTime >= 13  && this.dateTime <= 16){
       this.textTime = 'ช่วงบ่าย'
+      this.colortime ='detail-pallate-afternoon'
     }else if(this.dateTime >= 17  && this.dateTime <= 19){
       this.textTime = 'ยามเย็น'
+      this.colortime ='detail-pallate-evening'
     }else if(this.dateTime >= 20  && this.dateTime <=7) {
       this.textTime = 'ตอนดึก'
+      this.colortime ='detail-pallate-night'
    }else{
-      this.textTime = ''
+      this.textTime = 'ตอนดึก'
+      this.colortime ='detail-pallate-night'
     }
   }
 

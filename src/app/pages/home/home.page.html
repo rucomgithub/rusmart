@@ -5,13 +5,22 @@
 
         <div>
             <ion-row id="detail-pallate-header">
-                <ion-col size="12" size-sm>
+                <ion-col size="12" size-sm style="margin: 0; padding: 0;">
                     <ion-row>
-                        <ion-col size="12" size-sm id="detail-pallate">
-                            <ion-row id="title">
+                        <ion-col size="12" size-sm id='{{colortime}}' style="margin: 0; padding: 0;">
+                            <ion-row id="title" style="">
                                 <span>    
-                                            <img src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png"
+                                            <!-- <img src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png"
                                             width="40"
+                                           /> -->
+                                           <img src="../../../assets/home/user.png"
+                                            width="40"
+                                            style="
+                                            width: 30px;
+                                            border: 2px solid #000;
+                                            padding: 2px;
+                                            color: #fff;
+                                            border-radius: 50%;"
                                            />
                                         </span>
 
@@ -19,10 +28,63 @@
 
                             </ion-row>
 
-                            <ion-row style="padding: 0 2% 0 2%;">
-                                <ion-col size="12" size-sm style="   border-radius: 50%;">
-                                    <img src="../../../assets/img/about/madison.jpg" height="200px" width="200px" class="imgcustomborder">
+                            <!-- <ion-row style="padding: 0 2% 0 2%;"> -->
+                                <ion-row >
+                                <ion-col size="12" size-sm style="
+                                margin: 0; 
+                                padding: 0;     
+                                display: flex;
+                                align-content: center;
+                                justify-content: center;
+                                align-items: center;">
+                                    <div style="
+                                        /*border-radius: 50%;
+                                        border: 10px solid white;
+                                        border-radius: 50%;
+                                        position: relative;
+                                        overflow: hidden;
+                                        width: 200px;
+                                        height: 200px;
+                                        display: flex;
+                                        align-content: center;
+                                        justify-content: center;
+                                        align-items: center; 
+                                        box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;*/
+
+
+                                        /*position: relative;
+                                        overflow: hidden;
+                                        width: 300px;
+                                        height: 250px;
+                                        display: flex;
+                                        align-content: center;
+                                        justify-content: center;
+                                        align-items: center;*/
+
+                                        border-radius: 50%;
+                                        position: relative;
+                                        overflow: hidden;
+                                        width: 200px;
+                                        height: 200px;
+                                        display: flex;
+                                        align-content: center;
+                                        justify-content: center;
+                                        align-items: center;
+                                        background: rgb(255 255 255 / 50%);
+                                        box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+
+                                    ">
+                                        
+                                        <img src="../../../assets/home/logo-v1-1.png" 
+                                        style="
+                                        position: absolute;
+                                        /* background: white ; */
+                                        "  
+                                        class="imgcustomborder">
+
+                                    </div>
                                 </ion-col>
+                          
                             </ion-row>
                         </ion-col>
                     </ion-row>
@@ -54,7 +116,7 @@
 
                 <ion-list #scheduleList [hidden]="shownSessions === 0">
                     <ion-item-group *ngFor="let group of groups | slice:0:1;" [hidden]="group.hide">
-                        <ion-item-divider sticky>
+                        <ion-item-divider sticky style="margin-left: 20px; padding-left: 5px;">
                             <ion-label>
                                 {{group.time | date: 'dd/MM/yyyy'}}
                             </ion-label>
@@ -62,7 +124,7 @@
         
                         <ion-item-sliding *ngFor="let session of group.sessions  | slice:0:1;" #slidingItem [attr.track]="session.tracks[0] | lowercase " [hidden]="session.hide ">
                             <ion-item routerLink="/app/tabs/schedule/session/{{session.id}}">
-                                <ion-label>
+                                <ion-label style="padding-left: 5px;">
                                     <h3>{{session.name}}</h3>
                                     <p>
                                         {{session.timeStart | date: 'dd/MM/yyyy'}} &mdash; {{session.timeEnd | date: 'dd/MM/yyyy'}}: {{session.location}}
