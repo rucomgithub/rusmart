@@ -38,7 +38,7 @@ record={
     
 
     return this.http.post<Mr30>(`${environment.mr30Search}`,playLoad).pipe(map(mr30show=>{
-      console.log(mr30show)
+      // console.log(mr30show)
       return mr30show
     }))
   }
