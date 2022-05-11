@@ -106,7 +106,7 @@
 
                     <span class="headeractivity">
                         <ion-icon name="calendar-outline" class="iconcalendar"></ion-icon>  
-                        <font size="4">   กิจกรรมที่กำลังมาถึง อิอิ</font>
+                        <font size="4">   กิจกรรมที่กำลังมาถึง</font>
                   
                     </span>
 
@@ -154,7 +154,7 @@
         <p class="ion-padding-start ion-padding-end">
             รับสมัครนักศึกษาใหม่ Pre-degree,ปริญญาตรี ผู้สนใจสามารถดาวน์โหลดใบสมัครหรือสอบถามรายละเอียดได้ที่ฝ่ายรับสมัคร อาคาร สวป. ชั้น 3 มหาวิทยาลัยรามคำแหง โทร.0-2310-8614 - 15, โทร.0-2310-8617 - 18, โทร.0-2310-8623 - 24, Fax. 0-2310-8628 </p> -->
 
-            <div class="about-button ">
+            <div id="tab-button-home" class="about-button ">
                 <!-- <div class="home-menu-wrapper">
                 <ion-row>
                     <ion-col size="6 ">
@@ -186,21 +186,21 @@
             </div> -->
 
                 <div class="home-menu-wrapper">
-                    <div class="home-menu-items" href="#" onclick="window.open('https://calendar.ru.ac.th/CalendarCenter', '_system', 'location=yes');">
-                        <img class="img-calendar" src="../../assets/home/calendar.png" alt="">
-                        <img class="img-text-calendar" src="../../assets/home/text-calendar.png" alt="">
+                    <div class="home-menu-items" href="#" id="btn-calendar" routerLink="/app/tabs/schedule">
+                        <img id="img-calendar1" class="img-calendar" src="../../assets/home/calendar.png" alt="">
+                        <img id="img-calendar2" class="img-text-calendar" src="../../assets/home/text-calendar.png" alt="">
                     </div>
-                    <div class="home-menu-items" routerLink="/app/tabs/home/runews">
-                        <img class="img-news3" src="../../assets/home/news3.png" alt="">
-                        <img class="img-text-news3" src="../../assets/home/text-news3.png" alt="">
+                    <div class="home-menu-items" id="btn-runews" routerLink="/app/tabs/home/runews">
+                        <img id="img-runews1" class="img-news3" src="../../assets/home/news3.png" alt="">
+                        <img id="img-runews2" class="img-text-news3" src="../../assets/home/text-news3.png" alt="">
                     </div>
-                    <div class="home-menu-items" routerLink="/app/tabs/home/mr30search">
-                        <img class="img-mr30" src="../../assets/home/mr30.png" alt="">
-                        <img class="img-text-mr30" src="../../assets/home/text-mr30.png" alt="">
+                    <div class="home-menu-items" id="btn-mr30" routerLink="/app/tabs/home/mr30search">
+                        <img id="img-mr30-1" class="img-mr30" src="../../assets/home/mr30.png" alt="">
+                        <img id="img-mr30-2" class="img-text-mr30" src="../../assets/home/text-mr30.png" alt="">
                     </div>
-                    <div class="home-menu-items" href="#" onclick="window.open('https://www.ru.ac.th/th/', '_system', 'location=yes');">
-                        <img class="img-aboutus4" src="../../assets/home/aboutus4.png" alt="">
-                        <img class="img-text-aboutus4" src="../../assets/home/text-aboutus4.png" alt="">
+                    <div class="home-menu-items" href="#" id="btn-about" onclick="window.open('https://www.ru.ac.th/th/', '_system', 'location=yes');">
+                        <img id="img-about1" class="img-aboutus4" src="../../assets/home/aboutus4.png" alt="">
+                        <img id="img-about2" class="img-text-aboutus4" src="../../assets/home/text-aboutus4.png" alt="">
                     </div>
                 </div>
             </div>

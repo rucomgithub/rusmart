@@ -12,7 +12,7 @@
                 Favorites
             </ion-segment-button>
         </ion-segment>
-        <ion-title *ngIf="!ios && !showSearchbar">Schedule</ion-title>
+        <ion-title *ngIf="!ios && !showSearchbar">มร. 30</ion-title>
         <ion-searchbar *ngIf="showSearchbar" showCancelButton="always" [(ngModel)]="queryText" (ionChange)="updateSchedule()" (ionCancel)="showSearchbar = false" placeholder="Search"></ion-searchbar> 
          <ion-buttons slot="end">
             <ion-button *ngIf="!ios && !showSearchbar" (click)="showSearchbar = true">
