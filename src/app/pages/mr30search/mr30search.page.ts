@@ -48,6 +48,16 @@ export class Mr30searchPage implements OnInit {
 
   }
 
+  filterMr30(){
+    
+    this.mr30searchService.getMr30().subscribe(
+      mr30data =>{
+          console.log(JSON.stringify(mr30data))
+       
+    })
+    console.log("text",this.queryText)
+  }
+
   updateSchedule() {
     // Close any open sliding items when the schedule updates
     if (this.scheduleList) {
