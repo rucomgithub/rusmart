@@ -94,3 +94,17 @@ $categories: (
 .course_header{
   color: #460202;
 }
+
+.course_header_not_found {
+  color: #740000;
+  font-weight: bold;
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: inherit;
+  align-items: center;
+  align-self: stretch;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  align-content: center;
+  justify-content: center;
+}

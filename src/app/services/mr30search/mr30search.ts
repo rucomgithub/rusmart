@@ -5,6 +5,7 @@ export interface Mr30 {
 }
 
 export interface Rec {
+  [x: string]: any;
   id: string;
   course_no: string;
   course_credit: string;

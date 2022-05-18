@@ -6,6 +6,8 @@ import { AlertController, IonList, IonRouterOutlet, ModalController, ToastContro
 import { ConferenceData } from '../../providers/conference-data';
 import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
 import { UserData } from '../../providers/user-data';
+import { filter } from 'rxjs/operators';
+import { Rec }  from '../../services/mr30search/mr30search'
 
 @Component({
   selector: 'app-mr30search',
@@ -15,7 +17,8 @@ import { UserData } from '../../providers/user-data';
 })
 export class Mr30searchPage implements OnInit {
   @ViewChild('scheduleList', { static: true }) scheduleList: IonList;
-  mr30Arr : Mr30
+  mr30Arr : Rec[]
+  mr30ArrTemp : Mr30
   ios: boolean;
   dayIndex = 0;
   queryText = '';
@@ -39,23 +42,41 @@ export class Mr30searchPage implements OnInit {
 
   ngOnInit() {
     this.updateSchedule();
-    this.mr30searchService.getMr30().subscribe(
-      mr30data =>{
-        this.mr30Arr = mr30data
-          console.log("ram", JSON.stringify(mr30data))
-       
-    })
+    this.getMr30();
+
 
   }
 
-  filterMr30(){
-    
+
+
+  filterMr30(){ 
+
+    this.mr30Arr =  this.mr30ArrTemp.RECORD
+    .filter(
+      // recdata => recdata.course_no.indexOf(this.queryText.toUpperCase()) > -1
+      recdata => recdata.course_no.startsWith(this.queryText.toUpperCase().toString())   
+    );
+
+    if(this.mr30Arr.length == 0) {
+      console.log("ไม่พบรหัสวิชา...")
+    }
+
+    // this.mr30searchService.getMr30().subscribe(
+    //   mr30data =>{
+    //     console.log("text",this.queryText)
+    //     this.mr30ArrTemp.RECORD =  mr30data.RECORD.filter(recdata =>recdata.course_no.indexOf(this.queryText.toUpperCase()) > -1    );
+    //     console.log(this.mr30Arr.RECORD)        
+    // })
+  }
+
+  getMr30(){
     this.mr30searchService.getMr30().subscribe(
       mr30data =>{
-          console.log(JSON.stringify(mr30data))
-       
+        this.mr30ArrTemp = mr30data   
+        this.mr30Arr = mr30data.RECORD
+        console.log(this.mr30ArrTemp)
+        console.log(this.mr30Arr)
     })
-    console.log("text",this.queryText)
   }
 
   updateSchedule() {
