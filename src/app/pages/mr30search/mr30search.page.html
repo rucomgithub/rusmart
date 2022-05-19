@@ -28,7 +28,7 @@
         </ion-buttons>
     </ion-toolbar>
     <ion-toolbar *ngIf="!ios">
-        <ion-segment>
+        <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
             <ion-segment-button value="all">
                 All
             </ion-segment-button>
@@ -59,11 +59,12 @@
         </ion-toolbar>
     </ion-header>
 
-    <ion-list *ngIf="mr30Arr; else mr30ArrFalse;" #scheduleList [hidden]="shownSessions === 0">
+    <!-- <ion-list *ngIf="mr30Arr; else mr30ArrFalse;" #scheduleList [hidden]="shownSessions === 0"> -->
+        <ion-list #scheduleList [hidden]="shownSessions === 0">
         <ion-item-group *ngFor="let mr30Arr of mr30Arr |slice:0:30">
             <ion-item-divider sticky>
                 <ion-label class="course_header">
-                    {{mr30Arr.course_no}}({{mr30Arr.course_credit}})
+                    {{mr30Arr.course_no}}({{mr30Arr.course_credit}}) 
                 </ion-label>
             </ion-item-divider>
 
@@ -86,7 +87,7 @@
                     </ion-label>
                 </ion-item>
                 <ion-item-options>
-                    <ion-item-option color="favorite" (click)="addFavorite(slidingItem, session)"
+                    <ion-item-option color="favorite" (click)="addMR30Fav(mr30Arr)"
                         *ngIf="segment === 'all'">
                         Favorite
                     </ion-item-option>
@@ -99,13 +100,51 @@
         </ion-item-group>
     </ion-list>
 
+    <ion-list [hidden]="shownSessions > 0">
+        <ion-item-group *ngFor="let mr30Arr of groupsFav ">
+            <ion-item-divider sticky>
+                <ion-label class="course_header">
+                    {{mr30Arr.course_no}}({{mr30Arr.course_credit}}) 
+                </ion-label>
+            </ion-item-divider>
 
-    <ion-item-group #mr30ArrFalse>
+            <ion-item-sliding #slidingItem [attr.track]="mr30Arr.course_study_datetime | lowercase |slice:0:2">
+
+                <ion-item>
+
+                    <ion-label>
+                        <div class="mr30-header">
+                            <ul>
+                                <li>วันเวลาเรียน : {{mr30Arr.course_study_datetime}}</li>
+                                <li>ห้องเรียน : {{mr30Arr.course_room}}</li>
+                                <li>อาจารย์ผู้สอน : {{mr30Arr.course_instructor}}</li>
+                                <li>วันเวลาสอบ : {{mr30Arr.course_examdate}}</li>
+                                <li *ngIf="mr30Arr.course_pr!='-'">PR : {{mr30Arr.course_pr}}</li>
+                                <li *ngIf="mr30Arr.course_comment!='-'">หมายเหตุ : </li>
+                                {{mr30Arr.course_comment}}
+                            </ul>
+                        </div>
+                    </ion-label>
+                </ion-item>
+                <ion-item-options>
+                    <ion-item-option color="favorite" (click)="addMR30Fav(mr30Arr)"
+                        *ngIf="segment === 'all'">
+                        Favorite
+                    </ion-item-option>
+                    <ion-item-option color="danger" (click)="removeFavMR30(mr30Arr.ID)"
+                        *ngIf="segment === 'favorites'">
+                        Remove
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-item-group>
+    </ion-list>
+    <!-- <ion-item-group #mr30ArrFalse>
         <ion-item-divider sticky>
             <ion-label class="course_header_not_found">
                  ไม่พบรหัสวิชาที่คุณต้องการค้นหา
             </ion-label>
         </ion-item-divider>
-    </ion-item-group>
+    </ion-item-group> -->
 
 </ion-content>
