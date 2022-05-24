@@ -15,7 +15,7 @@
                 <img src="http://www3.ru.ac.th/RuNews/images/News/{{item.photo_header}}">
             </ion-avatar>
             <ion-label>
-                <h3 class="ion-text-nowrap">{{item.title}}</h3>
+                <h3 id="header-news={{item.id}}" class="ion-text-nowrap">{{item.title}}</h3>
                 <p>View : {{item.hit | number}}</p>
             </ion-label>
         </ion-item>
@@ -33,10 +33,9 @@
                     </p>
                 </ion-col>
 
-                <ion-col size="6" right text-center routerLink="/app/tabs/home/runews/detail/{{item.id}}">
-                    <ion-button color="warning" fill="outline">
+                <ion-col size="6" right text-center id="news-{{item.id}}" routerLink="/app/tabs/home/runews/detail/{{item.id}}">
+                    <ion-button color="warning"  fill="outline">
                         อ่านรายละเอียด...
-
                     </ion-button>
                 </ion-col>
 

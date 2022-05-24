@@ -49,14 +49,74 @@ export class GoogleAuthService {
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
-  googleAuth(idToken: string, stdCode: string): Observable<Token> {
+  // googleAuth(idToken: string, stdCode: string): Observable<Token> {
+  //   const playLoad = {
+  //     std_code: stdCode,
+  //   };
+  //   this.setGoogleIdToken(idToken);
+  //   this.setStudentCode(stdCode);
+
+  //   this.setGoogleIdTokenT(idToken);
+  //   this.setStudentCodeT(stdCode);
+
+    
+
+  //   return this.http
+  //     .post<Authentication>(`${environment.googleAuth}`, playLoad)
+  //     .pipe(
+  //       tap((res) => {
+  //         this.setAccessToken(res.accessToken);
+  //         this.setIsAuthenticated(res.isAuth);
+  //         this.setRefreshToken(res.refreshToken);
+
+  //         // local storage
+  //         this.setAccessTokenT(res.accessToken);
+  //         this.setIsAuthenticatedT(res.isAuth);
+  //         this.setRefreshTokenT(res.refreshToken);
+
+  //         this.setIsAuth(JSON.stringify(res.isAuth))
+  //         this.currentUserSubject.next(res);
+
+  //       }),
+  //       catchError((err) => {
+  //         return throwError(err);
+  //       })
+  //       );
+  //     }
+      
+  //     refreshAuthen(): Observable<Authentication> {
+  //       const playLoad = {
+  //         std_code: this.getStudentCodeT(),
+  //         refresh_token: this.getRefreshTokenT()
+  //       };
+        
+  //       return this.http
+  //       .post<Authentication>(`${environment.refreshAuthentication}`, playLoad)
+  //       .pipe(
+  //         tap((res) => {
+  //           console.log("refreshAuthen api...")
+  //           this.setAccessToken(res.accessToken);
+  //           this.setIsAuthenticated(res.isAuth);
+  //           this.setRefreshToken(res.refreshToken);
+            
+  //           // local storage
+  //           this.setAccessTokenT(res.accessToken);
+  //           this.setIsAuthenticatedT(res.isAuth);
+  //           this.setRefreshTokenT(res.refreshToken);
+            
+  //           this.setIsAuth(JSON.stringify(res.isAuth))
+  //           this.currentUserSubject.next(res);
+  //           console.log("refresh authentication ==> ",res)
+  //         })
+  //     );
+  // }
+
+  googleAuth(stdCode: string): Observable<Token> {
     const playLoad = {
       std_code: stdCode,
     };
-    this.setGoogleIdToken(idToken);
     this.setStudentCode(stdCode);
 
-    this.setGoogleIdTokenT(idToken);
     this.setStudentCodeT(stdCode);
 
     

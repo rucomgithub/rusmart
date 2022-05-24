@@ -13,7 +13,7 @@ import { GoogleAuthService } from '../../services/google/google-auth.service';
 export class AboutPage {
   location = 'madison';
   conferenceDate = '2047-05-17';
-
+  accessToken = localStorage.getItem("accessToken")
   //------ set url images ---------------------
   urlSrcMenuImg2 = 'https://sevkn.ru.ac.th/rusmart/rusmart-images/about/sub2.png';
   urlSrcMenuImg3 = 'https://sevkn.ru.ac.th/rusmart/rusmart-images/about/sub3.png';

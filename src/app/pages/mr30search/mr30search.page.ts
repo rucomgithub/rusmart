@@ -91,6 +91,19 @@ export class Mr30searchPage implements OnInit {
     index = this.groupsFav.findIndex(item => item.ID == index)
     this.groupsFav.splice(index,1)
     localStorage.setItem("mr30", JSON.stringify(this.groupsFav));
+    const toast = await this.toastCtrl.create({
+      header: `ลบออกจากรายการโปรดสำเร็จ`,
+      duration: 3000,
+      position: 'top',
+      buttons: [
+        {
+          text: "Close",
+          role: "cancel",
+          
+        },
+      ],
+    });
+    await toast.present();
   }
 
   updateSchedule() {
@@ -139,18 +152,36 @@ export class Mr30searchPage implements OnInit {
   }
   async addMR30Fav(mr30Arr) {
     let mr30local = JSON.parse(localStorage.getItem("mr30")) == null? [] : JSON.parse(localStorage.getItem("mr30"));
-
-    if (mr30local.filter((item) => item.ID === mr30Arr.ID).length == 0) {
+  
+    if (mr30local.filter((item) => item.id === mr30Arr.id).length == 0) {
+      
       mr30local.push(mr30Arr);
       localStorage.setItem("mr30", JSON.stringify(mr30local));
-    } else {
       const toast = await this.toastCtrl.create({
-        header: `${mr30Arr.course_no} เลือกซ้ำ`,
+        header: `เลือกวิชา ${mr30Arr.course_no} ลงแล้วรายการโปรด`,
         duration: 3000,
+        position: 'top',
+        color: 'success',
         buttons: [
           {
             text: "Close",
             role: "cancel",
+          },
+        ],
+      });
+      await toast.present();
+    } else {
+      
+      const toast = await this.toastCtrl.create({
+        header: `เลือกวิชา ${mr30Arr.course_no} ซ้ำ`,
+        duration: 3000,
+        position: 'top',
+        color: 'danger',
+        buttons: [
+          {
+            text: "Close",
+            role: "cancel",
+            
           },
         ],
       });

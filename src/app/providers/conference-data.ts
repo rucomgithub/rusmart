@@ -17,9 +17,20 @@ export class ConferenceData {
     if (this.data) {
       return of(this.data);
     } else {
-      return this.http
-        .get('https://calendar.ru.ac.th/CalendarCenter/ScheduleCenter')
+      let typeStudent:string = localStorage.getItem('typeStudent')
+      if(typeStudent=='reginal'){//สำหรับส่วนภูมิภาค
+        return this.http
+        .get('https://calendar.ru.ac.th/CalendarCampus/ScheduleCampus')
         .pipe(map(this.processData, this));
+      }else if(typeStudent=='center'){//สำหรับส่วนกลาง
+        return this.http
+          .get('https://calendar.ru.ac.th/CalendarCenter/ScheduleCenter')
+          .pipe(map(this.processData, this));
+      }else{
+        return this.http
+          .get('https://calendar.ru.ac.th/CalendarCenter/ScheduleCenter')
+          .pipe(map(this.processData, this));       
+      }
     }
   }
 

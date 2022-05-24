@@ -83,11 +83,25 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.updateSchedule();
     this.checktime();
+    //ตรวจสอบนักศึกษาและสร้าง localStorage
+    if(localStorage.getItem('stdCode')!=null){
+      this.checkTypeStudent(localStorage.getItem('stdCode'))
+    }
     this.ios = this.config.get('mode') === 'ios';
   //  this.callCalendar();
 
   }
-
+  //สำหรับตรวจสอบส่วนกลางหรือส่วนภูมิภาค
+  checkTypeStudent(stdCode){
+    let typeStudent : string = stdCode.substring(4,5)
+    if(typeStudent=='4'){
+      //สำหรับนักศึกษาส่วนภูมิภาค
+      localStorage.setItem('typeStudent','reginal')
+    }else{
+      //สำหรับนักศึกษาส่วนกลาง
+      localStorage.setItem('typeStudent','center')
+    }
+  }
   randomcolor(){
     var color = Math.floor(0x1000000 * Math.random()).toString(16);
     return '#' + ('000000' + color).slice(-6);
