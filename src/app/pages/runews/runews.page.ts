@@ -24,11 +24,13 @@ export class RunewsPage implements OnInit {
     private loadingCtrl:LoadingController
   ) 
   {
-    this.ruNewsService.RuNews.subscribe(data => this.ruNewsResult = data);
+    this.ruNewsService.RuNews.subscribe(data => {
+      this.ruNewsResult = data
+    
+    });
   }
 
   ngOnInit() {
-    // this.getNews();
   }
 
   ionViewWillEnter() {
@@ -41,10 +43,9 @@ export class RunewsPage implements OnInit {
     });
     await loading.present();
     this.ruNewsService.getRunews().subscribe(data => {
-      data => this.ruNewsResult = data;
+     this.ruNewsResult = data;
        loading.dismiss();
     },err =>{
-      console.log(err)
       loading.dismiss();
     }
     );

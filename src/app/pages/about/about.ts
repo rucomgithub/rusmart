@@ -13,7 +13,13 @@ import { GoogleAuthService } from '../../services/google/google-auth.service';
 export class AboutPage {
   location = 'madison';
   conferenceDate = '2047-05-17';
-  accessToken = localStorage.getItem("accessToken")
+  accessToken: string = "";
+  stdCode: string = "";
+  // url_mlearning = 'http://10.6.6.96/mls2018rubram/site/loginforapp';
+  // url_mlearning_redirect = 'http://10.6.6.96/mls2018rubram/showsubject';
+  url_mlearning = 'https://m-learning.ru.ac.th/site/loginforapp';
+  url_mlearning_redirect = 'https://m-learning.ru.ac.th/showsubject';
+  url_eservice_grade_release='https://beta-e-service.ru.ac.th/index.php';
   //------ set url images ---------------------
   urlSrcMenuImg2 = 'https://sevkn.ru.ac.th/rusmart/rusmart-images/about/sub2.png';
   urlSrcMenuImg3 = 'https://sevkn.ru.ac.th/rusmart/rusmart-images/about/sub3.png';
@@ -39,7 +45,9 @@ export class AboutPage {
   constructor(public popoverCtrl: PopoverController,    public googleAuthService:GoogleAuthService) {
 
     this.setColor = 'blue';
-
+    this.accessToken = localStorage.getItem("accessToken");
+    this.stdCode = localStorage.getItem("stdCode");
+    console.log(this.accessToken);
    }
 
   async presentPopover(event: Event) {
@@ -50,7 +58,29 @@ export class AboutPage {
     await popover.present();
   }
 
+  MLearning() {
+    window.open(this.url_mlearning+"?token="+this.accessToken+"&url="+this.url_mlearning_redirect+"&std_code="+this.stdCode, "_system", "location=yes");
+  }
+  eServiceGradeRelease() {
+    window.open(this.url_eservice_grade_release+"?r=site/loginForApp&token="+this.accessToken+"&url=gradeRelease&std_code="+this.stdCode, "_system", "location=yes");
+  }
+  gradeAll(){
+    window.open(this.url_eservice_grade_release+"?r=site/loginForApp&token="+this.accessToken+"&url=gradeAll&std_code="+this.stdCode, "_system", "location=yes");
+  }
+  regisRu24(){
+    window.open(this.url_eservice_grade_release+"?r=site/loginForApp&token="+this.accessToken+"&url=regisRu24&std_code="+this.stdCode, "_system", "location=yes");
+  }
+  examSchedule(){
+    window.open(this.url_eservice_grade_release+"?r=site/loginForApp&token="+this.accessToken+"&url=examSchedule&std_code="+this.stdCode, "_system", "location=yes");
+  }
+  regisRu24Intro(){
+    window.open(this.url_eservice_grade_release+"?r=site/loginForApp&token="+this.accessToken+"&url=regisRu24Intro&std_code="+this.stdCode, "_system", "location=yes");
+  }
+  mobile(){
+    window.open(this.url_eservice_grade_release+"?r=site/loginForApp&token="+this.accessToken+"&url=mobile&std_code="+this.stdCode, "_system", "location=yes");
+  }  
   signOut(){
-    this.googleAuthService.signOut();
+    console.log("signout")
+    this.googleAuthService.signOut().subscribe();
   }
 }

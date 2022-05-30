@@ -10,8 +10,19 @@
     <ion-row>
         <ion-col size="12" size-sm>
             <ion-list no-padding>
-                <ion-list-header> </ion-list-header>
-                <ion-item id="GradeRelease" onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=Grade/GradeRelease', '_system', 'location=yes');">
+                <!-- <ion-list-header> </ion-list-header> -->
+                <ion-item id="MLearning" (click)="MLearning()">
+                    <!-- onclick="window.open('http://10.6.6.96/mls2018rubram/site/loginforapp?token=1234&url=https://backend-services.ru.ac.th/ru-smart-api/google/authorization-test', '_system', 'location=yes');" -->
+                    <ion-label>
+                        <img src="{{urlSrcMenuImg5}}" title="วีดีโอคำบรรยายย้อนหลัง">
+                        <ion-text class="text-list">วีดีโอคำบรรยายย้อนหลัง</ion-text>
+                    </ion-label>
+                    <ion-note slot="end"><img src="{{urlSrcArrowImg}}"></ion-note>
+                </ion-item>
+
+
+                <ion-item id="GradeRelease" (click)="eServiceGradeRelease()">
+                    <!-- onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=Grade/GradeRelease', '_system', 'location=yes');"> -->
                     <ion-label>
                         <img src="{{urlSrcMenuImg5}}" title="ผลสอบล่าสุด">
                         <ion-text class="text-list">ผลสอบล่าสุด</ion-text>
@@ -19,7 +30,8 @@
                     <ion-note slot="end"><img src="{{urlSrcArrowImg}}"></ion-note>
                 </ion-item>
 
-                <ion-item id="ExamV2" onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=Regis/ExamV2', '_system', 'location=yes');">
+                <ion-item id="ExamV2"
+                    onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=Regis/ExamV2', '_system', 'location=yes');">
                     <ion-label>
                         <img src="{{urlSrcMenuImg2}}">
                         <ion-text class="text-list">ตารางเรียน</ion-text>
@@ -35,7 +47,8 @@
                     <ion-note slot="end"><img src="{{urlSrcArrowImg}}"></ion-note>
                 </ion-item>
 
-                <ion-item id="ExamV1"  onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=Regis/ExamV2', '_system', 'location=yes');">
+                <ion-item id="ExamV1"
+                    onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=Regis/ExamV2', '_system', 'location=yes');">
                     <ion-label>
                         <img src="{{urlSrcMenuImg4}}">
                         <ion-text class="text-list">ตารางสอบ</ion-text>
@@ -43,7 +56,7 @@
                     <ion-note slot="end"><img src="{{urlSrcArrowImg}}"></ion-note>
                 </ion-item>
 
-                <ion-item id="GradeAll" onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=Grade/GradeRelease', '_system', 'location=yes');">
+                <ion-item id="GradeAll" (click)="gradeAll()">
                     <ion-label>
                         <img src="{{urlSrcMenuImg5}}">
                         <ion-text class="text-list">ผลการเรียนทั้งหมด</ion-text>
@@ -51,7 +64,8 @@
                     <ion-note slot="end"><img src="{{urlSrcArrowImg}}"></ion-note>
                 </ion-item>
 
-                <ion-item id="RegisRu24Intro" onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=Regis/RegisRu24Intro', '_system', 'location=yes');">
+    
+                <ion-item id="RegisRu24Intro" (click)="regisRu24Intro()">
                     <ion-label>
                         <img src="{{urlSrcMenuImg9}}">
                         <ion-text class="text-list">พิมพ์ใบเสร็จ</ion-text>
@@ -59,7 +73,7 @@
                     <ion-note slot="end"><img src="{{urlSrcArrowImg}}"></ion-note>
                 </ion-item>
 
-                <ion-item id="Mobile" onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=eusers/Mobile', '_system', 'location=yes');">
+                <ion-item id="Mobile" (click)="mobile()">
                     <ion-label>
                         <img src="{{urlSrcMenuImg10}}">
                         <ion-text class="text-list">อัพเดทเบอร์​โทรศัพท์​</ion-text>
@@ -67,7 +81,7 @@
                     <ion-note slot="end"><img src="{{urlSrcArrowImg}}"></ion-note>
                 </ion-item>
 
-                <ion-item id="RegisRu24" onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=Regis/RegisRu24', '_system', 'location=yes');">
+                <ion-item id="RegisRu24" (click)="regisRu24()">
                     <ion-label>
                         <img src="{{urlSrcMenuImg7}}">
                         <ion-text class="text-list">วิชาที่ลงทะเบียน</ion-text>
@@ -75,23 +89,25 @@
                     <ion-note slot="end"><img src="{{urlSrcArrowImg}}"></ion-note>
                 </ion-item>
 
-                <ion-item id="login" onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=site/login', '_system', 'location=yes');">
+                <ion-item id="login"
+                    onclick="window.open('https://beta-e-service.ru.ac.th/index.php?r=site/login', '_system', 'location=yes');">
                     <ion-label>
                         <img src="{{urlSrcMenuImg8}}">
                         <ion-text class="text-list">เชื่อมต่อระบบอื่นๆ</ion-text>
                     </ion-label>
                     <ion-note slot="end"><img src="{{urlSrcArrowImg}}"></ion-note>
                 </ion-item>
+
                 <div *ngIf="accessToken">
-                <ion-item id="logout" (click)="signOut()">
-                    <ion-label>
-                        <ion-icon name="power"></ion-icon>
-                        <ion-text class="text-list">
-                            ออกจากระบบ</ion-text>
-                    </ion-label>
-                    <ion-note slot="end"></ion-note>
-                </ion-item>
-            </div>
+                    <ion-item id="logout" (click)="signOut()">
+                        <ion-label>
+                            <ion-icon name="power"></ion-icon>
+                            <ion-text class="text-list">
+                                ออกจากระบบ</ion-text>
+                        </ion-label>
+                        <ion-note slot="end"></ion-note>
+                    </ion-item>
+                </div>
             </ion-list>
         </ion-col>
 

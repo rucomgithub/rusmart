@@ -3,13 +3,13 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>runews</ion-title>
+        <ion-title>ข่าว/กิจกรรม</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <div *ngIf="ruNewsResult">
-    <ion-card *ngFor="let item of ruNewsResult">
+    <ion-card *ngFor="let item of ruNewsResult ">
         <ion-item>
             <ion-avatar slot="start">
                 <img src="http://www3.ru.ac.th/RuNews/images/News/{{item.photo_header}}">
@@ -32,10 +32,10 @@
                         <ion-badge color="badge" style="font-size: 0.7em;">Expire : {{item.date_expire | date :'dd MMM yyyy'}}</ion-badge>
                     </p>
                 </ion-col>
-
+             
                 <ion-col size="6" right text-center id="news-{{item.id}}" routerLink="/app/tabs/home/runews/detail/{{item.id}}">
                     <ion-button color="warning"  fill="outline">
-                        อ่านรายละเอียด...
+                        อ่านรายละเอียด...  
                     </ion-button>
                 </ion-col>
 

@@ -43,42 +43,28 @@ export class RunewsDetailPage implements OnInit {
     private inAppBrowser: InAppBrowser,
     private loadingCtrl:LoadingController
   ) {
-    this.getNewsDetails(this.route.snapshot.paramMap.get('id'));
+
+    this.runewsService.RuNews.subscribe((res: any) => {
+      console.log("res",res)
+      let data = res.filter(news => this.route.snapshot.paramMap.get('id') == news.id )
+      console.log("data",data)
+      this.runews = data;
+      this.runewsService.updateHitDetail(data[0].id)
+    })
+
   }
 
   ngOnInit() {
 
   }
   ionViewWillEnter() {
-
+    // this.runewsService.setRuNews();
   }
-
-   getNewsDetails(newsId: string) {
-    console.log('ID ' + newsId);
-    // this.id = newsId;
-
-    return this.runewsService.RuNews.pipe(
-      map((news: any) => news.filter(news => news.id === newsId))
-    )
-      .subscribe(data => {
-        this.runews = data;
-        this.runewsService.updateHitDetail(newsId)
-      
-      }
-      )
-  }
-
-
-
-
 
   openLink1(file: String) {
-    console.log(file)
     const options: InAppBrowserOptions = {
       zoom: 'yes'
     }
-    // console.log(this.url+file_detail);
-    // Opening a URL and returning an InAppBrowserObject
     const browser = this.inAppBrowser.create(this.url + file, '_system', options);
   }
 

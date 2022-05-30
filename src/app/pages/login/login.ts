@@ -41,6 +41,20 @@ export class LoginPage {
   }
   async googleSignup() {
     console.log("something....")
+      this.googleUser = await GoogleAuth.signIn() as any;
+      this.userInfo = this.googleUser;
+      const idToken = this.googleUser.authentication.idToken;
+      const stdCode = this.googleUser.email.substring(0, 10);
+      localStorage.setItem('imageUrl',this.userInfo.imageUrl)
+      console.log( this.userInfo.imageUrl)
+
+      this.googleAuthService.googleAuth(idToken, stdCode).subscribe(response => {
+        this.router.navigate(['/app/tabs/profile']);
+      });
+
+  }
+  async googleSignupTest() {
+    console.log("something....")
       //this.googleUser = await GoogleAuth.signIn() as any;
       // this.userInfo = this.googleUser;
       // const idToken = this.googleUser.authentication.idToken;
@@ -51,11 +65,10 @@ export class LoginPage {
       // this.googleAuthService.googleAuth(idToken, stdCode).subscribe(response => {
       //   this.router.navigate(['/app/tabs/profile']);
       // });
-      this.googleAuthService.googleAuth("6299999991").subscribe(response => {
+      this.googleAuthService.googleAuthTest("5801000505").subscribe(response => {
         this.router.navigate(['/app/tabs/profile']);
       });
   }
-
   goToHome(){
     this.navCtrl.navigateBack('/app/tabs/home');
   }

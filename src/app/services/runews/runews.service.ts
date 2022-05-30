@@ -48,6 +48,7 @@ export class RunewsService {
       .pipe(
         map((res: RuNews) => {
           localStorage.setItem('runews', JSON.stringify(res))
+          this.setRuNews();
           return res;
         })
       );
@@ -60,7 +61,6 @@ export class RunewsService {
   }
 
   updateHitDetail(id: string) {
-    console.log('updateHitDetail', id);
     const runewsDetailParams = {
       'id': id.toString()
     }

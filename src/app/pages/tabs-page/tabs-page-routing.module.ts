@@ -100,7 +100,16 @@ const routes: Routes = [
           },
           {
             path: 'mr30search',
-            loadChildren: () => import('../mr30search/mr30search.module').then(m => m.Mr30searchPageModule)
+            children: [
+              {
+                path: '',
+                loadChildren: () => import('../mr30search/mr30search.module').then(m => m.Mr30searchPageModule)
+              },
+              {
+                path: 'mr30detail/:id',
+                loadChildren: () => import('../mr30detail/mr30detail.module').then(m => m.Mr30detailPageModule)
+              }
+            ]
           }
           
 

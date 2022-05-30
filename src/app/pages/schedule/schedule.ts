@@ -46,6 +46,13 @@ export class SchedulePage implements OnInit {
 
   }
 
+  ionViewWillEnter() {
+    this.updateSchedule();
+
+    this.ios = this.config.get('mode') === 'ios';
+
+  }
+
   updateSchedule() {
 
     this.groupsFav = JSON.parse(localStorage.getItem("favorites"));

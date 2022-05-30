@@ -16,20 +16,20 @@ export class UserData {
   ) { }
 
   hasFavorite(sessionName: string): boolean {
-    console.log('hasFavorite=>',sessionName);
+    // console.log('hasFavorite=>',sessionName);
     //console.log('hasFavoriteIndexOf',this.favorites.indexOf(sessionName));
     return (this.favorites.indexOf(sessionName) > -1);
   }
 
   addFavorite(sessionName: string): void {
-    console.log('addFavorite=>',sessionName);
+    // console.log('addFavorite=>',sessionName);
     this.favorites.push(sessionName);
     // console.log('favorites=>',this.favorites);
     // localStorage.setItem("favorites", JSON.stringify(this.favorites));
   }
   //add funcion
   addFavoriteLocalStroage(session) {
-    console.log('addFavoriteLocalStroage=>',session);
+    // console.log('addFavoriteLocalStroage=>',session);
     this.favoritesStroage.push(session)
     localStorage.setItem("favorites", JSON.stringify(this.favoritesStroage));
   }
@@ -41,7 +41,7 @@ export class UserData {
   }
   //add function
   removeFavoriteLocalStroage(sessionId: string) {
-    console.log('removeFavoriteLocalStroage=>',sessionId);
+    // console.log('removeFavoriteLocalStroage=>',sessionId);
     // console.log('data=>',typeof(this.favoritesStroage));
     // let a =this.favoritesStroage[0];
     // console.log(a.id)
@@ -51,8 +51,8 @@ export class UserData {
     for(let i=0; i<this.favoritesStroage.length; i++){
       //console.log('loopRemove=>'+this.favoritesStroage[i].id); //use i instead of 0
       if(sessionId == this.favoritesStroage[i].id){
-          console.log('find index remove=>',sessionId);
-          console.log('loopRemove=>'+this.favoritesStroage[i].id);
+          // console.log('find index remove=>',sessionId);
+          // console.log('loopRemove=>'+this.favoritesStroage[i].id);
           this.favoritesStroage.splice(i, 1);
           localStorage.setItem("favorites", JSON.stringify(this.favoritesStroage));
       }

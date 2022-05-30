@@ -25,6 +25,7 @@ export class Mr30searchPage implements OnInit {
   @ViewChild("scheduleList", { static: true }) scheduleList: IonList;
   mr30Arr: Rec[];
   mr30ArrTemp: Mr30;
+  mr30ArrLocal:Mr30;
   ios: boolean;
   dayIndex = 0;
   queryText = "";
@@ -35,7 +36,7 @@ export class Mr30searchPage implements OnInit {
   groups: any = [];
   confDate: string;
   showSearchbar: boolean;
-  groupsFav: any = [];
+  groupsFav: Rec[] ;
   mr30LocalStorage: any=[];
 
   constructor(
@@ -49,52 +50,59 @@ export class Mr30searchPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    // this.updateSchedule();
+    // this.getMr30();
+  }
+  ionViewWillEnter() {
     this.updateSchedule();
     this.getMr30();
   }
 
   filterMr30() {
-    this.mr30Arr = this.mr30ArrTemp.RECORD.filter(
-      // recdata => recdata.course_no.indexOf(this.queryText.toUpperCase()) > -1
-      (recdata) =>
-        recdata.course_no.startsWith(this.queryText.toUpperCase().toString())
-    );
-
-    if (this.mr30Arr.length == 0) {
-      console.log("ไม่พบรหัสวิชา...");
+    let groupsFav: Rec[] = JSON.parse(localStorage.getItem("mr30"))
+    // console.log(mr30local);
+    if(this.segment =='all'){
+      console.log("all");
+      // console.log(this.mr30Arr);
+      console.log(this.mr30ArrTemp);
+      this.mr30Arr = this.mr30ArrTemp.RECORD.filter(
+        // recdata => recdata.course_no.indexOf(this.queryText.toUpperCase()) > -1
+        (recdata) =>
+          recdata.course_no.startsWith(this.queryText.toUpperCase().toString())
+      );
+      if (this.mr30Arr.length == 0) {
+        console.log("ไม่พบรหัสวิชา... all");
+      }
+    }else {
+      this.groupsFav = groupsFav.filter(rec=>rec.course_no.startsWith(this.queryText.toUpperCase().toString()));
     }
-
-    // this.mr30searchService.getMr30().subscribe(
-    //   mr30data =>{
-    //     console.log("text",this.queryText)
-    //     this.mr30ArrTemp.RECORD =  mr30data.RECORD.filter(recdata =>recdata.course_no.indexOf(this.queryText.toUpperCase()) > -1    );
-    //     console.log(this.mr30Arr.RECORD)
-    // })
+   
+    
   }
 
   getMr30Local(){
     this.mr30LocalStorage = JSON.parse(localStorage.getItem("mr30"))
-    console.log()
   }
 
   getMr30() {
     this.mr30searchService.getMr30().subscribe((mr30data) => {
       this.mr30ArrTemp = mr30data;
       this.mr30Arr = mr30data.RECORD;
-      console.log(this.mr30ArrTemp);
-      console.log(this.mr30Arr);
     });
   }
 
-  async removeFavMR30(index){
+  async removeFavMR30(key){
     this.groupsFav = JSON.parse(localStorage.getItem("mr30")) == null? [] : JSON.parse(localStorage.getItem("mr30"));
-    index = this.groupsFav.findIndex(item => item.ID == index)
-    this.groupsFav.splice(index,1)
+    // index = this.groupsFav.findIndex(item => item.id == index)
+    this.groupsFav.forEach( (item, index) => {
+      if(item.id === key) 
+      this.groupsFav.splice(index,1);
+    });
     localStorage.setItem("mr30", JSON.stringify(this.groupsFav));
     const toast = await this.toastCtrl.create({
       header: `ลบออกจากรายการโปรดสำเร็จ`,
-      duration: 3000,
-      position: 'top',
+      duration: 1000,
+      position: 'bottom',
       buttons: [
         {
           text: "Close",
@@ -104,10 +112,12 @@ export class Mr30searchPage implements OnInit {
       ],
     });
     await toast.present();
+    this.filterMr30();
   }
 
   updateSchedule() {
-
+    
+    console.log(this.segment)
     this.groupsFav = JSON.parse(localStorage.getItem("mr30"));
     // Close any open sliding items when the schedule updates
     if (this.scheduleList) {
@@ -127,9 +137,9 @@ export class Mr30searchPage implements OnInit {
       this.groups =JSON.parse(localStorage.getItem("groups"));
       this.shownSessions = JSON.parse(localStorage.getItem("shownSessions"));
       this.shownSessionsMr30 = JSON.parse(localStorage.getItem("shownSessionsMr30"));
-      console.log('groupslocal=>',this.groups);
-      console.log('shownSessionslocal=>',this.shownSessions);
-      console.log('shownSessionsMr30=>',this.shownSessionsMr30);
+      // console.log('groupslocal=>',this.groups);
+      // console.log('shownSessionslocal=>',this.shownSessions);
+      // console.log('shownSessionsMr30=>',this.shownSessionsMr30);
      
     });
     
@@ -159,8 +169,8 @@ export class Mr30searchPage implements OnInit {
       localStorage.setItem("mr30", JSON.stringify(mr30local));
       const toast = await this.toastCtrl.create({
         header: `เลือกวิชา ${mr30Arr.course_no} ลงแล้วรายการโปรด`,
-        duration: 3000,
-        position: 'top',
+        duration: 1000,
+        position: 'bottom',
         color: 'success',
         buttons: [
           {
@@ -174,8 +184,8 @@ export class Mr30searchPage implements OnInit {
       
       const toast = await this.toastCtrl.create({
         header: `เลือกวิชา ${mr30Arr.course_no} ซ้ำ`,
-        duration: 3000,
-        position: 'top',
+        duration: 1000,
+        position: 'bottom',
         color: 'danger',
         buttons: [
           {
@@ -202,7 +212,7 @@ export class Mr30searchPage implements OnInit {
       // Create a toast
       const toast = await this.toastCtrl.create({
         header: `${sessionData.name} was successfully added as a favorite.`,
-        duration: 3000,
+        duration: 1000,
         buttons: [
           {
             text: "Close",

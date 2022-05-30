@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button id="session-back"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleFavorite(mr30ArrTemp)">
+        <ion-icon *ngIf="!isFavorite" slot="icon-only" name="star-outline"></ion-icon>
+        <ion-icon *ngIf="isFavorite" slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngIf="mr30ArrTemp">
+        <ion-item-divider sticky>
+            <ion-label class="course_header">
+                {{mr30ArrTemp.course_no}}({{mr30ArrTemp.course_credit}}) 
+            </ion-label>
+        </ion-item-divider>
+            <ion-item>
+                <ion-label>
+                    <div class="mr30-header">                  
+                            <p>วันเวลาเรียน : {{mr30ArrTemp.course_study_datetime}}</p>
+                            <p>ห้องเรียน : {{mr30ArrTemp.course_room}}</p>
+                            <p>อาจารย์ผู้สอน : {{mr30ArrTemp.course_instructor}}</p>
+                            <p>วันเวลาสอบ : {{mr30ArrTemp.course_examdate}}</p>
+                            <p >PR : {{mr30ArrTemp.course_pr}}</p>
+                            <p >หมายเหตุ :    {{mr30ArrTemp.course_comment}}</p>
+                                      
+                    </div>
+                </ion-label>
+            </ion-item>
+
+</ion-list>
+
+
+
+</ion-content>

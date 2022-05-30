@@ -13,24 +13,19 @@
             </ion-segment-button>
         </ion-segment>
         <ion-title *ngIf="!ios && !showSearchbar">มร. 30</ion-title>
-        <ion-searchbar *ngIf="showSearchbar" showCancelButton="always" [(ngModel)]="queryText"
+        <ion-searchbar id="searchText" *ngIf="showSearchbar" showCancelButton="always" [(ngModel)]="queryText"
             (ionChange)="filterMr30()" (ionCancel)="showSearchbar = false" placeholder="Search"></ion-searchbar>
-        <ion-buttons slot="end">
-            <ion-button *ngIf="!ios && !showSearchbar" (click)="showSearchbar = true">
-                <ion-icon slot="icon-only" name="search"></ion-icon>
-            </ion-button>
-            <ion-button *ngIf="!showSearchbar" (click)="presentFilter()">
-                <span *ngIf="ios">Filter</span>
-                <span *ngIf="!ios">
-                    <ion-icon slot="icon-only" name="options"></ion-icon>
-                </span>
-            </ion-button>
+        <ion-buttons id="search-btn" slot="end">
+            <ion-button   *ngIf="!ios && !showSearchbar" (click)="showSearchbar = true">
+                <ion-icon  slot="icon-only" name="search"></ion-icon>
+        </ion-button>
+
         </ion-buttons>
     </ion-toolbar>
     <ion-toolbar *ngIf="!ios">
         <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
             <ion-segment-button value="all">
-                All
+                All 
             </ion-segment-button>
             <ion-segment-button value="favorites">
                 Favorites
@@ -55,13 +50,14 @@
             <ion-title size="large">มร.30</ion-title>
         </ion-toolbar>
         <ion-toolbar>
-            <ion-searchbar [(ngModel)]="queryText" (ionChange)="filterMr30()" placeholder="Search"></ion-searchbar>
+            <ion-searchbar  id="searchText" [(ngModel)]="queryText" (ionChange)="filterMr30()" placeholder="Search"></ion-searchbar>
         </ion-toolbar>
     </ion-header>
 
     <!-- <ion-list *ngIf="mr30Arr; else mr30ArrFalse;" #scheduleList [hidden]="shownSessions === 0"> -->
-        <ion-list #scheduleList [hidden]="shownSessions === 0">
-        <ion-item-group *ngFor="let mr30Arr of mr30Arr |slice:0:30">
+       
+        <ion-list #scheduleList [hidden]="segment != 'all'">
+        <ion-item-group  id="mr30-{{mr30Arr.id}}" *ngFor="let mr30Arr of mr30Arr |slice:0:30">
             <ion-item-divider sticky>
                 <ion-label class="course_header">
                     {{mr30Arr.course_no}}({{mr30Arr.course_credit}}) 
@@ -70,7 +66,7 @@
 
             <ion-item-sliding #slidingItem [attr.track]="mr30Arr.course_study_datetime | lowercase |slice:0:2">
 
-                <ion-item>
+                <ion-item  routerLink="/app/tabs/home/mr30search/mr30detail/{{mr30Arr  | json }}">
 
                     <ion-label>
                         <div class="mr30-header">
@@ -100,8 +96,8 @@
         </ion-item-group>
     </ion-list>
 
-    <ion-list [hidden]="shownSessions > 0">
-        <ion-item-group *ngFor="let mr30Arr of groupsFav ">
+    <ion-list [hidden]="segment !='favorites'">
+        <ion-item-group *ngFor="let mr30Arr of groupsFav |slice:0:30">
             <ion-item-divider sticky>
                 <ion-label class="course_header">
                     {{mr30Arr.course_no}}({{mr30Arr.course_credit}}) 
@@ -110,7 +106,7 @@
 
             <ion-item-sliding #slidingItem [attr.track]="mr30Arr.course_study_datetime | lowercase |slice:0:2">
 
-                <ion-item>
+                <ion-item routerLink="/app/tabs/home/mr30search/mr30detail/{{mr30Arr  | json }}">
 
                     <ion-label>
                         <div class="mr30-header">
@@ -131,7 +127,7 @@
                         *ngIf="segment === 'all'">
                         Favorite
                     </ion-item-option>
-                    <ion-item-option color="danger" (click)="removeFavMR30(mr30Arr.ID)"
+                    <ion-item-option color="danger" (click)="removeFavMR30(mr30Arr.id)"
                         *ngIf="segment === 'favorites'">
                         Remove
                     </ion-item-option>
