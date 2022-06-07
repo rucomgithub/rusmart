@@ -11,6 +11,9 @@ import { Storage } from '@ionic/storage';
 
 import { UserData } from './providers/user-data';
 
+import { App } from '@capacitor/app';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -53,8 +56,20 @@ export class AppComponent implements OnInit {
     private userData: UserData,
     private swUpdate: SwUpdate,
     private toastCtrl: ToastController,
+    private _location: Location,
   ) {
     this.initializeApp();
+    App.addListener('backButton', () =>
+    {
+      if (this._location.isCurrentPathEqualTo('/home'))
+      {
+        navigator['app'].exitApp();
+      } 
+      else
+      {
+        this._location.back();
+      }
+    });
   }
 
   async ngOnInit() {

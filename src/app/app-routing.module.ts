@@ -71,6 +71,14 @@ const routes: Routes = [
     path: 'mr30detail',
     loadChildren: () => import('./pages/mr30detail/mr30detail.module').then( m => m.Mr30detailPageModule)
   },
+  {
+    path: 'favorites',
+    loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule)
+  },
+  {
+    path: 'today',
+    loadChildren: () => import('./pages/today/today.module').then( m => m.TodayPageModule)
+  },
 
 
 

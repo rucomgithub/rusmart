@@ -6,10 +6,10 @@
         </ion-buttons>
         <ion-segment *ngIf="ios" [(ngModel)]="segment" (ionChange)="updateSchedule()">
             <ion-segment-button value="all">
-                All
+                ทั้งหมด
             </ion-segment-button>
             <ion-segment-button value="favorites">
-                Favorites
+                รายการโปรด ({{sumMR30}})
             </ion-segment-button>
         </ion-segment>
         <ion-title *ngIf="!ios && !showSearchbar">มร. 30</ion-title>
@@ -25,10 +25,10 @@
     <ion-toolbar *ngIf="!ios">
         <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
             <ion-segment-button value="all">
-                All 
+                ทั้งหมด 
             </ion-segment-button>
             <ion-segment-button value="favorites">
-                Favorites
+                รายการโปรด ({{sumMR30}})
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
@@ -55,8 +55,7 @@
     </ion-header>
 
     <!-- <ion-list *ngIf="mr30Arr; else mr30ArrFalse;" #scheduleList [hidden]="shownSessions === 0"> -->
-       
-        <ion-list #scheduleList [hidden]="segment != 'all'">
+    <ion-list #scheduleList [hidden]="segment != 'all'">
         <ion-item-group  id="mr30-{{mr30Arr.id}}" *ngFor="let mr30Arr of mr30Arr |slice:0:30">
             <ion-item-divider sticky>
                 <ion-label class="course_header">
@@ -64,32 +63,27 @@
                 </ion-label>
             </ion-item-divider>
 
-            <ion-item-sliding #slidingItem [attr.track]="mr30Arr.course_study_datetime | lowercase |slice:0:2">
+            <ion-item-sliding #slidingItem [attr.track]="mr30Arr.day_name_s | lowercase">
+            <!-- <ion-item-sliding #slidingItem [attr.track]="pickDateColor(mr30Arr.day_name_s)"> -->
 
                 <ion-item  routerLink="/app/tabs/home/mr30search/mr30detail/{{mr30Arr  | json }}">
-
                     <ion-label>
-                        <div class="mr30-header">
-                            <ul>
-                                <li>วันเวลาเรียน : {{mr30Arr.course_study_datetime}}</li>
-                                <li>ห้องเรียน : {{mr30Arr.course_room}}</li>
-                                <li>อาจารย์ผู้สอน : {{mr30Arr.course_instructor}}</li>
-                                <li>วันเวลาสอบ : {{mr30Arr.course_examdate}}</li>
-                                <li *ngIf="mr30Arr.course_pr!='-'">PR : {{mr30Arr.course_pr}}</li>
-                                <li *ngIf="mr30Arr.course_comment!='-'">หมายเหตุ : </li>
-                                {{mr30Arr.course_comment}}
-                            </ul>
-                        </div>
+                        <h3>วันเวลาเรียน : {{mr30Arr.day_name_s}} {{mr30Arr.time_period}}</h3>
+                        <h3>ห้องเรียน : {{mr30Arr.course_room}}</h3>
+                        <h3>อาจารย์ผู้สอน : {{mr30Arr.course_instructor}}</h3>
+                        <h3>วันเวลาสอบ : {{mr30Arr.course_examdate}}</h3>
+                        <h3 *ngIf="mr30Arr.course_pr!=''">{{mr30Arr.course_pr}}</h3>
+                        <h3 *ngIf="mr30Arr.course_comment!=''">หมายเหตุ : {{mr30Arr.course_comment}}</h3>
                     </ion-label>
                 </ion-item>
                 <ion-item-options>
                     <ion-item-option color="favorite" (click)="addMR30Fav(mr30Arr)"
                         *ngIf="segment === 'all'">
-                        Favorite
+                        เพิ่มรายการโปรด
                     </ion-item-option>
                     <ion-item-option color="danger" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')"
                         *ngIf="segment === 'favorites'">
-                        Remove
+                        ลบ
                     </ion-item-option>
                 </ion-item-options>
             </ion-item-sliding>
@@ -104,32 +98,26 @@
                 </ion-label>
             </ion-item-divider>
 
-            <ion-item-sliding #slidingItem [attr.track]="mr30Arr.course_study_datetime | lowercase |slice:0:2">
+            <ion-item-sliding #slidingItem [attr.track]="mr30Arr.day_name_s | lowercase ">
 
                 <ion-item routerLink="/app/tabs/home/mr30search/mr30detail/{{mr30Arr  | json }}">
-
                     <ion-label>
-                        <div class="mr30-header">
-                            <ul>
-                                <li>วันเวลาเรียน : {{mr30Arr.course_study_datetime}}</li>
-                                <li>ห้องเรียน : {{mr30Arr.course_room}}</li>
-                                <li>อาจารย์ผู้สอน : {{mr30Arr.course_instructor}}</li>
-                                <li>วันเวลาสอบ : {{mr30Arr.course_examdate}}</li>
-                                <li *ngIf="mr30Arr.course_pr!='-'">PR : {{mr30Arr.course_pr}}</li>
-                                <li *ngIf="mr30Arr.course_comment!='-'">หมายเหตุ : </li>
-                                {{mr30Arr.course_comment}}
-                            </ul>
-                        </div>
+                        <h3>วันเวลาเรียน : {{mr30Arr.day_name_s}} {{mr30Arr.time_period}}</h3>
+                        <h3>ห้องเรียน : {{mr30Arr.course_room}}</h3>
+                        <h3>อาจารย์ผู้สอน : {{mr30Arr.course_instructor}}</h3>
+                        <h3>วันเวลาสอบ : {{mr30Arr.course_examdate}}</h3>
+                        <h3 *ngIf="mr30Arr.course_pr!=''">{{mr30Arr.course_pr}}</h3>
+                        <h3 *ngIf="mr30Arr.course_comment!=''">หมายเหตุ : {{mr30Arr.course_comment}}</h3>
                     </ion-label>
                 </ion-item>
                 <ion-item-options>
                     <ion-item-option color="favorite" (click)="addMR30Fav(mr30Arr)"
                         *ngIf="segment === 'all'">
-                        Favorite
+                        เพิ่มรายการโปรด
                     </ion-item-option>
                     <ion-item-option color="danger" (click)="removeFavMR30(mr30Arr.id)"
                         *ngIf="segment === 'favorites'">
-                        Remove
+                        ลบ
                     </ion-item-option>
                 </ion-item-options>
             </ion-item-sliding>

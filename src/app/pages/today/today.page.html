@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+      </ion-buttons>
+      <ion-title>วันนี้มีอะไร  {{nowday  | date :'dd/MM/YYYY'}}  
+</ion-title>
+     
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <!-- <span>{{timeLeft}}</span> -->
+  {{expirationCounter}}
+  <ion-list inset="true">
+    <ion-accordion-group >
+      <ion-accordion value="mr30">
+        <ion-item slot="header">
+          <ion-label  *ngIf="sumMR30 != 0">วิชาที่มีเรียนวันนี้ {{sumMR30}} วิชา (รายการโปรด มร.30)</ion-label>
+          <ion-label color="warning" *ngIf="sumMR30 == 0 ">ไม่พบวิชาเรียนวันนี้ ในรายการโปรด  </ion-label>
+        </ion-item>
+
+        <ion-list *ngIf="sumMR30 != 0" slot="content">
+          <ion-item-group *ngFor="let mr30 of arrMR30 " >
+
+            <ion-item-sliding  [attr.track]="mr30.day_name_s | lowercase ">
+
+                  <ion-item>
+                    <ion-col size="2">
+                      <ion-badge [attr.trackbadge]="mr30.day_name_s | lowercase ">{{mr30.day_name_s}}</ion-badge>
+                      <p style="font-size: 8;"><b>{{mr30.time_period_text}}  </b>  </p>   
+                       
+                    </ion-col>  
+                    <ion-label class="wrap-text-inline">   
+                        <ion-col size="7">      
+                        <h3><b>{{mr30.course_no}}</b></h3>                   
+                        <h3>{{mr30.course_room}}</h3>   
+                        <h3> {{mr30.course_instructor}}</h3>   
+                      </ion-col> 
+                    
+                    </ion-label>
+                         <ion-col size="3">    
+                         <div *ngIf="mr30.study_now != ''">
+                         <ion-badge style="font-size: 0.85rem;   color: #ab8602;" color="light">{{mr30.study_now}}
+                         </ion-badge> </div> 
+                         <div *ngIf=" mr30.now_text != ''">
+                          <ion-badge [attr.tracknow]="mr30.now_text | lowercase ">{{mr30.now_text}}</ion-badge >
+                         </div>
+                    </ion-col> 
+                </ion-item>
+                <hr>
+            </ion-item-sliding>
+         
+        </ion-item-group>
+        </ion-list>
+        <ion-list *ngIf="sumMR30 == 0 " slot="content">
+          <ion-item-group >
+            <ion-item-divider sticky>
+              <ion-label class="wrap-text-inline">
+                <ion-icon name="star-outline"></ion-icon><u  routerLink="/app/tabs/home/mr30search"><span style="color: blue;">เพิ่มวิชาลงในรายการโปรด </span></u>
+              </ion-label>
+           </ion-item-divider>
+        </ion-item-group>
+        </ion-list>
+      </ion-accordion>
+
+    </ion-accordion-group>
+  </ion-list>
+    <ion-list #scheduleList >
+      <ion-list inset="true">
+        <ion-accordion-group>
+          <ion-accordion value="schedule">
+        <ion-item slot="header">
+          <ion-label>
+            กิจกรรมวันนี้   {{sumSchedule}} รายการ
+          </ion-label>
+        </ion-item>
+
+        <ion-list slot="content">
+          <ion-item-group *ngFor="let session of groupsNow ">
+            <ion-item-divider sticky>
+              <ion-label class="wrap-text-inline">
+                <h3>{{session.name}}</h3>
+              </ion-label>
+            </ion-item-divider>
+            <ion-item-sliding #slidingItem [attr.track]="'th' | lowercase">
+
+                  <ion-item id="item-calendar-{{session.id}}">
+                    <ion-col size="3">
+                    <p style="font-size: 0.75rem;">  อีก <ion-badge color="light">{{session.diffDays}}</ion-badge> วัน <br>สิ้นสุดกิจกรรม</p>
+                    </ion-col>
+                    <ion-label class="wrap-text-inline">               
+                    <ion-col size="9">
+                      <h3>{{session.timeStart | date: 'dd/MM/yyyy'}} &mdash; {{session.timeEnd | date: 'dd/MM/yyyy'}}: {{session.location}}</h3>  
+                    </ion-col>                     
+                    </ion-label>
+                </ion-item>
+            </ion-item-sliding>
+        </ion-item-group>
+        </ion-list>
+      </ion-accordion>
+
+    </ion-accordion-group>
+  </ion-list>
+
+  
+  </ion-list>
+    
+ 
+</ion-content>

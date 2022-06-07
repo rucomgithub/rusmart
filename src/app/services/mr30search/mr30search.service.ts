@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map, switchMap,shareReplay, publish, refCount, share } from 'rxjs/operators';
+import { Observable} from 'rxjs';
 import {Mr30} from '../mr30search/mr30search'
 import { environment } from '../../../environments/environment';
 
@@ -38,9 +38,8 @@ record={
     
 
     return this.http.post<Mr30>(`${environment.mr30Search}`,playLoad).pipe(map(mr30show=>{
-
       return mr30show
-    }))
+    }),share())
   }
 
   

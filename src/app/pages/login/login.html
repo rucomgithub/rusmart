@@ -55,13 +55,22 @@
 
                 </ion-row>
 
-                <div class="btn-google-signin-wrapper">
+                <!-- <div class="btn-google-signin-wrapper">
                     <ion-button expand="full" class="btn-google-signin" (click)="googleSignup()">
                         <b>เข้าระบบ</b>
                     </ion-button>
-                    <ion-button id="login-google" expand="full" class="btn-google-signin" (click)="googleSignupTest()">
+                </div> -->
+
+                <div class="btn-google-signin-wrapper">
+                    <button id="login-google" class="btn-google-signin" (click)="googleSignup()">
+                        <img src="../../../assets/home/google-sigin.png" alt="google-signup"> &nbsp; <b>เข้าสู่ระบบ</b>
+                    </button>
+                </div>
+                <br>
+                <div class="btn-google-signin-wrapper">
+                    <button id="login-google-test" class="btn-google-signin" (click)="googleSignupTest()">
                         <b>เข้าระบบ ทดสอบ</b>
-                    </ion-button>
+                    </button>
                 </div>
 
             </div>

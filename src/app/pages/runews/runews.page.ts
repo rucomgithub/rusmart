@@ -51,5 +51,10 @@ export class RunewsPage implements OnInit {
     );
   }
 
+  gotoDetail(Id: string) {
+    this.ruNewsService.updateHitDetail(Id);
+    this.router.navigate([`//app/tabs/home/runews/detail/${Id}`]);
+    }
+
 
 }

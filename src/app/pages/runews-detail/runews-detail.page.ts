@@ -37,6 +37,7 @@ export class RunewsDetailPage implements OnInit {
     status: '',
     priority: '',
   };
+  activatedRoute: any;
   constructor(
     private route: ActivatedRoute,
     private runewsService: RunewsService,
@@ -44,21 +45,19 @@ export class RunewsDetailPage implements OnInit {
     private loadingCtrl:LoadingController
   ) {
 
-    this.runewsService.RuNews.subscribe((res: any) => {
-      console.log("res",res)
-      let data = res.filter(news => this.route.snapshot.paramMap.get('id') == news.id )
-      console.log("data",data)
-      this.runews = data;
-      this.runewsService.updateHitDetail(data[0].id)
-    })
-
+    
   }
 
   ngOnInit() {
+    this.runewsService.RuNews.subscribe((res: any) => {
+      let data = res.filter(news => this.route.snapshot.paramMap.get('id') == news.id )
+      this.runews = data;
+      
+    })
 
   }
   ionViewWillEnter() {
-    // this.runewsService.setRuNews();
+  
   }
 
   openLink1(file: String) {

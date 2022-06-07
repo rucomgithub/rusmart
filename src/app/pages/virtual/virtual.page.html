@@ -15,7 +15,7 @@
             <ion-row>
                 <ion-col size="3">
                     <div class="ion-float-left">
-                        <img width="61" height="74" style="margin-left: 20%;margin-top: 20%;" src="assets/img/card/Logo_VecRu_Thai.png" />
+                        <img  width="61" height="74" style="margin-left: 20%;margin-top: 20%;" src="assets/img/card/Logo_VecRu_Thai.png" />
                     </div>
                 </ion-col>
                 <ion-col size="9">
@@ -34,23 +34,23 @@
             <!-- header -->
 
             <ion-row style="display: flex; justify-content: center;margin-top: 3%">
-                <img src={{imageurl}} width="200" height="223"/>
+                <img id="img-profile" src={{imageurl}} width="200" height="223"/>
             </ion-row>
 
             <div class="bgcolortop">
                 <ion-row style="display: flex; justify-content: center;margin-top: 4%">
-                    <b style="color:#ffffff ;  font-size: 22px; ">{{studentProfile.NAME_THAI}}</b>
+                    <b id="namethai-tag" style="color:#ffffff ;  font-size: 22px; ">{{studentProfile.NAME_THAI}}</b>
                 </ion-row>
                 <ion-row style="display: flex; justify-content: center;">
-                    <b style="color:#f3cf00;  font-size: 20px; margin-top: 4%">{{studentProfile.STD_CODE}}</b>
+                    <b id="stdcode-tag" style="color:#f3cf00;  font-size: 20px; margin-top: 4%">{{studentProfile.STD_CODE}}</b>
                 </ion-row>
             </div>
             <div class="bgcolorbottom">
                 <ion-row style="display: flex; justify-content: center;">
-                    <b style="color:#19196B;  font-size: 22px;margin-top: 3% ">{{studentProfile.FACULTY_NAME_THAI}}</b>
+                    <b id="faculty-tag" style="color:#19196B;  font-size: 22px;margin-top: 3% ">{{studentProfile.FACULTY_NAME_THAI}}</b>
                 </ion-row>
                 <ion-row style="display: flex; justify-content: center;margin-top: 2%;margin-bottom: 2%">
-                    <b style="color:#000000;  font-size: 18px; ">{{studentProfile.MAJOR_NAME_THAI}}</b>
+                    <b id="major-tag" style="color:#000000;  font-size: 18px; ">{{studentProfile.MAJOR_NAME_THAI}}</b>
                 </ion-row>
             </div>
             

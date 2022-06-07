@@ -6,6 +6,7 @@ import { TabsPage } from './tabs-page';
 import { SchedulePage } from '../schedule/schedule';
 import { HomePageModule } from '../home/home.module';
 import { AuthGuard } from '../../_helpers/auth.guard';
+import { TodayPage } from '../today/today.page';
 
 
 const routes: Routes = [
@@ -25,6 +26,16 @@ const routes: Routes = [
             path: 'session/:sessionId',
             loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
           }
+        ]
+      },
+
+      {
+        path: 'today',
+        children: [
+          {
+            path: '',
+            component: TodayPage,
+          },
         ]
       },
       {

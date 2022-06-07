@@ -63,14 +63,19 @@ ion-fab-button {
 
 $categories: (
   //m: var(--ion-color-primary),
-  tu: #fc04c2,
-  w: #24ff07,
-  th: #f69206,
-  f: #03b9fb,
-  m: #fff307,
   su: #ff0404,
-  s: #af03ff,
-  t: #222123,
+  m: #fff307,
+  tu: #ff78e0,
+  w: #7fc676,
+  th: #f69206,
+  f: #46ceff,
+  s: #55007d,
+  tts: #d8d8d8,
+  "-": #d8d8d8,
+  mwf: #d8d8d8,
+  m-f: #d8d8d8,
+  m-s: #d8d8d8,
+  "": #d8d8d8,
   navigation: #6600cc
 );
 
@@ -81,15 +86,15 @@ $categories: (
   }
 }
 
-.mr30-header {
-  ul {
-      list-style: none;
-      padding-left: 0.5rem;
-    li {
-      margin: 0 0rem;
-    }
-  }
-}
+// .mr30-header {
+  // ul {
+  //     list-style: none;
+  //     padding-left: 0.5rem;
+  //   li {
+  //     margin: 0 0rem;
+  //   }
+  // }
+// }
 
 .course_header{
   color: #460202;
@@ -108,3 +113,4 @@ $categories: (
   align-content: center;
   justify-content: center;
 }
+

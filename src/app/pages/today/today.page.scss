@@ -1,0 +1,68 @@
+ion-fab-button {
+    --background: var(--ion-color-step-150, #fff);
+    --background-hover: var(--ion-color-step-200, #f2f2f2);
+    --background-focused: var(--ion-color-step-250, #d9d9d9);
+  
+    --color: var(--ion-color-primary, #3880ff);
+  }
+  
+  /*
+   * Material Design uses the ripple for activated
+   * so only style the iOS activated background
+   */
+  .ios ion-fab-button {
+    --background-activated: var(--ion-color-step-250, #d9d9d9);
+  }
+  
+  
+  .wrap-text-inline{
+    white-space: normal ;
+  }
+
+  $categories: (
+  //m: var(--ion-color-primary),
+  su: #ff0404,
+  m: #fff307,
+  tu: #fc04c2,
+  w: #24ff07,
+  th: #f69206,
+  f: #03b9fb,
+  s: #af03ff,
+  t: #222123,
+  navigation: #6600cc
+);
+
+$categoriesnow: (
+    //m: var(--ion-color-primary),
+    หมดคาบ: #ff0404,
+    วิชาถัดไป: #aaa323,
+    กำลังบรรยาย: #18770b,
+  );
+@each $track, $value in map-remove($categories) {
+  ion-item-sliding[track='#{$track}'] ion-label {
+    border-left: 2px solid $value;
+    padding-left: 10px;
+  }
+}
+
+@each $trackbadge, $value in map-remove($categories) {
+    ion-badge[trackbadge='#{$trackbadge}']  {
+      background-color:$value ;
+      color:white;
+      font-size: 1rem;
+    }
+  }
+
+
+@each $tracknow, $value in map-remove($categoriesnow) {
+    ion-badge[tracknow='#{$tracknow}']  {
+      background-color:$value ;
+      color:white;
+      font-size: 0.75rem;
+    }
+  }
+
+ion-badge{
+    color:#ab8602;
+    font-size: 0.85rem;
+}

@@ -10,15 +10,15 @@
                         <ion-text id="name-thai-tag">{{studentProfile.NAME_THAI}}</ion-text>
                     </div>
                     <div style="text-align: center; margin: 0 0 20% 0; ">
-                        <ion-text class="name-std-tag">รหัสนักศึกษา : {{studentProfile.STD_CODE}}</ion-text><br>
-                        <ion-text class="name-email-tag">อีเมล : 6299999991@rumail.ru.ac.th</ion-text>
+                        <ion-text class="name-std-tag" id="stdcode-tag">รหัสนักศึกษา : {{studentProfile.STD_CODE}}</ion-text><br>
+                        <ion-text class="name-email-tag" id="email-tag">อีเมล : {{studentProfile.STD_CODE}}@rumail.ru.ac.th</ion-text>
                     </div>
                 </ion-col>
             </ion-row>
         </div>
         <div class="imgA1">
             <div>
-                <img src="{{imageurl}}" width="25%" referrerpolicy="no-referrer"/> 
+                <img id="img-profile" src="{{imageurl}}" width="25%" referrerpolicy="no-referrer"/> 
                 <!-- <ion-img [src]="imageurl" width="25%"></ion-img> -->
             </div>
         </div>
@@ -35,21 +35,21 @@
                     <ion-col size="12" size-sm id="detail-student-graduate">
                         <ion-row>
                             <ion-col size="6" size-sm id="draw-line-vertical">
-                                <span style="font-weight: bold;"> &nbsp; {{studentProfile.FACULTY_NAME_THAI}}</span>
+                                <span style="font-weight: bold;" id="faculty-tag"> &nbsp; {{studentProfile.FACULTY_NAME_THAI}}</span>
                                 <br /> {{studentProfile.MAJOR_NAME_THAI}} </ion-col>
                             <ion-col size="6" size-sm>
-                                <span style="font-weight: bold;">  &nbsp; สถานะลงทะเบียน</span> <br /> {{studentProfile.STD_STATUS_DESC_THAI}}
+                                <span style="font-weight: bold;" id="status-tag">  &nbsp; สถานะลงทะเบียน</span> <br /> {{studentProfile.STD_STATUS_DESC_THAI}}
                             </ion-col>
                         </ion-row>
                     </ion-col>
 
                     <ion-col size="12" size-sm id="detail-student-graduate2">
-                        <ion-row>
+                        <ion-row routerLink="/virtual">
                             <!-- <ion-col size="6" size-sm id="draw-line-vertical">สถานะ
                                 <br />{{studentProfile.STD_TYPE_DESC_THAI}}</ion-col> -->
-                                <ion-col size="6" size-sm id="draw-line-vertical"><span  style="font-weight: bold;">หน่วยกิตสะสม </span>
-                                    <br />138</ion-col>
-                            <ion-col size="6" size-sm> <a   style="margin: 0; padding: 0;" routerLink="/virtual"><ion-icon name="card-outline" style="font-size: 60px;" ></ion-icon></a>
+                                <!-- <ion-col size="6" size-sm id="draw-line-vertical"><span  style="font-weight: bold;">หน่วยกิตสะสม </span>
+                                    <br />138</ion-col> -->
+                            <ion-col size="6" size-sm> <a id="govirtual"  style="margin: 0; padding: 0;" ><ion-icon name="card-outline" style="font-size: 60px;" ></ion-icon></a>
                           </ion-col>
                         </ion-row>
                     </ion-col>
@@ -60,47 +60,7 @@
             </ion-col>
         </ion-row>
 
-        <ion-row id="activity-plate">
-            <ion-col size="12" size-sm>
-                <ion-row class="bar-color">
-                    <ion-col size="12" size-sm>
-                        <b><ion-icon name="bookmark-outline"></ion-icon>กิจกรรมที่กำลังมาถึง</b>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col size="12" size-sm>
-                        <ion-list #scheduleList [hidden]="shownSessions === 0">
-                            <ion-item-group *ngFor="let group of groups | slice:0:1;" [hidden]="group.hide">
-                                <ion-item-divider sticky>
-                                    <ion-label>
-                                        {{group.time | date: 'dd/MM/yyyy'}}
-                                    </ion-label>
-                                </ion-item-divider>
-                
-                                <ion-item-sliding *ngFor="let session of group.sessions " #slidingItem [attr.track]="session.tracks[0] | lowercase " [hidden]="session.hide ">
-                                    <ion-item routerLink="/app/tabs/schedule/session/{{session.id}}">
-                                        <ion-label>
-                                            <h3>{{session.name}}</h3>
-                                            <p>
-                                                {{session.timeStart | date: 'dd/MM/yyyy'}} &mdash; {{session.timeEnd | date: 'dd/MM/yyyy'}}: {{session.location}}
-                                            </p>
-                                        </ion-label>
-                                    </ion-item>
-                                    <ion-item-options>
-                                        <ion-item-option color="favorite " (click)="addFavorite(slidingItem, session) " *ngIf="segment==='all' ">
-                                            Favorite
-                                        </ion-item-option>
-                                        <ion-item-option color="danger " (click)="removeFavorite(slidingItem, session, 'Remove Favorite') " *ngIf="segment==='favorites' ">
-                                            Remove
-                                        </ion-item-option>
-                                    </ion-item-options>
-                                </ion-item-sliding>
-                            </ion-item-group>
-                        </ion-list>
-                    </ion-col>
-                </ion-row>
-            </ion-col>
-        </ion-row>
+    
     </ion-content>
 
 </ion-app>

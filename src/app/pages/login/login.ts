@@ -65,7 +65,7 @@ export class LoginPage {
       // this.googleAuthService.googleAuth(idToken, stdCode).subscribe(response => {
       //   this.router.navigate(['/app/tabs/profile']);
       // });
-      this.googleAuthService.googleAuthTest("5801000505").subscribe(response => {
+      this.googleAuthService.googleAuthTest("6299999991").subscribe(response => {
         this.router.navigate(['/app/tabs/profile']);
       });
   }

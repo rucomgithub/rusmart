@@ -23,12 +23,12 @@
             <ion-item>
                 <ion-label>
                     <div class="mr30-header">                  
-                            <p>วันเวลาเรียน : {{mr30ArrTemp.course_study_datetime}}</p>
+                            <p>วันเวลาเรียน : {{mr30ArrTemp.day_name_s}} {{mr30ArrTemp.time_period}}</p>
                             <p>ห้องเรียน : {{mr30ArrTemp.course_room}}</p>
                             <p>อาจารย์ผู้สอน : {{mr30ArrTemp.course_instructor}}</p>
                             <p>วันเวลาสอบ : {{mr30ArrTemp.course_examdate}}</p>
-                            <p >PR : {{mr30ArrTemp.course_pr}}</p>
-                            <p >หมายเหตุ :    {{mr30ArrTemp.course_comment}}</p>
+                            <p *ngIf="mr30ArrTemp.course_pr!=''">PR : {{mr30ArrTempTemp.course_pr}}</p>
+                            <p *ngIf="mr30ArrTemp.course_comment!=''">หมายเหตุ :    {{mr30ArrTemp.course_comment}}</p>
                                       
                     </div>
                 </ion-label>

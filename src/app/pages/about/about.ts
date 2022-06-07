@@ -18,7 +18,7 @@ export class AboutPage {
   // url_mlearning = 'http://10.6.6.96/mls2018rubram/site/loginforapp';
   // url_mlearning_redirect = 'http://10.6.6.96/mls2018rubram/showsubject';
   url_mlearning = 'https://m-learning.ru.ac.th/site/loginforapp';
-  url_mlearning_redirect = 'https://m-learning.ru.ac.th/showsubject';
+  url_mlearning_redirect = 'https://m-learning.ru.ac.th/ShowSubject';
   url_eservice_grade_release='https://beta-e-service.ru.ac.th/index.php';
   //------ set url images ---------------------
   urlSrcMenuImg2 = 'https://sevkn.ru.ac.th/rusmart/rusmart-images/about/sub2.png';
