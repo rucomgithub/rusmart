@@ -3,6 +3,7 @@ import { IonList, LoadingController } from '@ionic/angular';
 import { Rec } from '../../services/mr30search/mr30search';
 import { IonAccordionGroup } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-today',
   templateUrl: './today.page.html',
@@ -154,15 +155,104 @@ getTime(str){
         }
        // console.log(d)
         let dateTime = strHour+""+strMinute;
-        console.log(strHour+""+strMinute)
-        let datetimeStr = strHour+":"+strMinute;
+        // console.log(strHour+""+strMinute)
+        //let datetimeStr = strHour+":"+strMinute;
+        let datetimeStr = strHour+""+strMinute;
         let diffTime = 4600;
+        let hourMR30
+        let minMR30;
+        let hourNow = strHour
+        let minNow = strMinute
         //this.startTimerEx(diffTime)
         var newarr = str.split("-"); 
+        
+        var diffHour ;
+        var diffMin;
         if(dateTime >=newarr[0] && dateTime <=newarr[1]) {
-          return datetimeStr
+          hourMR30 = newarr[1].substring(0,2)
+          minMR30 = newarr[1].substring(2)
+          minMR30 = minMR30 
+          const dateN = parseInt(datetimeStr) ;
+          const dateE = parseInt(newarr[1]);
+           diffHour = parseInt(hourMR30) -parseInt(hourNow) ;
+           diffMin =  (minMR30 -minNow) / (60 * 1000) ;
+          // let test=parseInt(datetimeStr) -newarr[1]
+          console.log("เวลา",diffHour,diffMin)
+
+          
+          const ddd = new Date(newarr[1]);
+          const dnow = new Date();
+          const total = ddd.getTime()-dnow.getTime()
+          // console.log(ddd,dnow,total)
+          // console.log(total/(1000 * 3600 * 24) )
+          let diffDays = total/(1000 * 3600 * 24)
+
+          //ปัจจุบัน
+          var a = strHour+":"+strMinute
+          var b = this.toDate(a,"h:m")
+
+          console.log("wut=>",b);
+          //ตาม มร30
+          hourMR30 = newarr[1].substring(0,2)
+          minMR30 = newarr[1].substring(2)
+          console.log("Mr30=>",hourMR30+":"+minMR30)
+          var bMr30 = this.toDate(hourMR30+":"+minMR30,"h:m")
+          console.log("bMr30=>",bMr30)
+          let x1 = new Date(bMr30) ;
+          let x2 = new Date(b) ;
+          //let mydiff=  Math.abs(x1.getTime() - x2.getTime()) / (1000 * 60) % 60;
+          const hours = Math.abs(x1.getTime() - x2.getTime()) / (1000 * 60 * 60) % 24;
+          const minutes = Math.abs(x1.getTime() - x2.getTime()) / (1000 * 60) % 60;
+          const seconds = Math.abs(x1.getTime() - x2.getTime()) / (1000) % 60; 
+          let diffTimes;
+          //console.log(this.msToTime(x1.getTime() - x2.getTime() ))
+          if(Math.floor(hours)==0 && Math.floor(minutes)==0 && Math.floor(seconds)==0){
+            diffTimes = ""
+            console.log("เหลืออีก",seconds)           
+          }else if(hours < 1 ){
+            diffTimes = minutes.toFixed()+" นาที. "
+            console.log("เหลืออีก",minutes,seconds)
+          }else{
+            diffTimes = Math.floor(hours) +" ชม. "+minutes.toFixed()+" นาที."
+            console.log("เหลืออีก",hours,minutes,seconds)
+          }
+          
+          //console.log(hours,minutes,seconds)     
+          return diffTimes.toString();
+          //return test.toString()
+
         }
          return '';
+}
+msToTime(ms) {
+  let seconds = (ms / 1000).toFixed(1);
+  let minutes = (ms / (1000 * 60)).toFixed(1);
+  let hours = (ms / (1000 * 60 * 60)).toFixed(1);
+  let days = (ms / (1000 * 60 * 60 * 24)).toFixed(1);
+  if (parseInt(seconds)  < 60) {
+    return seconds + " Sec";
+  }
+  else if (parseInt(minutes) < 60) {
+    return minutes + " Min";
+  }
+  else if (parseInt(hours) < 24) {
+    return hours + " Hrs";
+  }
+  else {
+    return days + " Days"
+  }
+  
+}
+
+toDate(dStr,format) {
+  var now = new Date();
+  if (format == "h:m") {
+     now.setHours(dStr.substr(0,dStr.indexOf(":")));
+     now.setMinutes(dStr.substr(dStr.indexOf(":")+1));
+     now.setSeconds(0);
+     return now;
+  }else 
+    return "Invalid Format";
 }
 
 getText(str){
@@ -188,11 +278,11 @@ getText(str){
   let diffTime = 4600;
   //this.startTimerEx(diffTime)
   var newarr = str.split("-"); 
-  if(dateTime >=newarr[0] && dateTime <=newarr[1]) {
+  if(dateTime >=newarr[0] && dateTime < newarr[1]) {
     return 'กำลังบรรยาย'
   }else if(dateTime <=newarr[0]){
     return 'วิชาถัดไป'
-  }else if(dateTime >newarr[1]){
+  }else if(dateTime >=newarr[1]){
     return 'หมดคาบ'
   }
    return '';

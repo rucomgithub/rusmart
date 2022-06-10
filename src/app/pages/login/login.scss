@@ -65,3 +65,9 @@ ion-content {
     justify-content: left;
     align-items: left;
 }
+.disable-button-login{
+    display: none;
+}
+.enable-button-login{
+    display:block;
+}

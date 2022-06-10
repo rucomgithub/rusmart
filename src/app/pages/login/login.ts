@@ -14,7 +14,7 @@ import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 
 //import { Storage } from '@capacitor/storage';
-import { NavController } from '@ionic/angular';
+import { NavController ,ToastController} from '@ionic/angular';
 import { GoogleAuthService } from '../../services/google/google-auth.service';
 import { GoogleAuthResponse } from '../../services/google/googleAuth';
 
@@ -33,7 +33,7 @@ export class LoginPage {
   resTu:string;
   constructor(private googleAuthService: GoogleAuthService,
     private router: Router, public storage: Storage,
-    private navCtrl: NavController) {
+    private navCtrl: NavController,public toastCtrl: ToastController) {
 
   }
   ionViewDidEnter(){
@@ -48,10 +48,41 @@ export class LoginPage {
       localStorage.setItem('imageUrl',this.userInfo.imageUrl)
       console.log( this.userInfo.imageUrl)
 
-      this.googleAuthService.googleAuth(idToken, stdCode).subscribe(response => {
-        this.router.navigate(['/app/tabs/profile']);
-      });
+      this.googleAuthService.googleAuth(idToken, stdCode).subscribe(
+        response => {
+          this.router.navigate(['/app/tabs/profile']);
+        },
+        async err => {
 
+          if(err.status==422){
+            console.log('HTTP Error', err)
+            // document.getElementById('login-google').classList.remove("btn-google-signin");
+            // document.getElementById('login-google').classList.add("disable-button-login");
+            const toast = await this.toastCtrl.create({
+              header: err.error.message,
+              duration: 8000,
+              position: 'bottom',
+              color: 'danger',
+              buttons: [
+                {
+                  text: "Close",
+                  role: "cancel",
+                  
+                },
+              ],
+            });
+            console.log(document.getElementById('login-google'))
+            await toast.present();
+            // ***ยังทำไม่ได้***
+            // เมื่อทำการแสดง toast แล้ว ให้ปุ่มกด google login หายไปก่อนชั่วขณะ 
+
+          }
+        }
+        );
+        // await document.getElementById('login-google').classList.remove("disable-button-login");
+        // await document.getElementById('login-google').classList.add("btn-google-signin");
+        // await console.log(document.getElementById('login-google'))
+        // await document.getElementById('login-google').classList.add("enable-button-login");
   }
   async googleSignupTest() {
     console.log("something....")

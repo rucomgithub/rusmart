@@ -25,27 +25,29 @@
             <ion-item-sliding  [attr.track]="mr30.day_name_s | lowercase ">
 
                   <ion-item>
+                    
                     <ion-col size="2">
                       <ion-badge [attr.trackbadge]="mr30.day_name_s | lowercase ">{{mr30.day_name_s}}</ion-badge>
                       <p style="font-size: 8;"><b>{{mr30.time_period_text}}  </b>  </p>   
                        
                     </ion-col>  
                     <ion-label class="wrap-text-inline">   
-                        <ion-col size="7">      
+                        <ion-col size="6">      
                         <h3><b>{{mr30.course_no}}</b></h3>                   
                         <h3>{{mr30.course_room}}</h3>   
                         <h3> {{mr30.course_instructor}}</h3>   
                       </ion-col> 
                     
                     </ion-label>
-                         <ion-col size="3">    
+                         <ion-col size="4">    
                          <div *ngIf="mr30.study_now != ''">
-                         <ion-badge style="font-size: 0.85rem;   color: #ab8602;" color="light">{{mr30.study_now}}
-                         </ion-badge> </div> 
+                          <p style="font-size: 0.75rem;">หมดคาบเรียนในอีก <ion-badge color="light">{{mr30.study_now}}</ion-badge></p>
+                        </div> 
                          <div *ngIf=" mr30.now_text != ''">
                           <ion-badge [attr.tracknow]="mr30.now_text | lowercase ">{{mr30.now_text}}</ion-badge >
                          </div>
                     </ion-col> 
+                
                 </ion-item>
                 <hr>
             </ion-item-sliding>
@@ -70,11 +72,11 @@
         <ion-accordion-group>
           <ion-accordion value="schedule">
         <ion-item slot="header">
-          <ion-label>
+          <ion-label *ngIf="sumSchedule != 0">
             กิจกรรมวันนี้   {{sumSchedule}} รายการ
           </ion-label>
+          <ion-label color="warning" *ngIf="sumSchedule == 0 ">ไม่พบกิจกรรมในวันนี้  </ion-label>
         </ion-item>
-
         <ion-list slot="content">
           <ion-item-group *ngFor="let session of groupsNow ">
             <ion-item-divider sticky>

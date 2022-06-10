@@ -34,7 +34,7 @@ ion-fab-button {
 
 $categoriesnow: (
     //m: var(--ion-color-primary),
-    หมดคาบ: #ff0404,
+    หมดคาบ: #670202,
     วิชาถัดไป: #aaa323,
     กำลังบรรยาย: #18770b,
   );
@@ -60,6 +60,11 @@ $categoriesnow: (
       color:white;
       font-size: 0.75rem;
     }
+    ion-col[tracknow='#{$tracknow}']  {
+        background-color:$value ;
+        color:white;
+        font-size: 0.75rem;
+      }
   }
 
 ion-badge{

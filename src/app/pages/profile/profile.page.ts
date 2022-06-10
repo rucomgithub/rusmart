@@ -66,7 +66,7 @@ export class ProfilePage implements OnInit {
   ionViewWillEnter(){
  
     this.imageurl = localStorage.getItem('imageUrl')
-    console.log('willenter')
+    //console.log('willenter')
   }
 
   updateSchedule() {
@@ -170,6 +170,7 @@ export class ProfilePage implements OnInit {
     this.profileService.fetchStudentProfile().subscribe(
       data =>{
         this.studentProfile = data;
+        //console.log(this.studentProfile);
       }
     )
   }
