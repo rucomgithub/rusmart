@@ -23,7 +23,7 @@ export class Mr30detailPage {
   constructor(private activatedRoute: ActivatedRoute,    public toastCtrl: ToastController,) { }
 
   ionViewWillEnter() {
-    let mr30local = JSON.parse(localStorage.getItem('mr30'))
+    let mr30local = this.getmr30storage();
     this.activatedRoute.params.subscribe(params => {
       this.mr30ArrTemp = JSON.parse(params['id']);
       console.log(this.mr30ArrTemp.id);
@@ -38,7 +38,7 @@ export class Mr30detailPage {
       });
   }
   async toggleFavorite(mr30Arr) {
-    let mr30local = JSON.parse(localStorage.getItem("mr30")) == null? [] : JSON.parse(localStorage.getItem("mr30"));
+    let mr30local = this.getmr30storage();
   
     if (mr30local.filter((item) => item.id === mr30Arr.id).length == 0) {
       
@@ -59,7 +59,7 @@ export class Mr30detailPage {
       await toast.present();
       this.isFavorite = true;
     } else {
-      this.groupsFav = JSON.parse(localStorage.getItem("mr30")) == null? [] : JSON.parse(localStorage.getItem("mr30"));
+      this.groupsFav = this.getmr30storage();
       // index = this.groupsFav.findIndex(item => item.id == index)
       this.groupsFav.forEach( (item, index) => {
         if(item.id === mr30Arr.id) 
@@ -83,6 +83,31 @@ export class Mr30detailPage {
 
     }
   }
+
+  getmr30storage(){
+    let accessToken = localStorage.getItem("accessToken");
+    let stdcode =  localStorage.getItem("stdCode");
+    let mr30local 
+    if(accessToken !=null){
+      //login
+       mr30local = JSON.parse(localStorage.getItem("mr30-"+stdcode)) == null? [] : JSON.parse(localStorage.getItem("mr30-"+stdcode));
+    }else{
+      //not login
+       mr30local = JSON.parse(localStorage.getItem("mr30")) == null? [] : JSON.parse(localStorage.getItem("mr30"));
+    }
+    return mr30local
+  }
+
+  setmr30storage(mr30local){
+    let accessToken = localStorage.getItem("accessToken");
+    let stdcode =  localStorage.getItem("stdCode");
+    if(accessToken !=null){
+      localStorage.setItem("mr30-"+stdcode, JSON.stringify(mr30local));
+    }else{
+    localStorage.setItem("mr30", JSON.stringify(mr30local));
+    }
+  }
+
 
 
 
