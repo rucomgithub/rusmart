@@ -27,7 +27,33 @@ const routes: Routes = [
             loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
           }
         ]
-      },
+      },          {
+        path: 'runews',
+
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../runews/runews.module').then(m => m.RunewsPageModule)
+          },
+          {
+            path: 'detail/:id',
+            loadChildren: () => import('../runews-detail/runews-detail.module').then(m => m.RunewsDetailPageModule)
+          }
+        ]
+      }, 
+      {
+            path: 'mr30search',
+            children: [
+              {
+                path: '',
+                loadChildren: () => import('../mr30search/mr30search.module').then(m => m.Mr30searchPageModule)
+              },
+              {
+                path: 'mr30detail/:id',
+                loadChildren: () => import('../mr30detail/mr30detail.module').then(m => m.Mr30detailPageModule)
+              }
+            ]
+          },
 
       {
         path: 'today',
@@ -87,20 +113,8 @@ const routes: Routes = [
             path: '',
             loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
           },
-          {
-            path: 'runews',
 
-            children: [
-              {
-                path: '',
-                loadChildren: () => import('../runews/runews.module').then(m => m.RunewsPageModule)
-              },
-              {
-                path: 'detail/:id',
-                loadChildren: () => import('../runews-detail/runews-detail.module').then(m => m.RunewsDetailPageModule)
-              }
-            ]
-          },
+          
           {
             path: 'calendar',
             loadChildren: () => import('../calendar/calendar.module').then(m => m.CalendarPageModule)
@@ -109,19 +123,7 @@ const routes: Routes = [
             path: 'mr30',
             loadChildren: () => import('../mr30/mr30.module').then(m => m.Mr30PageModule)
           },
-          {
-            path: 'mr30search',
-            children: [
-              {
-                path: '',
-                loadChildren: () => import('../mr30search/mr30search.module').then(m => m.Mr30searchPageModule)
-              },
-              {
-                path: 'mr30detail/:id',
-                loadChildren: () => import('../mr30detail/mr30detail.module').then(m => m.Mr30detailPageModule)
-              }
-            ]
-          }
+         
           
 
         ]

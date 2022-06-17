@@ -40,49 +40,90 @@ export class LoginPage {
     GoogleAuth.initialize();
   }
   async googleSignup() {
-    console.log("something....")
+      console.log("something....")
       this.googleUser = await GoogleAuth.signIn() as any;
       this.userInfo = this.googleUser;
       const idToken = this.googleUser.authentication.idToken;
       const stdCode = this.googleUser.email.substring(0, 10);
-      localStorage.setItem('imageUrl',this.userInfo.imageUrl)
-      console.log( this.userInfo.imageUrl)
+      console.log(this.googleUser.email) 
+      let splitted = this.googleUser.email.split("@");
+      console.log(splitted)
+      if(splitted[1]=='rumail.ru.ac.th' || this.userInfo =='undefined'){
+        localStorage.setItem('imageUrl',this.userInfo.imageUrl)
+        console.log( this.userInfo.imageUrl)
+        
+        this.googleAuthService.googleAuth(idToken, stdCode).subscribe(
+          response => {
+            this.router.navigate(['/app/tabs/profile']);
+          },
+          async err => { 
 
-      this.googleAuthService.googleAuth(idToken, stdCode).subscribe(
-        response => {
-          this.router.navigate(['/app/tabs/profile']);
-        },
-        async err => {
+            if(err.status==422){
+              // console.log('HTTP Error', err)
+              //ตรวจสอบว่าอีเมล์เป็น digit หรือไม่ ถ้าไม่เป็นค่าจะแสดงเป็น NaN
+              let message=''
+              if (isNaN(Number(stdCode))){
+                //ถ้าNaNจริงแสดงว่าเป็นเจ้าหน้าที่แสดงข้อความตามที่กำหนดใน message
+                console.log('stdCodeNan=>',Number(stdCode))
+                message = 'กรุณาตรวจสอบอีเมล์ ไม่สามารถใช้อีเมล์สำหรับบุคลากรได้'
+              }else{
+                //เข้ากรณีที่เป็นนักศึกษา
+                const fac = ["01", "02", "03", "04", "05", "06", "07"];
+                //5612740068 ทดสอบ
+                let checkBachelor=stdCode.substring(2, 4);
+                if(fac.indexOf(checkBachelor)>0){
+                  //เป็นนักศึกษาปริญญาตรี
+                  if(Number.isInteger(parseInt(stdCode))){
+                    message = err.error.message
+                  }
+                }else{
+                  //ไม่เป็นนักศึกษาปริญญาตรี
+                  message = 'สำหรับนักศึกษาปริญญาตรีเท่านั้น'
+                }
+              }
 
-          if(err.status==422){
-            console.log('HTTP Error', err)
-            // document.getElementById('login-google').classList.remove("btn-google-signin");
-            // document.getElementById('login-google').classList.add("disable-button-login");
-            const toast = await this.toastCtrl.create({
-              header: err.error.message,
-              duration: 8000,
-              position: 'bottom',
-              color: 'danger',
-              buttons: [
-                {
-                  text: "Close",
-                  role: "cancel",
-                  
-                },
-              ],
-            });
-            console.log(document.getElementById('login-google'))
-            await toast.present();
-            // ***ยังทำไม่ได้***
-            // เมื่อทำการแสดง toast แล้ว ให้ปุ่มกด google login หายไปก่อนชั่วขณะ 
+              const toast = await this.toastCtrl.create({
+                header: message,
+                duration: 8000,
+                position: 'bottom',
+                color: 'danger',
+                buttons: [
+                  {
+                    text: "Close",
+                    role: "cancel",
+                    
+                  },
+                ],
+              });
+              console.log(document.getElementById('login-google'))
+              await toast.present();
+              // ***ยังทำไม่ได้***
+              // เมื่อทำการแสดง toast แล้ว ให้ปุ่มกด google login หายไปก่อนชั่วขณะ 
 
+            }
           }
-        }
-        );
-        // await document.getElementById('login-google').classList.remove("disable-button-login");
-        // await document.getElementById('login-google').classList.add("btn-google-signin");
-        // await console.log(document.getElementById('login-google'))
-        // await document.getElementById('login-google').classList.add("enable-button-login");
+          );
+          // await document.getElementById('login-google').classList.remove("disable-button-login");
+          // await document.getElementById('login-google').classList.add("btn-google-signin");
+          // await console.log(document.getElementById('login-google'))
+          // await document.getElementById('login-google').classList.add("enable-button-login");
+      }else{
+        console.log('error email')
+        const toast = await this.toastCtrl.create({
+          header: 'สำหรับ @rumail.ru.ac.th เท่านั้น',
+          duration: 8000,
+          position: 'bottom',
+          color: 'danger',
+          buttons: [
+            {
+              text: "Close",
+              role: "cancel",
+              
+            },
+          ],
+        });
+        await toast.present();
+      }
   }
   async googleSignupTest() {
     console.log("something....")

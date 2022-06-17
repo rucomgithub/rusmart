@@ -66,7 +66,7 @@
             <ion-item-sliding #slidingItem [attr.track]="mr30Arr.day_name_s | lowercase">
             <!-- <ion-item-sliding #slidingItem [attr.track]="pickDateColor(mr30Arr.day_name_s)"> -->
 
-                <ion-item  routerLink="/app/tabs/home/mr30search/mr30detail/{{mr30Arr  | json }}">
+                <ion-item  routerLink="/app/tabs/mr30search/mr30detail/{{mr30Arr  | json }}">
                     <ion-label>
                         <h3>วันเวลาเรียน : {{mr30Arr.day_name_s}} {{mr30Arr.time_period}}</h3>
                         <h3>ห้องเรียน : {{mr30Arr.course_room}}</h3>

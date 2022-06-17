@@ -15,6 +15,7 @@
     <ion-accordion-group >
       <ion-accordion value="mr30">
         <ion-item slot="header">
+          <img style="padding:0 3% 0 0 ;" src='https://sevkn.ru.ac.th/rusmart/rusmart-images/about/sub3.png'>
           <ion-label  *ngIf="sumMR30 != 0">วิชาที่มีเรียนวันนี้ {{sumMR30}} วิชา (รายการโปรด มร.30)</ion-label>
           <ion-label color="warning" *ngIf="sumMR30 == 0 ">ไม่พบวิชาเรียนวันนี้ ในรายการโปรด  </ion-label>
         </ion-item>
@@ -58,7 +59,7 @@
           <ion-item-group >
             <ion-item-divider sticky>
               <ion-label class="wrap-text-inline">
-                <ion-icon name="star-outline"></ion-icon><u  routerLink="/app/tabs/home/mr30search"><span style="color: blue;">เพิ่มวิชาลงในรายการโปรด </span></u>
+                <ion-icon name="star-outline"></ion-icon><u  routerLink="/app/tabs/mr30search"><span style="color: blue;">เพิ่มวิชาลงในรายการโปรด </span></u>
               </ion-label>
            </ion-item-divider>
         </ion-item-group>
@@ -71,7 +72,8 @@
       <ion-list inset="true">
         <ion-accordion-group>
           <ion-accordion value="schedule">
-        <ion-item slot="header">
+        <ion-item slot="header"> 
+          <img style="padding:0 3% 0 0 ;" src='https://sevkn.ru.ac.th/rusmart/rusmart-images/home/event2.png'>
           <ion-label *ngIf="sumSchedule != 0">
             กิจกรรมวันนี้   {{sumSchedule}} รายการ
           </ion-label>

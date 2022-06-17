@@ -53,7 +53,7 @@ export class RunewsPage implements OnInit {
 
   gotoDetail(Id: string) {
     this.ruNewsService.updateHitDetail(Id);
-    this.router.navigate([`//app/tabs/home/runews/detail/${Id}`]);
+    this.router.navigate([`//app/tabs/runews/detail/${Id}`]);
     }
 
 
